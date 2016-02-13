@@ -2,7 +2,8 @@
 
 require 'fileutils'
 
-filename = ARGV[0]
+raise "USAGE: rambo [FILE]" unless filename = ARGV[0]
+
 basename = filename.gsub(/\.raml$/, '')
 
 FileUtils.mkdir_p "spec/contract"
