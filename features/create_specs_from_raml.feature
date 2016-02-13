@@ -12,3 +12,4 @@ Feature: Create tests from RAML
     When I run `rambo foo.raml`
     Then the directory "spec/contract" should exist
     And the file "spec/contract/foo_spec.rb" should exist
+    And the exit status should be 0
