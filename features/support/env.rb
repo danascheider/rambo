@@ -1,8 +1,12 @@
 require 'simplecov'
 require 'coveralls'
 
-SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter[
-  SimpleCov::Formatter::HTMLFormatter,
-  Coveralls::SimpleCov::Formatter
-]
-SimpleCov.start if ENV['COVERAGE']
+SimpleCov.formatter = Coveralls::SimpleCov::Formatter
+
+if ENV['COVERAGE']
+  SimpleCov.start do
+    add_filter 'app/secrets'
+  end
+end
+
+require 'aruba/cucumber'
