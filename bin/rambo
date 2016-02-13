@@ -1,18 +1,5 @@
 #!/usr/bin/env ruby
 
-require 'fileutils'
+require_relative '../lib/cli'
 
-filename = ARGV[0]
-
-if !filename
-  puts "USAGE: rambo [FILE]"
-  exit 1
-elsif !filename.match(/\.raml$/)
-  puts "Unsupported file format. Please choose a RAML file."
-  exit 1
-else
-  basename = filename.gsub(/\.raml$/, '')
-
-  FileUtils.mkdir_p "spec/contract"
-  FileUtils.touch "spec/contract/#{basename}_spec.rb"
-end
+Rambo::CLI.new
