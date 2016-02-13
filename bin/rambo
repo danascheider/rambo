@@ -2,4 +2,8 @@
 
 require 'fileutils'
 
+filename = ARGV[0]
+basename = filename.gsub(/\.raml$/, '')
+
 FileUtils.mkdir_p "spec/contract"
+FileUtils.touch "spec/contract/#{basename}_spec.rb"
