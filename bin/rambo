@@ -2,13 +2,10 @@
 
 require 'fileutils'
 
-raise "USAGE: rambo [FILE]" unless filename = ARGV[0]
-raise "Unsupported file format. Please choose a RAML file." unless filename =~ /\.raml$/
-
 filename = ARGV[0]
 
 if !filename
-  puts "USAGE: rambo[FILE]"
+  puts "USAGE: rambo [FILE]"
   exit 1
 elsif !filename.match(/\.raml$/)
   puts "Unsupported file format. Please choose a RAML file."
