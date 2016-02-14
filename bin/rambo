@@ -2,4 +2,4 @@
 
 require_relative '../lib/cli'
 
-Rambo::CLI.new
+Rambo::CLI.new.run!

@@ -1,19 +1,15 @@
-require 'fileutils'
+require_relative 'document_generator'
 
 module Rambo
   class CLI
-    attr_accessor :file, :stdout
-
     def initialize(stdout=STDOUT)
-      @stdout = stdout
-      @file = ARGV[0]
-      run!
+      @stdout, @file, @generator = stdout, ARGV[0], Rambo::DocumentGenerator.new(ARGV[0])
     end
 
     def create_spec_files!
-      spec_file_name = file.gsub(/\.raml$/, '_spec.rb')
-      FileUtils.mkdir_p "spec/contract"
-      FileUtils.touch "spec/contract/#{spec_file_name}"
+      generator.generate_spec_dir!
+      generator.generate_spec_helper!
+      generator.generate_spec_file!
     end
 
     def validate!
@@ -29,7 +25,9 @@ module Rambo
       create_spec_files!
     end
 
-    protected
+    private
+      attr_accessor :file, :stdout, :generator
+
       def exit_missing_file
         stdout.puts "USAGE: rambo [FILE]"
         exit 1
