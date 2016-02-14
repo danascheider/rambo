@@ -10,6 +10,12 @@ module Rambo
       run!
     end
 
+    def create_spec_files!
+      spec_file_name = file.gsub(/\.raml$/, '_spec.rb')
+      FileUtils.mkdir_p "spec/contract"
+      FileUtils.touch "spec/contract/#{spec_file_name}"
+    end
+
     def validate!
       if !file
         exit_missing_file
@@ -20,11 +26,7 @@ module Rambo
 
     def run!
       validate!
-
-      basename = file.gsub(/\.raml$/, '')
-
-      FileUtils.mkdir_p "spec/contract"
-      FileUtils.touch "spec/contract/#{basename}_spec.rb"
+      create_spec_files!
     end
 
     protected
