@@ -29,7 +29,6 @@ EOF
 
     def generate_spec_helper!
       unless File.exist?("spec/spec_helper.rb")
-        puts "The file does not exist"
         File.open("spec/spec_helper.rb", "a+") do |file|
           file.puts "\nrequire 'rack/test'"
         end
