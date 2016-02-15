@@ -21,13 +21,19 @@ module Rambo
 require 'spec_helper'
 
 describe '#{@raml.title}' do
+  include Rack::Test::Methods
 end
 EOF
       end
     end
 
     def generate_spec_helper!
-      FileUtils.touch "spec/spec_helper.rb"
+      unless File.exist?("spec/spec_helper.rb")
+        puts "The file does not exist"
+        File.open("spec/spec_helper.rb", "a+") do |file|
+          file.puts "\nrequire 'rack/test'"
+        end
+      end
     end
   end
 end

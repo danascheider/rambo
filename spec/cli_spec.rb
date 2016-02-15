@@ -18,6 +18,7 @@ describe Rambo::CLI do
       cli = Rambo::CLI.new(valid_file, io)
       allow_any_instance_of(Rambo::DocumentGenerator).to receive(:generate_spec_dir!)
       allow_any_instance_of(Rambo::DocumentGenerator).to receive(:generate_spec_file!)
+      allow(File).to receive(:exist?).with('spec/spec_helper.rb').and_return(true)
       expect_any_instance_of(Rambo::DocumentGenerator).to receive(:generate_spec_helper!)
       cli.run!
     end

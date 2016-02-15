@@ -17,7 +17,8 @@ describe Rambo::DocumentGenerator do
 
   describe "#generate_spec_helper!" do
     it "generates the spec_helper file" do
-      expect(FileUtils).to receive(:touch).with("spec/spec_helper.rb")
+      allow(File).to receive(:exist?).with("spec/spec_helper.rb").and_return(true)
+      expect(File).to receive(:exist?).with("spec/spec_helper.rb")
       generator.generate_spec_helper!
     end
   end
