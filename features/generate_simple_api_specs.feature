@@ -43,6 +43,8 @@ Feature: Generate simple API specs
         include Rack::Test::Methods
 
         describe '/authors' do
+          describe 'GET' do
+          end
         end
       end
       """
