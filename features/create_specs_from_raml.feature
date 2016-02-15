@@ -1,4 +1,4 @@
-Feature: Create tests from RAML
+Feature: Create specs from RAML
 
   Scenario: Generate specs from a simple RAML file
     Given a file named "foo.raml" with:
