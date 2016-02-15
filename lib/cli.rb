@@ -2,27 +2,24 @@ require_relative 'document_generator'
 
 module Rambo
   class CLI
-    def initialize(stdout=STDOUT)
-      @stdout, @file, @generator = stdout, ARGV[0], Rambo::DocumentGenerator.new(ARGV[0])
-    end
+    def initialize(raml_file=nil, stdout=STDOUT)
+      @stdout = stdout
+      @file = raml_file
 
-    def create_spec_files!
-      generator.generate_spec_dir!
-      generator.generate_spec_helper!
-      generator.generate_spec_file!
+      validate!
+
+      @generator = Rambo::DocumentGenerator.new(file)
     end
 
     def validate!
-      if !file
-        exit_missing_file
-      elsif !file.match(/\.raml$/)
-        exit_invalid_file_format
-      end
+      exit_missing_file unless file
+      exit_invalid_file_format unless file.match(/\.raml$/)
     end
 
     def run!
-      validate!
-      create_spec_files!
+      generator.generate_spec_dir!
+      generator.generate_spec_helper!
+      generator.generate_spec_file!
     end
 
     private

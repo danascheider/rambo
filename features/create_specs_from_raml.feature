@@ -16,5 +16,8 @@ Feature: Create tests from RAML
     And the file "spec/contract/foo_spec.rb" should contain:
       """
       require 'spec_helper'
+
+      describe 'e-BookMobile API' do
+      end
       """
     And the exit status should be 0

@@ -13,3 +13,4 @@ require 'rspec/matchers'
 require 'rspec/expectations'
 
 require_relative '../lib/cli'
+require_relative '../lib/document_generator'

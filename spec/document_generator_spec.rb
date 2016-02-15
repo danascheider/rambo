@@ -1,7 +1,12 @@
 require 'spec_helper'
 
 describe Rambo::DocumentGenerator do
-  let(:generator) { Rambo::DocumentGenerator.new('foobar.raml') }
+  let(:valid_file) { File.expand_path('../support/foobar.raml', __FILE__) }
+  let(:generator) { Rambo::DocumentGenerator.new(valid_file) }
+
+  before(:each) do
+    allow_any_instance_of(Rambo::DocumentGenerator).to receive(:extract_raml)
+  end
 
   describe "#generate_spec_dir!" do
     it "generates the spec/contract directory" do
@@ -19,6 +24,7 @@ describe Rambo::DocumentGenerator do
 
   describe "#generate_spec_file!" do
     before(:each) do
+      allow(File).to receive(:open)
     end
 
     it "generates foobar_spec.rb" do

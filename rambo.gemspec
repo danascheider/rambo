@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.email       = 'dana.scheider@gmail.com'
   s.license     = 'MIT'
   s.platform    = Gem::Platform::RUBY
-  s.required_ruby_version = ">= 2.0.0"
+  s.required_ruby_version = ">= 2.1.0"
 
   s.add_dependency 'rspec', '~> 3.4'
   s.add_dependency 'raml-rb', '~> 0.0.4'

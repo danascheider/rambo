@@ -1,5 +1,8 @@
 #!/usr/bin/env ruby
 
+require 'fileutils'
 require_relative '../lib/cli'
 
-Rambo::CLI.new.run!
+filename = ARGV[0] ? File.expand_path(ARGV[0], FileUtils.pwd) : nil
+
+Rambo::CLI.new(filename, STDOUT).run!

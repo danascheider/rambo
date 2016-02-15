@@ -1,0 +1,3 @@
+title: e-BookMobile API
+baseUri: http://api.e-bookmobile.com/{version}
+version: v1
