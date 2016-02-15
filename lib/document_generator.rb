@@ -1,6 +1,8 @@
 require 'fileutils'
 require 'raml-rb'
 
+require_relative './spec_file'
+
 module Rambo
   class DocumentGenerator
     attr_accessor :file, :raml
@@ -16,14 +18,9 @@ module Rambo
 
     def generate_spec_file!
       spec_file_name = file.match(/[^\/]*\.raml$/).to_s.gsub(/\.raml$/, '_spec.rb')
+      contents       = SpecFile.new(raml: raml).render
       File.open("spec/contract/#{spec_file_name}", "w+") do |file|
-        file.puts <<-EOF
-require 'spec_helper'
-
-describe '#{@raml.title}' do
-  include Rack::Test::Methods
-end
-EOF
+        file.puts contents
       end
     end
 

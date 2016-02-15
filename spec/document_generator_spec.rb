@@ -29,6 +29,7 @@ describe Rambo::DocumentGenerator do
     end
 
     it "generates foobar_spec.rb" do
+      allow_any_instance_of(Rambo::SpecFile).to receive(:render)
       expect(File).to receive(:open).with("spec/contract/foobar_spec.rb", "w+")
       generator.generate_spec_file!
     end

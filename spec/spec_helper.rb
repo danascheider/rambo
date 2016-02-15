@@ -11,6 +11,8 @@ require 'rspec'
 require 'rspec/core'
 require 'rspec/matchers'
 require 'rspec/expectations'
+require 'raml-rb'
 
 require_relative '../lib/cli'
 require_relative '../lib/document_generator'
+require_relative '../lib/spec_file'
