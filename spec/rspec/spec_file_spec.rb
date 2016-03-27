@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Rambo::RSpec::SpecFile do
-  let(:raml_file) { File.expand_path('../support/foobar.raml', __FILE__) }
+  let(:raml_file) { File.expand_path('../../support/foobar.raml', __FILE__) }
   let(:raml) { Raml::Parser.parse(File.open(raml_file, 'r+', &:read)) }
   let(:spec_file) { Rambo::RSpec::SpecFile.new(raml: raml) }
 
