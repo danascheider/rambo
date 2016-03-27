@@ -9,11 +9,12 @@ module Rambo
       TEMPLATE_PATH = File.expand_path('../templates/spec_file_template.erb', __FILE__)
 
       def initialize(raml:)
-        @raml = raml
+        @raml     = raml
+        @examples = Examples.new(raml: raml)
       end
 
       def template
-        File.open(TEMPLATE_PATH, 'r+') {|f| @template ||= f.read }
+        @template ||= File.read(TEMPLATE_PATH)
       end
 
       def render
