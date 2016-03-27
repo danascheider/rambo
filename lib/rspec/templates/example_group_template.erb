@@ -1,0 +1,6 @@
+  describe '<%= resource.uri_partial %>' do
+    let(:route) { '<%= resource.uri_partial %>' }
+    <% resource.methods.each do |method| %>
+    describe '<%= method.method.upcase %>' do
+    end<% end %>
+  end
