@@ -15,4 +15,4 @@ require 'raml-rb'
 
 require_relative '../lib/cli'
 require_relative '../lib/document_generator'
-require_relative '../lib/spec_file'
+require_relative '../lib/rspec/spec_file'

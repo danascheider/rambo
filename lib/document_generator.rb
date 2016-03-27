@@ -1,7 +1,7 @@
 require 'fileutils'
 require 'raml-rb'
 
-require_relative './spec_file'
+require_relative './rspec'
 
 module Rambo
   class DocumentGenerator
@@ -9,7 +9,7 @@ module Rambo
 
     def initialize(file)
       @file = file
-      @raml = Raml::Parser.parse(File.read(file))
+      @raml = Raml::Parser.parse_file(file)
     end
 
     def generate_spec_dir!
@@ -18,7 +18,7 @@ module Rambo
 
     def generate_spec_file!
       spec_file_name = file.match(/[^\/]*\.raml$/).to_s.gsub(/\.raml$/, '_spec.rb')
-      contents       = SpecFile.new(raml: raml).render
+      contents       = Rambo::RSpec::SpecFile.new(raml: raml).render
       File.open("spec/contract/#{spec_file_name}", "w+") do |file|
         file.puts contents
       end
