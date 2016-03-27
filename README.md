@@ -8,6 +8,13 @@ You can install Rambo using: <pre><code>gem install rambo</code></pre>You can al
   gem 'rambo', '~> 0.0.1'
 end</code></pre>To run Rambo, from the root directory of your project, run: <pre><code>rambo foobar.raml</code></pre>Rambo will create `spec/contract` directory, a `spec/spec_helper.rb` file if they don't exist, and will create a `spec/contract/foobar_spec.rb` file. The latter will overwrite any existing spec file by the same name. This is intentional behavior and will not change in future versions.
 
+Rambo is being developed to test APIs complying with standard REST practices. Mileage may vary with other architectures.
+
+## Contributing
+Rambo is a new project and any contributions are much appreciated. All pull requests should include comprehensive test coverage and, where appropriate, documentation. If you're not sure where to get started, contact me [through Github](https://github.com/danascheider) and I'll be glad to chat.
+
 ## More Information
-  * [RAML homepage](https://raml.org).
+  * [RAML homepage](https://raml.org)
+  * [Roy Fielding's dissertation](https://www.ics.uci.edu/~fielding/pubs/dissertation/fielding_dissertation.pdf) describe Representational State Transfer (REST) architecture
+  * [RESTful Web Services](http://www.crummy.com/writing/RESTful-Web-Services/RESTful_Web_Services.pdf), by Leonard Richardson & Sam Ruby
   * [Martin Fowler](http://martinfowler.com/articles/microservice-testing/) on testing microservices
