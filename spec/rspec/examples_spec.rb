@@ -2,14 +2,13 @@ require "spec_helper"
 
 describe Rambo::RSpec::Examples do
   let(:raml_file) { File.expand_path("../../support/foobar.raml", __FILE__) }
-  let(:raml) { Raml::Parser.parse(File.open(raml_file, "r+", &:read)) }
+  let(:raml) { Raml::Parser.parse(File.read(raml_file)) }
 
   subject { Rambo::RSpec::Examples.new(raml: raml) }
 
   describe "generate!" do
-    it "creates example groups" do
-      count = raml.resources.size
-      expect(Rambo::RSpec::ExampleGroup).to receive(:new).exactly(count).times
+    it "calls render on each group" do
+      expect_any_instance_of(Rambo::RSpec::ExampleGroup).to receive(:render)
       subject.generate!
     end
   end
