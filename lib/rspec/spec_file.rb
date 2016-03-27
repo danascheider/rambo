@@ -4,7 +4,7 @@ require 'raml-rb'
 module Rambo
   module RSpec
     class SpecFile
-      attr_reader :raml
+      attr_reader :raml, :examples
 
       TEMPLATE_PATH = File.expand_path('../templates/spec_file_template.erb', __FILE__)
 
