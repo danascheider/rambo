@@ -37,3 +37,5 @@ Gemfile.lock
 
 foobar.raml
 raml.rb
+
+/spec/contract/
