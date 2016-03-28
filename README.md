@@ -15,6 +15,6 @@ Rambo is a new project and any contributions are much appreciated. All pull requ
 
 ## More Information
   * [RAML homepage](https://raml.org)
-  * [Roy Fielding's dissertation](https://www.ics.uci.edu/~fielding/pubs/dissertation/fielding_dissertation.pdf) describe Representational State Transfer (REST) architecture
+  * [Roy Fielding's dissertation](https://www.ics.uci.edu/~fielding/pubs/dissertation/fielding_dissertation.pdf) describing Representational State Transfer (REST) architecture
   * [RESTful Web Services](http://www.crummy.com/writing/RESTful-Web-Services/RESTful_Web_Services.pdf), by Leonard Richardson & Sam Ruby
   * [Martin Fowler](http://martinfowler.com/articles/microservice-testing/) on testing microservices
