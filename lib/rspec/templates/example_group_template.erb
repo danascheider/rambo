@@ -2,5 +2,10 @@
     let(:route) { '<%= resource.uri_partial %>' }
     <% resource.methods.each do |method| %>
     describe '<%= method.method.upcase %>' do
+      it '<%= method.description.downcase %>' do
+      end
+
+      it 'returns status <%= method.responses.first.code %>' do
+      end
     end<% end %>
   end
