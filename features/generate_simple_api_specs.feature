@@ -47,22 +47,22 @@ Feature: Generate simple API specs
 
           describe 'GET' do
             let(:response_body) do
-              '{
-                "data": [
+              {
+                "data" => [
                   {
-                    "id": 1,
-                    "first_name": "Hermann",
-                    "last_name": "Hesse"
+                    "id" => 1,
+                    "first_name" => "Hermann",
+                    "last_name" => "Hesse"
                   },
                   {
-                    "id": 2,
-                    "first_name": "Charles",
-                    "last_name": "Dickens"
+                    "id" => 2,
+                    "first_name" => "Charles",
+                    "last_name" => "Dickens"
                   }
                 ],
-                "success": true,
-                "status": 200
-              }'.to_json
+                "success" => true,
+                "status" => 200
+              }.to_json
             end
 
             it 'retrieve a list of authors' do
