@@ -1,3 +1,5 @@
+require_relative './example_group'
+
 module Rambo
   module RSpec
     class Examples

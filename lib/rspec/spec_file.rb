@@ -1,6 +1,8 @@
 require 'erb'
 require 'raml-rb'
 
+require_relative './examples'
+
 module Rambo
   module RSpec
     class SpecFile
