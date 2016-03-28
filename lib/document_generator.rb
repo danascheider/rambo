@@ -27,7 +27,7 @@ module Rambo
     def generate_spec_helper!
       unless File.exist?("spec/spec_helper.rb")
         File.open("spec/spec_helper.rb", "a+") do |file|
-          file.puts "\nrequire 'rack/test'"
+          file.puts "\nrequire 'rack/test'\nrequire 'json'"
         end
       end
     end

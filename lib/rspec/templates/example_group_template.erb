@@ -3,13 +3,17 @@
     <% @resource.methods.each do |method| %>
     describe '<%= method.method.upcase %>' do
       let(:response_body) do<% body = method.responses.first.bodies.first.example.split("\n") %>
-        <%= body.join("\n        ") %>.to_json
+        '<%= body.join("\n        ") %>'.to_json
       end
 
       it '<%= method.description.downcase %>' do
+        <%= method.method %> route
+        expect(last_response.body).to eql response_body
       end
 
       it 'returns status <%= method.responses.first.code %>' do
+        <%= method.method %> route
+        expect(last_response.status).to eql <%= method.responses.first.code %>
       end
     end<% end %>
   end

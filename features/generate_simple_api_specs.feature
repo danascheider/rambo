@@ -25,7 +25,7 @@ Feature: Generate simple API specs
                           "last_name": "Hesse"
                         },
                         {
-                          "id":2,
+                          "id": 2,
                           "first_name": "Charles",
                           "last_name": "Dickens"
                         }
@@ -47,21 +47,25 @@ Feature: Generate simple API specs
 
           describe 'GET' do
             let(:response_body) do
-              [
-                {
-                  "id" => 1,
-                  "first_name" => "Hermann",
-                  "last_name" => "Hesse"
-                },
-                {
-                  "id" => 2,
-                  "first_name" => "Charles",
-                  "last_name" => "Dickens"
-                }
-              ].to_json
+              '{
+                "data": [
+                  {
+                    "id": 1,
+                    "first_name": "Hermann",
+                    "last_name": "Hesse"
+                  },
+                  {
+                    "id": 2,
+                    "first_name": "Charles",
+                    "last_name": "Dickens"
+                  }
+                ],
+                "success": true,
+                "status": 200
+              }'.to_json
             end
 
-            it 'retrieves a list of authors' do
+            it 'retrieve a list of authors' do
               get route
               expect(last_response.body).to eql response_body
             end
