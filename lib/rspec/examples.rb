@@ -11,7 +11,7 @@ module Rambo
       def compose
         return '' unless examples
 
-        examples.join("\n")
+        examples.join("\n\n")
       end
 
       def example_groups

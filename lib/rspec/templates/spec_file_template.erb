@@ -1,12 +1,6 @@
 require 'spec_helper'
 
 describe '<%= @raml.title %>' do
-  include Rack::Test::Methods<% if @raml.resources.length > 0 %>
-<% @raml.resources.each {|resource| %>
-  describe '<%= resource.uri_partial %>' do
-    let(:route) { '<%= resource.uri_partial %>' }
-    <% resource.methods.each do |method| %>
-    describe '<%= method.method.upcase %>' do
-    end<% end %>
-  end<% } %><% end %>
+  include Rack::Test::Methods
+<%= @examples.compose%>
 end
