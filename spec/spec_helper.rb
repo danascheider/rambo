@@ -14,8 +14,8 @@ require 'rspec/expectations'
 require 'raml-rb'
 require 'json'
 
-require_relative '../lib/cli'
-require_relative '../lib/document_generator'
-require_relative '../lib/rspec/spec_file'
-require_relative '../lib/rspec/examples'
-require_relative '../lib/rspec/example_group'
+path = File.expand_path('../../lib', __FILE__)
+
+Dir.foreach(path) {|f| require f if f.match(/.*\.rb\z/) }
+
+puts "This file is in #{File.expand_path('../../lib', __FILE__)}"
