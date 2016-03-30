@@ -13,6 +13,11 @@ Feature: Create specs from RAML
     Then the directory "spec/contract" should exist
     And the file "spec/contract/foo_spec.rb" should exist
     And the file "spec/spec_helper.rb" should exist
+    And the file "spec/spec_helper.rb" should contain:
+      """
+      require 'rack/test'
+      require 'json'
+      """
     And the file "spec/contract/foo_spec.rb" should contain:
       """
       require 'spec_helper'
