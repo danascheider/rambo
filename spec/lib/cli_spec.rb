@@ -2,12 +2,12 @@ require 'spec_helper'
 
 describe Rambo::CLI do
   let(:io) { StringIO.new }
-  let(:valid_file) { File.expand_path('../support/foobar.raml', __FILE__) }
+  let(:valid_file) { File.expand_path('../../support/foobar.raml', __FILE__) }
 
   describe "run!" do
     let(:cli) { Rambo::CLI.new(valid_file, io) }
 
-    it "creates a spec/contract directory" do
+    fit "creates a spec/contract directory" do
       allow_any_instance_of(Rambo::DocumentGenerator).to receive(:generate_spec_helper!)
       allow_any_instance_of(Rambo::DocumentGenerator).to receive(:generate_spec_file!)
       expect_any_instance_of(Rambo::DocumentGenerator).to receive(:generate_spec_dir!)
