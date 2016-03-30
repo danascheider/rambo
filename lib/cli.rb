@@ -1,5 +1,5 @@
 require 'colorize'
-require_relative 'document_generator'
+require File.expand_path('../document_generator.rb', __FILE__)
 
 module Rambo
   class CLI

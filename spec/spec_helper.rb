@@ -17,5 +17,3 @@ require 'json'
 path = File.expand_path('../../lib', __FILE__)
 
 Dir.foreach(path) {|f| require f if f.match(/.*\.rb\z/) }
-
-puts "This file is in #{File.expand_path('../../lib', __FILE__)}"
