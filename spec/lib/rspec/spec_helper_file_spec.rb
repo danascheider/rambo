@@ -1,21 +1,20 @@
 require 'spec_helper'
 
 describe Rambo::RSpec::SpecHelperFile do
-  describe '#initialize' do
-    context 'when there is no spec_helper.rb file' do
-      it 'generates a file' do
-        allow(File).to receive(:exist?).and_return(false)
-        expect_any_instance_of(described_class).to receive(:generate!)
-        described_class.new
+
+  describe '#render' do
+    context 'when there is no spec helper file' do
+      it 'calls the template' do
+        allow(File).to receive(:exist?).with('spec/spec_helper.rb').and_return(false)
+        expect(subject).to receive(:template)
+        subject.render
       end
     end
+  end
 
-    context 'when there is an existing spec_helper.rb file' do
-      it 'modifies the existing file' do
-        allow(File).to receive(:exist?).and_return(true)
-        expect_any_instance_of(described_class).to receive(:modify!)
-        described_class.new
-      end
+  describe '#generate' do
+    it 'generates the spec helper file' do
+      #
     end
   end
 end

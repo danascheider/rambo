@@ -1,13 +1,16 @@
 module Rambo
   module RSpec
     class SpecHelperFile
-      def initialize
-        File.exist?('spec/spec_helper.rb') ? modify! : generate!
+
+      TEMPLATE_PATH = File.expand_path('../templates/spec_helper_file_template.erb', __FILE__)
+
+      def template
+        @template ||= File.read(TEMPLATE_PATH)
       end
 
-      def generate!; end
-
-      def modify!; end
+      def render
+        template
+      end
     end
   end
 end
