@@ -1,44 +1,13 @@
 Feature: Modify spec helper
+  Background:
+    Given a file named "foo.raml" like "basic_raml.raml"
+
   Scenario: JSON and rack/test are required
     Given a file named "spec/spec_helper.rb" like "good_spec_helper.rb.ex"
-    And a file named "foo.raml" like "basic_raml.raml"
     When I run `rambo foo.raml`
     Then the file "spec/spec_helper.rb" should be like "good_spec_helper.rb.ex"
 
   Scenario: Only JSON is required
-    Given a file named "spec/spec_helper.rb" with:
-      """
-      require "rspec"
-      require "rspec/core"
-      require "rspec/matchers"
-      require "rspec/expectations"
-      require "raml-rb"
-      require "json"
-
-      path = File.expand_path('../../lib', __FILE__)
-
-      Dir.foreach(path) {|f| require f if f.match(/.*\.rb\z/) }
-      """
-    And a file named "foo.raml" with:
-      """
-      #%RAML 0.8
-      ---
-      title: e-BookMobile API
-      baseUri: http://api.e-bookmobile.com/{version}
-      version: v1
-      """
+    Given a file named "spec/spec_helper.rb" like "spec_helper_only_json.rb.ex"
     When I run `rambo foo.raml`
-    Then the file "spec/spec_helper.rb" should contain:
-      """
-      require "rspec"
-      require "rspec/core"
-      require "rspec/matchers"
-      require "rspec/expectations"
-      require "raml-rb"
-      require "json"
-      require "rack/test"
-
-      path = File.expand_path('../../lib', __FILE__)
-
-      Dir.foreach(path) {|f| require f if f.match(/.*\.rb\z/) }
-      """
+    Then the file "spec/spec_helper.rb" should be like "spec_helper_rack_test_added.rb.ex"
