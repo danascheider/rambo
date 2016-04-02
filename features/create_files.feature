@@ -1,5 +1,7 @@
 Feature: Create specs from RAML
 
+  The example files can be found in features/support/examples
+
   Scenario: Generate specs from a simple RAML file
     Given a file named "foo.raml" like "empty_raml.raml"
     When I run `rambo foo.raml`
