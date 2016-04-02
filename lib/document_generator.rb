@@ -1,7 +1,8 @@
 require 'fileutils'
 require 'raml-rb'
 
-require_relative './rspec/spec_file'
+require File.expand_path('../rspec/spec_file.rb', __FILE__)
+require File.expand_path('../rspec/spec_helper_file.rb', __FILE__)
 
 module Rambo
   class DocumentGenerator
@@ -25,10 +26,10 @@ module Rambo
     end
 
     def generate_spec_helper!
-      unless File.exist?("spec/spec_helper.rb")
-        File.open("spec/spec_helper.rb", "a+") do |file|
-          file.puts "\nrequire 'rack/test'\nrequire 'json'"
-        end
+      contents = Rambo::RSpec::SpecHelperFile.new.render
+
+      File.open("spec/spec_helper.rb", "w+") do |file|
+        file.puts contents
       end
     end
   end

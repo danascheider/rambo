@@ -1,0 +1,30 @@
+#%RAML 0.8
+---
+title: e-BookMobile API
+baseUri: http://api.e-bookmobile.com/{version}
+version: v1
+
+/authors:
+  get:
+    description: Retrieve a list of authors
+    responses:
+      200:
+        body:
+          application/json:
+            example: |
+              {
+                "data": [
+                  {
+                    "id": 1,
+                    "first_name": "Hermann",
+                    "last_name": "Hesse"
+                  },
+                  {
+                    "id": 2,
+                    "first_name": "Charles",
+                    "last_name": "Dickens"
+                  }
+                ],
+                "success": true,
+                "status": 200
+              }

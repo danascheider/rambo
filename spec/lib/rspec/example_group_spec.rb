@@ -10,8 +10,8 @@ describe Rambo::RSpec::ExampleGroup do
   describe "#render" do
     it "interpolates the correct values" do
       aggregate_failures do
-        expect(subject.render).to include("describe '#{raml.resources.first.uri_partial}' do")
-        expect(subject.render).to include("describe 'GET' do")
+        expect(subject.render).to include("describe \"#{raml.resources.first.uri_partial}\" do")
+        expect(subject.render).to include('describe "GET" do')
       end
     end
   end

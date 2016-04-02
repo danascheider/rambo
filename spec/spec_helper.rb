@@ -1,5 +1,6 @@
 require 'simplecov'
 require 'coveralls'
+require "rack/test"
 
 SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter[
   SimpleCov::Formatter::HTMLFormatter,
@@ -14,8 +15,8 @@ require 'rspec/expectations'
 require 'raml-rb'
 require 'json'
 
-require_relative '../lib/cli'
-require_relative '../lib/document_generator'
-require_relative '../lib/rspec/spec_file'
-require_relative '../lib/rspec/examples'
-require_relative '../lib/rspec/example_group'
+path = File.expand_path('../../lib', __FILE__)
+
+Dir.foreach(path) {|f| require f if f.match(/.*\.rb\z/) }
+
+require_relative '../lib/rspec/spec_helper_file'

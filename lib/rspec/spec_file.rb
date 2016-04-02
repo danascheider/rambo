@@ -1,7 +1,7 @@
 require 'erb'
 require 'raml-rb'
 
-require_relative './examples'
+require File.expand_path('../examples.rb', __FILE__)
 
 module Rambo
   module RSpec
