@@ -27,10 +27,14 @@ module Rambo
       end
 
       def ensure_requires!(req)
-        unless requires.match(/require ('|")#{req}('|")/)
+        unless required?(req)
           new_requires = "#{requires}require \"#{req}\"\n"
           contents.gsub!(requires, new_requires)
         end
+      end
+
+      def required?(req)
+        contents.match(/require ('|")#{req}('|")/)
       end
 
       def template
