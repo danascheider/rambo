@@ -20,9 +20,9 @@ Feature: Create specs from RAML
       """
     And the file "spec/contract/foo_spec.rb" should contain:
       """
-      require 'spec_helper'
+      require "spec_helper"
 
-      describe 'e-BookMobile API' do
+      describe "e-BookMobile API" do
         include Rack::Test::Methods
       end
       """

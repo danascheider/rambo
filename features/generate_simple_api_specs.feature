@@ -37,15 +37,15 @@ Feature: Generate simple API specs
     When I run `rambo foo.raml`
     Then the file "spec/contract/foo_spec.rb" should contain:
       """
-      require 'spec_helper'
+      require "spec_helper"
 
-      describe 'e-BookMobile API' do
+      describe "e-BookMobile API" do
         include Rack::Test::Methods
 
-        describe '/authors' do
-          let(:route) { '/authors' }
+        describe "/authors" do
+          let(:route) { "/authors" }
 
-          describe 'GET' do
+          describe "GET" do
             let(:response_body) do
               {
                 "data" => [
@@ -65,12 +65,12 @@ Feature: Generate simple API specs
               }.to_json
             end
 
-            it 'retrieve a list of authors' do
+            it "retrieve a list of authors" do
               get route
               expect(last_response.body).to eql response_body
             end
 
-            it 'returns status 200' do
+            it "returns status 200" do
               get route
               expect(last_response.status).to eql 200
             end
