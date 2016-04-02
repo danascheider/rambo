@@ -2,13 +2,13 @@ Feature: Modify spec helper
   Scenario: JSON and rack/test are required
     Given a file named "spec/spec_helper.rb" with:
       """
-      require 'rspec'
-      require 'rspec/core'
-      require 'rspec/matchers'
-      require 'rspec/expectations'
-      require 'rack/test'
-      require 'raml-rb'
-      require 'json'
+      require "rspec"
+      require "rspec/core"
+      require "rspec/matchers"
+      require "rspec/expectations"
+      require "rack/test"
+      require "raml-rb"
+      require "json"
 
       path = File.expand_path('../../lib', __FILE__)
 
@@ -25,13 +25,13 @@ Feature: Modify spec helper
     When I run `rambo foo.raml`
     Then the file "spec/spec_helper.rb" should contain:
       """
-      require 'rspec'
-      require 'rspec/core'
-      require 'rspec/matchers'
-      require 'rspec/expectations'
-      require 'rack/test'
-      require 'raml-rb'
-      require 'json'
+      require "rspec"
+      require "rspec/core"
+      require "rspec/matchers"
+      require "rspec/expectations"
+      require "rack/test"
+      require "raml-rb"
+      require "json"
 
       path = File.expand_path('../../lib', __FILE__)
 
@@ -41,12 +41,12 @@ Feature: Modify spec helper
   Scenario: Only JSON is required
     Given a file named "spec/spec_helper.rb" with:
       """
-      require 'rspec'
-      require 'rspec/core'
-      require 'rspec/matchers'
-      require 'rspec/expectations'
-      require 'raml-rb'
-      require 'json'
+      require "rspec"
+      require "rspec/core"
+      require "rspec/matchers"
+      require "rspec/expectations"
+      require "raml-rb"
+      require "json"
 
       path = File.expand_path('../../lib', __FILE__)
 
@@ -63,15 +63,15 @@ Feature: Modify spec helper
     When I run `rambo foo.raml`
     Then the file "spec/spec_helper.rb" should contain:
       """
-      require 'rspec'
-      require 'rspec/core'
-      require 'rspec/matchers'
-      require 'rspec/expectations'
-      require 'raml-rb'
-      require 'json'
-      require 'rack/test'
+      require "rspec"
+      require "rspec/core"
+      require "rspec/matchers"
+      require "rspec/expectations"
+      require "raml-rb"
+      require "json"
+      require "rack/test"
 
-      path = File.expand_path('../../lib', __FILE__)
+      path = File.expand_path("../../lib", __FILE__)
 
       Dir.foreach(path) {|f| require f if f.match(/.*\.rb\z/) }
       """

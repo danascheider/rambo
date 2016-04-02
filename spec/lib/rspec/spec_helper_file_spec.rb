@@ -12,15 +12,18 @@ describe Rambo::RSpec::SpecHelperFile do
     end
 
     context 'when there is a spec helper file' do
-      let(:contents) { 'require "rspec"' }
+      let(:contents) { "require 'rspec'\n" }
 
       before(:each) do
         allow(File).to receive(:read).with('spec/spec_helper.rb').and_return(contents)
       end
 
-      it 'ensures the proper requires are present' do
-        expect_any_instance_of(described_class).to receive(:ensure_requires_present!)
-        subject.render
+      it 'ensures json is required' do
+        expect(subject.render).to match(/require "json"/)
+      end
+
+      it 'ensures rack/test is required' do
+        expect(subject.render).to match(/require "rack\/test"/)
       end
     end
   end
