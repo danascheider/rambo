@@ -71,7 +71,7 @@ Feature: Modify spec helper
       require "json"
       require "rack/test"
 
-      path = File.expand_path("../../lib", __FILE__)
+      path = File.expand_path('../../lib', __FILE__)
 
       Dir.foreach(path) {|f| require f if f.match(/.*\.rb\z/) }
       """

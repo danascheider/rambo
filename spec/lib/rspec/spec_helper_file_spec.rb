@@ -25,6 +25,22 @@ describe Rambo::RSpec::SpecHelperFile do
       it 'ensures rack/test is required' do
         expect(subject.render).to match(/require "rack\/test"/)
       end
+
+      context 'when JSON is already required' do
+        let(:contents) { "require 'json'\n" }
+
+        it 'doesn\'t require JSON again' do
+          expect(subject.render).not_to match(/require "json"/)
+        end
+      end
+
+      context 'when rack/test is already required' do
+        let(:contents) { "require 'rack/test'\n" }
+
+        it 'doesn\'t require rack/test again' do
+          expect(subject.render).not_to match(/require "rack\/test"/)
+        end
+      end
     end
   end
 end
