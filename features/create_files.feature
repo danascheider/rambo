@@ -1,14 +1,7 @@
 Feature: Create specs from RAML
 
   Scenario: Generate specs from a simple RAML file
-    Given a file named "foo.raml" with:
-      """
-      #%RAML 0.8
-      ---
-      title: e-BookMobile API
-      baseUri: http://api.e-bookmobile.com/{version}
-      version: v1
-      """
+    Given a file named "foo.raml" like "empty_raml.raml"
     When I run `rambo foo.raml`
     Then the directory "spec/contract" should exist
     And the file "spec/contract/foo_spec.rb" should exist
@@ -18,12 +11,5 @@ Feature: Create specs from RAML
       require "rack/test"
       require "json"
       """
-    And the file "spec/contract/foo_spec.rb" should contain:
-      """
-      require "spec_helper"
-
-      describe "e-BookMobile API" do
-        include Rack::Test::Methods
-      end
-      """
+    And the file "spec/contract/foo_spec.rb" should be like "empty_spec.rb.ex"
     And the exit status should be 0
