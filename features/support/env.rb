@@ -10,3 +10,6 @@ if ENV['COVERAGE']
 end
 
 require 'aruba/cucumber'
+require_relative './cucumber_helper'
+
+World(CucumberHelper)
