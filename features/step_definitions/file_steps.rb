@@ -29,3 +29,7 @@ Then(/^the file "([^"]*)" should be like "([^"]*)"$/) do |file, example|
       """
   }
 end
+
+Then(/^the file "([^"]*)" should require "([^"]*)"$/) do |file, mod|
+  steps %Q{the file "#{file}" should match /require "#{mod}"/}
+end
