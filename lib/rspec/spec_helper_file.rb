@@ -17,8 +17,7 @@ module Rambo
       attr_accessor :contents
 
       def ensure_requires_present!
-        ensure_requires!('json')
-        ensure_requires!('rack/test')
+        ensure_requires!('json', 'rack/test')
         contents
       end
 
@@ -26,11 +25,16 @@ module Rambo
         contents.match(/((require ('|")\S+('|")\n)+)/)[0]
       end
 
-      def ensure_requires!(req)
-        unless required?(req)
-          new_requires = "#{requires}require \"#{req}\"\n"
-          contents.gsub!(requires, new_requires)
-        end
+      def ensure_requires!(*reqs)
+        reqs.reject! {|req| required?(req) }
+
+        contents.gsub!(requires, append_requires(*reqs))
+      end
+
+      def append_requires(*reqs)
+        new_requires = requires
+        reqs.each {|req| new_requires << "require \"#{req}\"\n" }
+        new_requires
       end
 
       def required?(req)

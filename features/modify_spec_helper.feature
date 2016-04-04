@@ -1,4 +1,5 @@
 Feature: Modify spec helper
+
   Background:
     Given a file named "foo.raml" like "basic_raml.raml"
 
@@ -10,9 +11,9 @@ Feature: Modify spec helper
   Scenario: Only JSON is required
     Given a spec_helper.rb file that requires JSON but not rack/test
     When I run `rambo foo.raml`
-    Then the file "spec/spec_helper.rb" should be like "spec_helper_rack_test_added.rb.ex"
+    Then the file "spec/spec_helper.rb" should require "rack/test"
 
   Scenario: Only rack/test is required
     Given a spec_helper.rb file that requires rack/test but not JSON
     When I run `rambo foo.raml`
-    Then the file "spec/spec_helper.rb" should be like "spec_helper_json_added.rb.ex"
+    Then the file "spec/spec_helper.rb" should require "json"
