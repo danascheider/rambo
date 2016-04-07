@@ -11,20 +11,22 @@ version: v1
       200:
         body:
           application/json:
-            example: |
+            schema: |
               {
-                "data": [
-                  {
-                    "id": 1,
-                    "first_name": "Hermann",
-                    "last_name": "Hesse"
-                  },
-                  {
-                    "id": 2,
-                    "first_name": "Charles",
-                    "last_name": "Dickens"
+                "$schema": "http://json-schema.org/draft-04/schema#",
+                "description": "schema for a list of authors",
+                "type": "object",
+                "properties": {
+                  "data": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "id": "number",
+                        "first_name": "string",
+                        "last_name": "string"
+                      }
+                    }
                   }
-                ],
-                "success": true,
-                "status": 200
+                }
               }
