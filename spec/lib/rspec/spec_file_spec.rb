@@ -25,4 +25,29 @@ describe Rambo::RSpec::SpecFile do
       end
     end
   end
+
+  context 'file with schema' do
+    let(:raml_file) do
+      File.expand_path('features/support/examples/basic_raml_with_schema.raml')
+    end
+
+    describe '#initialize' do
+      it 'assigns @raml' do
+        expect(spec_file.raml).to eql raml
+      end
+    end
+
+    describe '#template' do
+      it 'is a string' do
+        expect(spec_file.template.is_a?(String)).to be true
+      end
+    end
+
+    describe '#render' do
+      it 'interpolates the correct values' do
+        schema = JsonTestData.generate!(raml.resources.first.methods.first.responses.first.bodies.first.schema)
+        puts schema
+      end
+    end
+  end
 end
