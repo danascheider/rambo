@@ -12,13 +12,13 @@ describe "e-BookMobile API" do
           "data" => [
             {
               "id" => 1,
-              "first_name" => "String",
-              "last_name" => "String"
+              "first_name" => "string",
+              "last_name" => "string"
             },
             {
               "id" => 1,
-              "first_name" => "String",
-              "last_name" => "String"
+              "first_name" => "string",
+              "last_name" => "string"
             }
           ],
           "success" => true,
