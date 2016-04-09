@@ -44,9 +44,13 @@ describe Rambo::RSpec::SpecFile do
     end
 
     describe '#render' do
+      let(:schema) do
+        raml.resources.first.methods.first.responses.first.bodies.first.schema
+      end
+
       it 'interpolates the correct values' do
-        schema = JsonTestData.generate!(raml.resources.first.methods.first.responses.first.bodies.first.schema)
-        puts schema
+        test_data = JsonTestData.generate!(schema)
+        expect(spec_file.render).to include(test_data)
       end
     end
   end
