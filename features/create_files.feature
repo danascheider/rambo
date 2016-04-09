@@ -13,5 +13,5 @@ Feature: Create specs from RAML
       require "rack/test"
       require "json"
       """
-    And the file "spec/contract/foo_spec.rb" should be like "empty_spec.rb.ex"
+    And the file "spec/contract/foo_spec.rb" should be like "empty_spec.rb.example"
     And the exit status should be 0
