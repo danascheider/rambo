@@ -1,7 +1,5 @@
 require "simplecov"
 require "coveralls"
-require "json"
-require "rack/test"
 
 SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter[
   SimpleCov::Formatter::HTMLFormatter,
