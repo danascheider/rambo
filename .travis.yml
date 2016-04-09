@@ -5,6 +5,10 @@ rvm:
   - 2.3.0
 env:
   - COVERAGE=true
+before_install:
+  - git clone https://github.com/danascheider/raml-rb
+  - gem build raml-rb/raml-rb.gemspec
+  - gem install raml-rb-0.0.5.gem
 branches:
   only:
     - dev

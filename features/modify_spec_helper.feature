@@ -1,7 +1,7 @@
 Feature: Modify spec helper
 
   Background:
-    Given a file named "foo.raml" like "basic_raml.raml"
+    Given a file named "foo.raml" like "basic_raml_with_example.raml"
 
   Scenario: JSON and rack/test are required
     Given a spec_helper.rb file that requires both JSON and rack/test
