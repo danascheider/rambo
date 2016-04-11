@@ -1,5 +1,5 @@
-require 'colorize'
-require File.expand_path('../document_generator.rb', __FILE__)
+require "colorize"
+require File.expand_path("../document_generator.rb", __FILE__)
 
 module Rambo
   class CLI
@@ -47,7 +47,7 @@ module Rambo
     end
 
     def logo
-      File.read(File.expand_path('../../assets/logo.txt', __FILE__))
+      File.read(File.expand_path("../../assets/logo.txt", __FILE__))
     end
   end
 end
