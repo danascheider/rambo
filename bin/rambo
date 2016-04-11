@@ -1,8 +1,8 @@
 #!/usr/bin/env ruby
 
-require 'fileutils'
+require "fileutils"
 
-require_relative '../lib/cli'
+require_relative "../lib/cli"
 
 filename = ARGV[0] ? File.expand_path(ARGV[0], FileUtils.pwd) : nil
 
