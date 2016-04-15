@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 describe Rambo::RSpec::SpecHelperFile do
 
   describe '#render' do
