@@ -19,7 +19,7 @@ module Rambo
 
     def generate_spec_file!
       spec_file_name = file.match(/[^\/]*\.raml$/).to_s.gsub(/\.raml$/, '_spec.rb')
-      contents       = Rambo::RSpec::SpecFile.new(raml: raml).render
+      contents       = Rambo::RSpec::SpecFile.new(raml).render
       File.open("spec/contract/#{spec_file_name}", "w+") do |f|
         f.puts contents
       end
