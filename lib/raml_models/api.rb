@@ -1,7 +1,7 @@
 module Rambo
   module RamlModels
     class Api
-      attr_reader :schema, :resources
+      attr_reader :schema
 
       def initialize(raml)
         @schema = raml
