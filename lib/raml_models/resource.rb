@@ -7,6 +7,10 @@ module Rambo
         @schema = raml_resource
       end
 
+      def http_methods
+        @http_methods ||= schema.methods
+      end
+
       def to_s
         schema.uri_partial
       end
