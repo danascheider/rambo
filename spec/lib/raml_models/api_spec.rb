@@ -9,4 +9,10 @@ describe Rambo::RamlModels::Api do
       expect(subject.resources.count).to eql 2
     end
   end
+
+  describe "#title" do
+    it "returns the API title from the RAML doc" do
+      expect(subject.title).to eql raml.title
+    end
+  end
 end
