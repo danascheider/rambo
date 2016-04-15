@@ -14,8 +14,8 @@ require "rspec/expectations"
 require "raml-rb"
 require "json_test_data"
 
-path = File.expand_path("../../lib", __FILE__)
+lib   = File.expand_path("../../lib", __FILE__)
 
-Dir.foreach(path) {|f| require f if f.match(/.*\.rb\z/) }
+Dir.foreach("#{lib}")   {|f| require f if f.match(/.*\.rb\z/) }
 
-require_relative "../lib/rspec/spec_helper_file"
+require_relative "../lib/raml_models/api"

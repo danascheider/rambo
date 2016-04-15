@@ -1,0 +1,15 @@
+#% RAML 0.8
+---
+title: e-Bookmobile API
+baseUri: http://api.ebookmobile.com/{version}
+version: v1
+
+/authors:
+  get:
+    description: Retrieve a list of authors
+    responses:
+      201:
+  post:
+    description: Add an author to the database
+    responses:
+      204:
