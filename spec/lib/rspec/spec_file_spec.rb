@@ -26,7 +26,7 @@ describe Rambo::RSpec::SpecFile do
 
   context "file with schema" do
     let(:raml_file) do
-      File.expand_path("features/support/examples/basic_raml_with_schema.raml")
+      File.expand_path("features/support/examples/raml/basic_raml_with_schema.raml")
     end
 
     describe "#initialize" do
