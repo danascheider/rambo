@@ -8,7 +8,7 @@ module Rambo
       end
 
       def http_methods
-        @http_methods ||= schema.methods
+        @http_methods ||= schema.methods.map {|method| Rambo::RamlModels::Method.new(method) }
       end
 
       def to_s

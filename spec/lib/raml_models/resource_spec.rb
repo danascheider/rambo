@@ -15,5 +15,10 @@ describe Rambo::RamlModels::Resource do
     it "returns the correct methods" do
       expect(subject.http_methods.count).to eql 1
     end
+
+    it "returns an array of Method objects" do
+      all_are_methods = subject.http_methods.all? {|method| method.is_a?(Rambo::RamlModels::Method) }
+      expect(all_are_methods).to be true
+    end
   end
 end
