@@ -10,4 +10,10 @@ describe Rambo::RamlModels::Method do
       expect(subject.to_s).to eql method.method.upcase
     end
   end
+
+  describe "#responses" do
+    it "returns the responses" do
+      expect(subject.responses).to eql method.responses
+    end
+  end
 end

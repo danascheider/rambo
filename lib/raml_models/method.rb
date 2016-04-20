@@ -7,13 +7,15 @@ module Rambo
         @schema = raml_method
       end
 
-      def method
-        schema.method
-      end
-
       def to_s
         schema.method.upcase
       end
+
+      def responses
+        @responses ||= schema.responses
+      end
+
+      alias_method :method, :to_s
     end
   end
 end
