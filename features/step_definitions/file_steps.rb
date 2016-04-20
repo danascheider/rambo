@@ -1,11 +1,7 @@
 Given(/^a file named "([^"]*)" like "([^"]*)"$/) do |file, example|
   text = read_example(example)
-  steps %Q{
-    Given a file named "#{file}" with:
-      """
-      #{text}
-      """
-  }
+
+  step %(a file named "#{file}" with:), text
 end
 
 Given(/^a spec_helper\.rb file that requires rack\/test but not JSON$/) do
