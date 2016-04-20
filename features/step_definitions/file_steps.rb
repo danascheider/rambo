@@ -1,11 +1,6 @@
 Given(/^a file named "([^"]*)" like "([^"]*)"$/) do |file, example|
   text = read_example(example)
-  steps %Q{
-    Given a file named "#{file}" with:
-      """
-      #{text}
-      """
-  }
+  step %(a file named "#{file}" with:), text
 end
 
 Given(/^a spec_helper\.rb file that requires rack\/test but not JSON$/) do
@@ -22,12 +17,7 @@ end
 
 Then(/^the file "([^"]*)" should be like "([^"]*)"$/) do |file, example|
   text = read_example(example)
-  steps %Q{
-    the file "#{file}" should contain:
-      """
-      #{text}
-      """
-  }
+  step %(a file "#{file}" should contain:), text
 end
 
 Then(/^the file "([^"]*)" should require "([^"]*)"$/) do |file, mod|

@@ -5,7 +5,7 @@ module Rambo
     class Examples
       attr_reader :raml, :resources, :examples
 
-      def initialize(raml:)
+      def initialize(raml)
         @raml      = raml
         @resources = raml.resources
       end

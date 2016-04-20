@@ -1,13 +1,6 @@
-require 'simplecov'
 require 'coveralls'
 
-SimpleCov.formatter = Coveralls::SimpleCov::Formatter
-
-if ENV['COVERAGE']
-  SimpleCov.start do
-    add_filter 'app/secrets'
-  end
-end
+Coveralls.wear! if ENV["COVERAGE"] == "true"
 
 require 'aruba/cucumber'
 require_relative './cucumber_helper'

@@ -16,7 +16,15 @@ module Rambo
       print_logo
       generator.generate_spec_dir!
       generator.generate_spec_helper!
-      generator.generate_spec_file!
+      stdout.puts("Generating contract tests...")
+      sleep 0.4
+
+      begin
+        generator.generate_spec_file!
+        stdout.puts("Done!".green)
+      rescue NoMethodError
+        stdout.puts("Error: Please check your RAML syntax and/or file an issue report\n".red)
+      end
     end
 
     def validate!
@@ -30,10 +38,7 @@ module Rambo
 
     def print_logo
       stdout.puts logo.colorize(color: String.colors.sample)
-      sleep 0.5
-      stdout.puts "Generating contract tests..."
-      sleep 0.5
-      stdout.puts "Done!\n".green
+      sleep 0.4
     end
 
     def exit_for_missing_file

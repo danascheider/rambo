@@ -1,11 +1,6 @@
-require "simplecov"
 require "coveralls"
 
-SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter[
-  SimpleCov::Formatter::HTMLFormatter,
-  Coveralls::SimpleCov::Formatter
-]
-SimpleCov.start if ENV["COVERAGE"]
+Coveralls.wear! if ENV["COVERAGE"] == "true"
 
 require "rspec"
 require "rspec/core"
@@ -14,8 +9,10 @@ require "rspec/expectations"
 require "raml-rb"
 require "json_test_data"
 
-path = File.expand_path("../../lib", __FILE__)
+lib   = File.expand_path("../../lib", __FILE__)
 
-Dir.foreach(path) {|f| require f if f.match(/.*\.rb\z/) }
+Dir.foreach("#{lib}")   {|f| require f if f.match(/.*\.rb\z/) }
 
-require_relative "../lib/rspec/spec_helper_file"
+require_relative "../lib/raml_models/api"
+require_relative "../lib/raml_models/resource"
+require_relative "../lib/raml_models/method"
