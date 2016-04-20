@@ -12,8 +12,9 @@ describe Rambo::RamlModels::Method do
   end
 
   describe "#responses" do
-    it "returns the responses" do
-      expect(subject.responses).to eql method.responses
+    it "returns an array of Response objects" do
+      all_are_responses = subject.responses.all? {|resp| resp.is_a?(Rambo::RamlModels::Response) }
+      expect(all_are_responses).to be true
     end
   end
 end

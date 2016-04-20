@@ -12,7 +12,7 @@ module Rambo
       end
 
       def responses
-        @responses ||= schema.responses
+        @responses ||= schema.responses.map {|resp| Response.new(resp) }
       end
 
       alias_method :method, :to_s

@@ -12,7 +12,7 @@ describe Rambo::RamlModels::Response do
   end
 
   describe "bodies" do
-    it "returns the given response bodies" do
+    it "creates an array of the response bodies" do
       expect(subject.bodies).to eql response.bodies
     end
   end
