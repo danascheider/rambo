@@ -1,3 +1,5 @@
+require "json_test_data"
+
 module Rambo
   module RamlModels
     class Body
@@ -12,7 +14,13 @@ module Rambo
       end
 
       def example
-        body.example
+        if body.example
+          body.example
+        elsif body.schema
+          JSON.parse(JsonTestData.generate!(body.schema), symbolize_names: true)
+        else
+          {}.to_json
+        end
       end
     end
   end
