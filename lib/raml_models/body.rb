@@ -10,6 +10,10 @@ module Rambo
       def content_type
         body.content_type
       end
+
+      def example
+        body.example
+      end
     end
   end
 end

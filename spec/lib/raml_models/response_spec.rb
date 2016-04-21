@@ -13,7 +13,7 @@ describe Rambo::RamlModels::Response do
 
   describe "bodies" do
     it "creates an array of Body objects" do
-      all_are_bodies = response.bodies.all? {|body| body.is_a?(Rambo::RamlModels::Body) }
+      all_are_bodies = subject.bodies.all? {|body| body.is_a?(Rambo::RamlModels::Body) }
       expect(all_are_bodies).to be true
     end
   end

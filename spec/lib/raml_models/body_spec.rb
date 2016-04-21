@@ -10,4 +10,10 @@ describe Rambo::RamlModels::Body do
       expect(subject.content_type).to eql body.content_type
     end
   end
+
+  describe "#example" do
+    it "returns an example" do
+      expect(subject.example).to eql body.example
+    end
+  end
 end
