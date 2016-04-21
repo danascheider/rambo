@@ -12,8 +12,9 @@ describe Rambo::RamlModels::Response do
   end
 
   describe "bodies" do
-    it "creates an array of the response bodies" do
-      expect(subject.bodies).to eql response.bodies
+    it "creates an array of Body objects" do
+      all_are_bodies = response.bodies.all? {|body| body.is_a?(Rambo::RamlModels::Body) }
+      expect(all_are_bodies).to be true
     end
   end
 end
