@@ -3,7 +3,7 @@ require "json_test_data"
 module Rambo
   module RamlModels
     class Body
-      attr_reader :body
+      attr_reader :body, :example
 
       def initialize(body)
         @body = body
@@ -14,7 +14,7 @@ module Rambo
       end
 
       def example
-        body.example ||= JsonTestData.generate!(body.schema) || {}
+        @example ||= body.example || JsonTestData.generate!(body.schema) || {}
       end
     end
   end
