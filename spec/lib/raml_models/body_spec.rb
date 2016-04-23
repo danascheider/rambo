@@ -25,7 +25,7 @@ describe Rambo::RamlModels::Body do
       let(:raml_file) { File.expand_path("features/support/examples/raml/basic_raml_with_schema.raml") }
 
       it "returns generated JSON data" do
-        expect(subject.example).to have_key :data
+        expect(JSON.parse(subject.example)).to have_key "data"
       end
     end
   end

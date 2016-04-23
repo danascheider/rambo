@@ -14,13 +14,7 @@ module Rambo
       end
 
       def example
-        if body.example
-          eval(body.example)
-        elsif body.schema
-          JsonTestData.generate!(body.schema, ruby: true)
-        else
-          {}
-        end
+        body.example ||= JsonTestData.generate!(body.schema) || {}
       end
     end
   end
