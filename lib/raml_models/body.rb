@@ -15,11 +15,11 @@ module Rambo
 
       def example
         if body.example
-          body.example
+          eval(body.example)
         elsif body.schema
-          JSON.parse(JsonTestData.generate!(body.schema), symbolize_names: true)
+          JsonTestData.generate!(body.schema, ruby: true)
         else
-          {}.to_json
+          {}
         end
       end
     end
