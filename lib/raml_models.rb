@@ -1,5 +1,1 @@
-require_relative "./raml_models/api"
-require_relative "./raml_models/body"
-require_relative "./raml_models/method"
-require_relative "./raml_models/resource"
-require_relative "./raml_models/response"
+Dir["File.dirname(__FILE__)/raml"].each {|file| require file}

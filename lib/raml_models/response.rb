@@ -11,10 +11,6 @@ module Rambo
         schema.code
       end
 
-      def code
-        @code ||= schema.code
-      end
-
       def bodies
         @bodies ||= schema.bodies.map {|body| Rambo::RamlModels::Body.new(body) }
       end

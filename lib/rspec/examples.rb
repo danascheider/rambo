@@ -7,7 +7,7 @@ module Rambo
 
       def initialize(raml)
         @raml      = raml
-        @resources = @raml.resources
+        @resources = raml.resources
       end
 
       def compose

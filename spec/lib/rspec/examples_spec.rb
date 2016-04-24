@@ -1,10 +1,8 @@
 describe Rambo::RSpec::Examples do
   let(:raml_file) { File.expand_path("../../../support/foobar.raml", __FILE__) }
-  let(:raw_raml) { Raml::Parser.parse(File.read(raml_file)) }
-  let(:api) { Rambo::RamlModels::Api.new(raw_raml) }
-  let(:raml) { api.resources }
+  let(:raml) { Raml::Parser.parse(File.read(raml_file)) }
 
-  subject { Rambo::RSpec::Examples.new(api) }
+  subject { Rambo::RSpec::Examples.new(raml) }
 
   describe "#generate!" do
     it "calls render on each group" do

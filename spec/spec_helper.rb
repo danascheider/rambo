@@ -1,6 +1,4 @@
 require "coveralls"
-require "json"
-require "rack/test"
 
 Coveralls.wear! if ENV["COVERAGE"] == "true"
 

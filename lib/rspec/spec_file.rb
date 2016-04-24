@@ -2,7 +2,6 @@ require 'erb'
 require 'raml-rb'
 
 require File.expand_path('../examples.rb', __FILE__)
-require File.expand_path('../../raml_models.rb', __FILE__)
 
 module Rambo
   module RSpec
@@ -12,8 +11,8 @@ module Rambo
       TEMPLATE_PATH = File.expand_path('../templates/spec_file_template.erb', __FILE__)
 
       def initialize(raml)
-        @raml     = Rambo::RamlModels::Api.new(raml)
-        @examples = Examples.new(@raml)
+        @raml     = raml
+        @examples = Examples.new(raml)
       end
 
       def template
