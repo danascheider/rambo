@@ -48,10 +48,6 @@ describe Rambo::RSpec::SpecFile do
     end
 
     describe "#render" do
-      let(:schema) do
-        raml.resources.first.methods.first.responses.first.bodies.first.schema
-      end
-
       let(:test_data) { '"data" => 1' }
 
       it "interpolates the correct values" do
