@@ -11,8 +11,12 @@ module Rambo
         schema.method.upcase
       end
 
+      def description
+        @description ||= schema.description
+      end
+
       def responses
-        @responses ||= schema.responses.map {|resp| Response.new(resp) }
+        @responses ||= schema.responses.map {|resp| Rambo::RamlModels::Response.new(resp) }
       end
 
       alias_method :method, :to_s
