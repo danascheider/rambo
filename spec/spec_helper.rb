@@ -8,7 +8,6 @@ require "rspec/matchers"
 require "rspec/expectations"
 require "raml-rb"
 require "json_test_data"
-require "json-schema"
 
 lib   = File.expand_path("../../lib", __FILE__)
 
