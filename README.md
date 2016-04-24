@@ -13,6 +13,8 @@ Rambo is being developed to test APIs complying with standard REST practices. Mi
 ## Contributing
 Rambo is a new project and any contributions are much appreciated. All pull requests should include comprehensive test coverage and, where appropriate, documentation. If you're not sure where to get started, contact me [through Github](https://github.com/danascheider) and I'll be glad to chat.
 
+Additional information for contributors is available in the wiki. Beginning or first-time contributors are welcome and encouraged!
+
 ## More Information
   * [RAML homepage](https://raml.org)
   * [Roy Fielding's dissertation](https://www.ics.uci.edu/~fielding/pubs/dissertation/fielding_dissertation.pdf) describing Representational State Transfer (REST) architecture

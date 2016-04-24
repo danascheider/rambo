@@ -1,5 +1,5 @@
-require 'colorize'
-require File.expand_path('../document_generator.rb', __FILE__)
+require "colorize"
+require File.expand_path("../document_generator.rb", __FILE__)
 
 module Rambo
   class CLI
@@ -22,8 +22,8 @@ module Rambo
       begin
         generator.generate_spec_file!
         stdout.puts("Done!".green)
-      rescue NoMethodError
-        stdout.puts("Error: Please check your RAML syntax and/or file an issue report\n".red)
+      rescue NoMethodError => e
+        stdout.puts("Error: #{e.message}\n".red)
       end
     end
 
@@ -52,7 +52,7 @@ module Rambo
     end
 
     def logo
-      File.read(File.expand_path('../../assets/logo.txt', __FILE__))
+      File.read(File.expand_path("../../assets/logo.txt", __FILE__))
     end
   end
 end

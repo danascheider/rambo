@@ -9,20 +9,7 @@ describe "e-BookMobile API" do
     describe "GET" do
       let(:response_body) do
         {
-          "data" => [
-            {
-              "id" => 1,
-              "first_name" => "String",
-              "last_name" => "String"
-            },
-            {
-              "id" => 1,
-              "first_name" => "String",
-              "last_name" => "String"
-            }
-          ],
-          "success" => true,
-          "status" => 200
+          "data" => 1
         }.to_json
       end
 

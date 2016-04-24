@@ -8,6 +8,11 @@ describe Rambo::RamlModels::Api do
     it "has the right number of resources" do
       expect(subject.resources.count).to eql 2
     end
+
+    it "returns an array of Resource objects" do
+      all_are_resources = subject.resources.all? {|resource| resource.is_a?(Rambo::RamlModels::Resource) }
+      expect(all_are_resources).to be true
+    end
   end
 
   describe "#title" do

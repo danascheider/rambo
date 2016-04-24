@@ -1,13 +1,19 @@
 describe Rambo::RSpec::SpecFile do
-  let(:raml) { Raml::Parser.parse(File.read(raml_file)) }
-  let(:spec_file) { Rambo::RSpec::SpecFile.new(raml) }
+  let(:raw_raml)  { Raml::Parser.parse(File.read(raml_file)) }
+  let(:raml)      { Rambo::RamlModels::Api.new(raw_raml) }
+  let(:spec_file) { Rambo::RSpec::SpecFile.new(raw_raml) }
 
   context "file with examples" do
     let(:raml_file) { File.expand_path("../../../support/foobar.raml", __FILE__) }
 
     describe "#initialize" do
       it "assigns @raml" do
-        expect(spec_file.raml).to eql raml
+        expect(spec_file.raml).to be_a Rambo::RamlModels::Api
+      end
+
+      it "uses the correct schema" do
+        puts spec_file.raml.schema
+        expect(spec_file.raml.schema).to eq raw_raml
       end
     end
 
@@ -31,7 +37,7 @@ describe Rambo::RSpec::SpecFile do
 
     describe "#initialize" do
       it "assigns @raml" do
-        expect(spec_file.raml).to eql raml
+        expect(spec_file.raml).to be_a(Rambo::RamlModels::Api)
       end
     end
 
@@ -42,9 +48,10 @@ describe Rambo::RSpec::SpecFile do
     end
 
     describe "#render" do
+      let(:test_data) { '"data" => 1' }
+
       it "interpolates the correct values" do
-        schema = JsonTestData.generate!(raml.resources.first.methods.first.responses.first.bodies.first.schema)
-        puts schema
+        expect(spec_file.render).to include(test_data)
       end
     end
   end

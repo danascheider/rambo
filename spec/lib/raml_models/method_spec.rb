@@ -7,7 +7,20 @@ describe Rambo::RamlModels::Method do
 
   describe "#to_s" do
     it "returns the method name" do
-      expect(subject.to_s).to eql method.method.upcase
+      expect(subject.to_s).to eql method.method
+    end
+  end
+
+  describe "#description" do
+    it "returns the description" do
+      expect(subject.description).to eql method.description
+    end
+  end
+
+  describe "#responses" do
+    it "returns an array of Response objects" do
+      all_are_responses = subject.responses.all? {|resp| resp.is_a?(Rambo::RamlModels::Response) }
+      expect(all_are_responses).to be true
     end
   end
 end

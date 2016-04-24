@@ -6,7 +6,7 @@ module Rambo
       attr_reader :raml, :resources, :examples
 
       def initialize(raml)
-        @raml      = raml
+        @raml      = Rambo::RamlModels::Api.new(raml)
         @resources = raml.resources
       end
 
@@ -17,7 +17,7 @@ module Rambo
       end
 
       def example_groups
-        @example_groups ||= resources.map {|r| ExampleGroup.new(resource: r) }
+        @example_groups ||= resources.map {|r| ExampleGroup.new(r) }
       end
 
       def generate!

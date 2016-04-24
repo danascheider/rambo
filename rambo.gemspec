@@ -16,13 +16,14 @@ Gem::Specification.new do |s|
   s.add_dependency 'raml-rb', '~> 0.0.5'
   s.add_dependency 'rack-test', '~> 0.6'
   s.add_dependency 'colorize', '~> 0.7'
-  s.add_dependency 'json_test_data', '~> 0.3.0.beta'
+  s.add_dependency 'json_test_data', '~> 0.4'
 
   s.add_development_dependency 'cucumber', '~> 2.1'
   s.add_development_dependency 'json', '~> 1.7'
   s.add_development_dependency 'rake', '~> 10.5'
   s.add_development_dependency 'coveralls', '~> 0.7'
   s.add_development_dependency 'aruba', '~> 0.13'
+  s.add_development_dependency 'json-schema', '~> 2.6'
 
   s.executables        = 'rambo'
   s.default_executable = 'rambo'
