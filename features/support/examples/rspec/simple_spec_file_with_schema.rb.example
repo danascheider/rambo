@@ -9,7 +9,7 @@ describe "e-BookMobile API" do
     describe "GET" do
       let(:response_body) do
         {
-          "data" => "a"
+          "data" => 1
         }.to_json
       end
 
