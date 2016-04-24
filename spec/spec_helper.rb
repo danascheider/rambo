@@ -1,6 +1,4 @@
 require "coveralls"
-require "json"
-require "rack/test"
 
 Coveralls.wear! if ENV["COVERAGE"] == "true"
 
@@ -10,6 +8,7 @@ require "rspec/matchers"
 require "rspec/expectations"
 require "raml-rb"
 require "json_test_data"
+require "json-schema"
 
 lib   = File.expand_path("../../lib", __FILE__)
 
