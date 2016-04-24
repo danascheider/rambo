@@ -46,8 +46,9 @@ describe Rambo::RSpec::SpecFile do
         raml.resources.first.methods.first.responses.first.bodies.first.schema
       end
 
+      let(:test_data) { '"data" => 1' }
+
       it "interpolates the correct values" do
-        test_data = JsonTestData.generate!(schema)
         expect(spec_file.render).to include(test_data)
       end
     end
