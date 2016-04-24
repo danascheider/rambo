@@ -1,14 +1,19 @@
 describe Rambo::RSpec::SpecFile do
   let(:raw_raml)  { Raml::Parser.parse(File.read(raml_file)) }
   let(:raml)      { Rambo::RamlModels::Api.new(raw_raml) }
-  let(:spec_file) { Rambo::RSpec::SpecFile.new(raml) }
+  let(:spec_file) { Rambo::RSpec::SpecFile.new(raw_raml) }
 
   context "file with examples" do
     let(:raml_file) { File.expand_path("../../../support/foobar.raml", __FILE__) }
 
     describe "#initialize" do
       it "assigns @raml" do
-        expect(spec_file.raml).to eql raml
+        expect(spec_file.raml).to be_a Rambo::RamlModels::Api
+      end
+
+      it "uses the correct schema" do
+        puts spec_file.raml.schema
+        expect(spec_file.raml.schema).to eq raw_raml
       end
     end
 
