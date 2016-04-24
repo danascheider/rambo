@@ -1,5 +1,6 @@
 describe Rambo::RSpec::SpecFile do
-  let(:raml) { Raml::Parser.parse(File.read(raml_file)) }
+  let(:raw_raml) { Raml::Parser.parse(File.read(raml_file)) }
+  let(:raml) { Rambo::RamlModels::Api.new(raw_raml) }
   let(:spec_file) { Rambo::RSpec::SpecFile.new(raml) }
 
   context "file with examples" do

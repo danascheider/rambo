@@ -8,7 +8,11 @@ module Rambo
       end
 
       def to_s
-        schema.method.upcase
+        schema.method
+      end
+
+      def description
+        @description ||= schema.description
       end
 
       def responses

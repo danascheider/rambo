@@ -1,13 +1,13 @@
   describe "<%= @resource.uri_partial %>" do
     let(:route) { "<%= @resource.uri_partial %>" }
-    <% @resource.methods.each do |method| %>
-    describe "<%= method.method.upcase %>" do
-      let(:response_body) do<% body = method.responses.first.bodies.first.example.split("\n") %>
-        <%= body.join("\n        ").gsub(/\:/, " =>") %>.to_json
+    <% @resource.http_methods.each do |method| %>
+    describe "<%= method.to_s.upcase %>" do
+      let(:response_body) do<% body = method.responses.first.bodies.first.example %>
+        <%= body %>.to_json
       end
 
       it "<%= method.description.downcase %>" do
-        <%= method.method %> route
+        <%= method.to_s %> route
         expect(last_response.body).to eql response_body
       end
 
