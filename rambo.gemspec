@@ -20,7 +20,7 @@ Gem::Specification.new do |s|
 
   s.add_development_dependency 'cucumber', '~> 2.1'
   s.add_development_dependency 'json', '~> 1.7'
-  s.add_development_dependency 'rake', '~> 10.5'
+  s.add_development_dependency 'rake', '~> 11.0'
   s.add_development_dependency 'coveralls', '~> 0.7'
   s.add_development_dependency 'aruba', '~> 0.13'
   s.add_development_dependency 'json-schema', '~> 2.6'
