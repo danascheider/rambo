@@ -14,6 +14,7 @@ lib   = File.expand_path("../../lib", __FILE__)
 
 Dir.foreach("#{lib}")   {|f| require f if f.match(/.*\.rb\z/) }
 
+require_relative "./support/matchers/json_schema"
 require_relative "../lib/raml_models/api"
 require_relative "../lib/raml_models/resource"
 require_relative "../lib/raml_models/method"
