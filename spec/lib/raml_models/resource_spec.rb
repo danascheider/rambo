@@ -11,6 +11,12 @@ describe Rambo::RamlModels::Resource do
     end
   end
 
+  describe "#uri_partial" do
+    it "returns the URI partial" do
+      expect(subject.uri_partial).to eql resource.uri_partial
+    end
+  end
+
   describe "#http_methods" do
     it "returns the correct methods" do
       expect(subject.http_methods.count).to eql 1
