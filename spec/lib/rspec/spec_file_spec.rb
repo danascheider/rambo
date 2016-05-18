@@ -51,7 +51,7 @@ describe Rambo::RSpec::SpecFile do
       let(:test_data) { '"data" => 1' }
 
       it "interpolates the correct values" do
-        allow(JsonTestData).to receive(:generate).and_return({ :data => 1 })
+        allow(JsonTestData).to receive(:generate!).and_return({ :data => 1 })
         expect(spec_file.render).to include(test_data)
       end
     end
