@@ -1,4 +1,4 @@
-describe Rambo::RSpec::Examples do
+RSpec.describe Rambo::RSpec::Examples do
   let(:raml_file) { File.expand_path("../../../support/foobar.raml", __FILE__) }
   let(:raw_raml)  { Raml::Parser.parse(File.read(raml_file)) }
   let(:raml)      { Rambo::RamlModels::Api.new(raw_raml) }
