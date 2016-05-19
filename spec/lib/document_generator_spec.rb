@@ -1,4 +1,4 @@
-describe Rambo::DocumentGenerator do
+RSpec.describe Rambo::DocumentGenerator do
   let(:valid_file) { File.expand_path('../../support/foobar.raml', __FILE__) }
   let(:generator) { Rambo::DocumentGenerator.new(valid_file) }
 

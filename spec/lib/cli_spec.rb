@@ -1,4 +1,4 @@
-describe Rambo::CLI do
+RSpec.describe Rambo::CLI do
   let(:io) { StringIO.new }
   let(:valid_file) { File.expand_path('../../support/foobar.raml', __FILE__) }
 
