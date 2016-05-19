@@ -1,5 +1,5 @@
 require "spec_helper"
 
-RSpec.describe "e-BookMobile API", type: :request do
-
+describe "e-BookMobile API" do
+  include Rack::Test::Methods
 end

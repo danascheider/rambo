@@ -1,4 +1,4 @@
-RSpec.describe Rambo::RSpec::SpecHelperFile do
+describe Rambo::RSpec::SpecHelperFile do
 
   describe "#render" do
     context "when there is no spec helper file" do
