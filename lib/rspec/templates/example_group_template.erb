@@ -5,7 +5,6 @@
       <% if method.request_body %>let(:request_body) do<% body = method.request_body.example.split("\n") %>
         <%= body.join("\n        ").gsub(/\:/, " =>") %>.to_json
       end
-
       <% end %>
       let(:response_body) do<% body = method.responses.first.bodies.first.example.split("\n") %>
         <%= body.join("\n        ").gsub(/\:/, " =>") %>.to_json
