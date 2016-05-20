@@ -10,7 +10,7 @@ Feature: Create specs from RAML
     And the file "spec/rambo_helper.rb" should exist
     And the file "spec/rambo_helper.rb" should contain:
       """
-      require "rambo_helper"
+      require "spec_helper"
       """
     And the file "spec/contract/foo_spec.rb" should be like "empty_spec.rb.example"
     And the exit status should be 0

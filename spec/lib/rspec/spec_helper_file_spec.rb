@@ -9,9 +9,10 @@ RSpec.describe Rambo::RSpec::SpecHelperFile do
       File.delete(rambo_helper_path) if File.exist? rambo_helper_path
     }
 
-    context "when there is no rambo helper file" do
-      before { delete_rambo_helper }
+    before { delete_rambo_helper }
+    after  { delete_rambo_helper }
 
+    context "when there is no rambo helper file" do
       it "creates the file" do
         subject.generate
         expect(File.exist?(rambo_helper_path)).to eq true
@@ -20,12 +21,10 @@ RSpec.describe Rambo::RSpec::SpecHelperFile do
 
     context "when there is a rambo helper file" do
       it "creates the file" do
-        File.open(rambo_helper_path, "w+")
+        subject.generate
         expect(subject).to_not receive(:write_template)
         subject.generate
       end
     end
-
-    after { delete_rambo_helper }
   end
 end
