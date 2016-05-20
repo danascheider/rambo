@@ -11,6 +11,10 @@ module Rambo
         schema.method
       end
 
+      def request_body
+        schema.bodies.first
+      end
+
       def description
         @description ||= schema.description
       end
