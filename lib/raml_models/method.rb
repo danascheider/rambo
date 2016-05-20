@@ -12,7 +12,7 @@ module Rambo
       end
 
       def request_body
-        schema.bodies.first
+        Rambo::RamlModels::Body.new(schema.bodies.first)
       end
 
       def description
