@@ -5,7 +5,7 @@ module Rambo
       TEMPLATE_PATH = File.expand_path('../templates/rambo_helper_file_template.erb', __FILE__)
 
       def generate
-        write_template unless file_already_exists?
+        write_to_file(template) unless file_already_exists?
       end
 
       private
@@ -14,7 +14,7 @@ module Rambo
         File.exist?('spec/rambo_helper.rb')
       end
 
-      def write_template
+      def write_to_file(template)
         File.open("spec/rambo_helper.rb", "w+") { |f| f.puts template }
       end
 
