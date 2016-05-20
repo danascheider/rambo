@@ -1,7 +1,6 @@
-require "spec_helper"
+require "rambo_helper"
 
-describe "<%= @raml.title %>" do
-  include Rack::Test::Methods<% if @examples.generate! && @examples.compose.size > 0 %>
-
-<%= @examples.compose.chomp %><% end %>
+RSpec.describe "<%= @raml.title %>", type: :request do
+<%- if @examples.generate! && @examples.compose.size > 0 %>
+<%= @examples.compose.chomp %><%- end %>
 end

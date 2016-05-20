@@ -15,7 +15,7 @@ module Rambo
 
       def render
         b = binding
-        ERB.new(template, 0, "", "@result").result(resource.instance_eval { b })
+        ERB.new(template, 0, "-", "@result").result(resource.instance_eval { b })
         @result
       end
     end

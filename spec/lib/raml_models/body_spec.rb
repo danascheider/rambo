@@ -1,4 +1,4 @@
-describe Rambo::RamlModels::Body do
+RSpec.describe Rambo::RamlModels::Body do
   let(:raml) { Raml::Parser.parse_file(raml_file) }
   let(:body) { raml.resources.first.methods.first.responses.first.bodies.first }
 

@@ -1,4 +1,4 @@
-describe Rambo::DocumentGenerator do
+RSpec.describe Rambo::DocumentGenerator do
   let(:valid_file) { File.expand_path('../../support/foobar.raml', __FILE__) }
   let(:generator) { Rambo::DocumentGenerator.new(valid_file) }
 
@@ -13,11 +13,10 @@ describe Rambo::DocumentGenerator do
     end
   end
 
-  describe "#generate_spec_helper!" do
-    it "generates the spec_helper file" do
-      allow(File).to receive(:exist?).with("spec/spec_helper.rb").and_return(true)
-      expect(File).to receive(:exist?).with("spec/spec_helper.rb")
-      generator.generate_spec_helper!
+  describe "#generate_rambo_helper!!" do
+    it "generates the rambo_helper file" do
+      expect_any_instance_of(Rambo::RSpec::SpecHelperFile).to receive(:generate)
+      generator.generate_rambo_helper!
     end
   end
 

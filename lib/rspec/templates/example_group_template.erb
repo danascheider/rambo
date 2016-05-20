@@ -1,6 +1,6 @@
   describe "<%= @resource.to_s %>" do
     let(:route) { "<%= @resource.to_s %>" }
-    <% @resource.http_methods.each do |method| %>
+    <%- @resource.http_methods.each do |method| %>
     describe "<%= method.method.upcase %>" do
       let(:response_body) do<% body = method.responses.first.bodies.first.example.split("\n") %>
         <%= body.join("\n        ").gsub(/\:/, " =>") %>.to_json
@@ -15,5 +15,5 @@
         <%= method.method %> route
         expect(last_response.status).to eql <%= method.responses.first.status_code %>
       end
-    end<% end %>
+    end<%- end %>
   end

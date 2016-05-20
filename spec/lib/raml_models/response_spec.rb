@@ -1,4 +1,4 @@
-describe Rambo::RamlModels::Response do
+RSpec.describe Rambo::RamlModels::Response do
   let(:raml_file) { File.expand_path("../../../support/foobar.raml", __FILE__) }
   let(:raml) { Raml::Parser.parse_file(raml_file) }
   let(:response) { raml.resources.first.methods.first.responses.first }

@@ -1,4 +1,4 @@
-describe Rambo::RSpec::ExampleGroup do
+RSpec.describe Rambo::RSpec::ExampleGroup do
   let(:raml_file) { File.expand_path("../../../support/foobar.raml", __FILE__) }
   let(:raml)      { Raml::Parser.parse(File.read(raml_file)) }
   let(:resource)  { Rambo::RamlModels::Resource.new(raml.resources.first) }

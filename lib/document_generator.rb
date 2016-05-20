@@ -25,12 +25,8 @@ module Rambo
       end
     end
 
-    def generate_spec_helper!
-      contents = Rambo::RSpec::SpecHelperFile.new.render
-
-      File.open("spec/spec_helper.rb", "w+") do |f|
-        f.puts contents
-      end
+    def generate_rambo_helper!
+      Rambo::RSpec::SpecHelperFile.new.generate
     end
   end
 end
