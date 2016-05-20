@@ -1,8 +1,6 @@
-require "spec_helper"
+require "rambo_helper"
 
 RSpec.describe "<%= @raml.title %>", type: :request do
-<% if @examples.generate! && @examples.compose.size > 0 %>
-
-<%= @examples.compose.chomp %>
-<% end %>
+<%- if @examples.generate! && @examples.compose.size > 0 %>
+<%= @examples.compose.chomp %><%- end %>
 end
