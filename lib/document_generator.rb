@@ -10,7 +10,7 @@ module Rambo
 
     def initialize(file)
       @file = file
-      @raml = Raml::Parser.parse_file(file)
+      @raml = RamlParser::Parser.parse_file(file)
     end
 
     def generate_spec_dir!

@@ -3,10 +3,10 @@ require "json_test_data"
 module Rambo
   module RamlModels
     class Body
-      attr_reader :body
+      attr_reader :content_type, :body
 
-      def initialize(body)
-        @body = body
+      def initialize(raml)
+        @content_type, @body = raml
       end
 
       def content_type

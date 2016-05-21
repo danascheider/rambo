@@ -1,6 +1,6 @@
 RSpec.describe Rambo::RamlModels::Method do
   let(:raml_file) { File.expand_path("../../../support/foobar.raml", __FILE__) }
-  let(:raml) { Raml::Parser.parse_file(raml_file) }
+  let(:raml) { RamlParser::Parser.parse_file(raml_file) }
   let(:method) { raml.resources.first.methods.first }
 
   subject { described_class.new(method) }
@@ -13,7 +13,7 @@ RSpec.describe Rambo::RamlModels::Method do
 
   describe "#description" do
     it "returns the description" do
-      expect(subject.description).to eql method.description
+      expect(subject.description).to eql method.last.description
     end
   end
 
