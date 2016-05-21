@@ -1,10 +1,14 @@
 module Rambo
   module RamlModels
     class Response
-      attr_reader :status_code, :schema
+      attr_reader :schema
 
       def initialize(raml)
-        @status_code, @schema = raml
+        @schema = raml
+      end
+
+      def status_code
+        schema.name
       end
 
       def bodies

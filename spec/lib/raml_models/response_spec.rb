@@ -1,13 +1,13 @@
 RSpec.describe Rambo::RamlModels::Response do
   let(:raml_file) { File.expand_path("../../../support/foobar.raml", __FILE__) }
   let(:raml) { Raml.parse_file(raml_file) }
-  let(:response) { raml.resources.first.methods.first.last.responses.first }
+  let(:response) { raml.resources.first.last.children.first.children.first }
 
   subject { described_class.new(response) }
 
   describe "#status_code" do
     it "returns the response status code" do
-      expect(subject.status_code).to eql response.first
+      expect(subject.status_code).to eql response.name
     end
   end
 
