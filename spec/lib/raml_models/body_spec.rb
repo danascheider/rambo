@@ -1,6 +1,6 @@
 RSpec.describe Rambo::RamlModels::Body do
   let(:raml) { Raml.parse_file(raml_file) }
-  let(:body) { raml.resources.first.methods.first.last.responses.first.last.bodies.first }
+  let(:body) { raml.resources.values.first.children.first.children.first.children.first }
 
   subject { described_class.new(body) }
 
@@ -8,7 +8,7 @@ RSpec.describe Rambo::RamlModels::Body do
     let(:raml_file) { File.expand_path("../../../support/foobar.raml", __FILE__) }
 
     it "returns the content type" do
-      expect(subject.content_type).to eql body.first
+      expect(subject.content_type).to eql body.name
     end
   end
 
