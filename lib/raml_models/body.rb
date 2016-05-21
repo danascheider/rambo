@@ -3,14 +3,19 @@ require "json_test_data"
 module Rambo
   module RamlModels
     class Body
-      attr_reader :content_type, :body
+      attr_reader :body
 
       def initialize(raml)
-        @content_type, @body = raml
+        @body = raml
+      end
+
+      def content_type
+        #
       end
 
       def example
-        @example ||= body.example || generate_from_schema(body.schema) || {}.to_json
+        example = body.example rescue body.last.example
+        @example ||= example || generate_from_schema(body.schema) || {}.to_json
       end
 
       private
