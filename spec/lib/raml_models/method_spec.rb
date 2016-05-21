@@ -13,7 +13,7 @@ RSpec.describe Rambo::RamlModels::Method do
 
   describe "#description" do
     it "returns the description" do
-      expect(subject.description).to eql method.last.description
+      expect(subject.description).to eql method.description
     end
   end
 
