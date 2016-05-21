@@ -40,3 +40,4 @@ foo.raml
 raml.rb
 
 /spec/contract/
+/spec/rambo_helper.rb
