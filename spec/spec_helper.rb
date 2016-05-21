@@ -6,7 +6,7 @@ require "rspec"
 require "rspec/core"
 require "rspec/matchers"
 require "rspec/expectations"
-require "raml-rb"
+require "raml_parser"
 require "json_test_data"
 
 lib = File.expand_path("../../lib", __FILE__)

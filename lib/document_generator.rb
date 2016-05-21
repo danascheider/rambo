@@ -1,5 +1,5 @@
 require "fileutils"
-require "raml-rb"
+require "raml_parser"
 
 require File.expand_path("../rspec/spec_file.rb", __FILE__)
 require File.expand_path("../rspec/spec_helper_file.rb", __FILE__)
