@@ -11,6 +11,10 @@ module Rambo
         schema.method
       end
 
+      def request_body
+        Rambo::RamlModels::Body.new(schema.bodies.first) if schema.bodies.first
+      end
+
       def description
         @description ||= schema.description
       end

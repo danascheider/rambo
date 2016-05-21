@@ -1,27 +1,27 @@
-require "rambo_helper"
+require "spec_helper"
 
 RSpec.describe "e-BookMobile API", type: :request do
 
   describe "/authors" do
     let(:route) { "/authors" }
 
-    describe "GET" do
+    describe "POST" do
+      let(:request_body) do
+        {
+          "first_name" => "asgaakh",
+          "last_name" => "sjdhhgu",
+          "year_of_birth" => 3333
+        }
+      end
+
       let(:response_body) do
         {
-          "data" => [
-            {
-              "id" => 1,
-              "first_name" => "Hermann",
-              "last_name" => "Hesse"
-            },
-            {
-              "id" => 2,
-              "first_name" => "Charles",
-              "last_name" => "Dickens"
-            }
-          ],
-          "success" => true,
-          "status" => 200
+          "author" => {
+            "id" => 1,
+            "first_name" => "asgaakh",
+            "last_name" => "sjdhhgu",
+            "year_of_birth" => 3333
+          }
         }.to_json
       end
 

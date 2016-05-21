@@ -2,18 +2,22 @@
     let(:route) { "<%= @resource.to_s %>" }
     <%- @resource.http_methods.each do |method| %>
     describe "<%= method.method.upcase %>" do
+      <% if method.request_body %>let(:request_body) do<% body = method.request_body.example.split("\n") %>
+        <%= body.join("\n        ").gsub(/\:/, " =>") %>.to_json
+      end
+      <% end %>
       let(:response_body) do<% body = method.responses.first.bodies.first.example.split("\n") %>
         <%= body.join("\n        ").gsub(/\:/, " =>") %>.to_json
       end
 
       it "<%= method.description && method.description.downcase || "#{method.method}s the resource" %>" do
-        <%= method.method %> route
-        expect(last_response.body).to eql response_body
+        <%= method.method %> route<% if method.request_body %>, request_body<% end %>
+        expect(response.body).to eql response_body
       end
 
       it "returns status <%= method.responses.first.status_code %>" do
-        <%= method.method %> route
-        expect(last_response.status).to eql <%= method.responses.first.status_code %>
+        <%= method.method %> route<% if method.request_body %>, request_body<% end %>
+        expect(response.status).to eql <%= method.responses.first.status_code %>
       end
     end<%- end %>
   end
