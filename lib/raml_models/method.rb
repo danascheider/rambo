@@ -7,12 +7,9 @@ module Rambo
         @method, @schema = raml_method
       end
 
-      # def to_s
-      #   method
-      # end
+      alias_method :to_s, :method
 
       def request_body
-        puts schema.inspect
         Rambo::RamlModels::Body.new(schema.bodies.first) if schema.bodies.first
       end
 
