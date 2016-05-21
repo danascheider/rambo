@@ -8,7 +8,7 @@ module Rambo
       end
 
       def method
-        schema.first
+        schema.name
       end
 
       def request_body
