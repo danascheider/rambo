@@ -15,7 +15,7 @@ module Rambo
 
       def example
         example = body.example rescue body.last.example
-        @example ||= example || generate_from_schema(body.schema) || {}.to_json
+        @example ||= example || generate_from_schema(body) || {}.to_json
       end
 
       private
