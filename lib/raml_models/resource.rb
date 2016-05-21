@@ -12,7 +12,7 @@ module Rambo
       end
 
       def to_s
-        schema.uri_partial
+        schema.relative_uri
       end
 
       alias_method :uri_partial, :to_s
