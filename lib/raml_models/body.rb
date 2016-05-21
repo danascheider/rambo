@@ -9,10 +9,6 @@ module Rambo
         @content_type, @body = raml
       end
 
-      def content_type
-        body.content_type
-      end
-
       def example
         @example ||= body.example || generate_from_schema(body.schema) || {}.to_json
       end
