@@ -12,7 +12,7 @@ module Rambo
       end
 
       def bodies
-        @bodies ||= schema.bodies.map {|body| Rambo::RamlModels::Body.new(body) }
+        @bodies ||= schema.bodies.map {|content_type, body| Rambo::RamlModels::Body.new(body) }
       end
     end
   end
