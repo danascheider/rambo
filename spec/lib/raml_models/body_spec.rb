@@ -17,7 +17,7 @@ RSpec.describe Rambo::RamlModels::Body do
       let(:raml_file) { File.expand_path("../../../support/foobar.raml", __FILE__) }
 
       it "returns an example" do
-        expect(subject.example).to eql body.last.example
+        expect(subject.example).to eql body.example
       end
     end
 
