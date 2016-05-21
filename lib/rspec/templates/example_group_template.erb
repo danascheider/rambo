@@ -11,12 +11,12 @@
       end
 
       it "<%= method.description && method.description.downcase || "#{method.method}s the resource" %>" do
-        <%= method.method %> route
+        <%= method.method %> route<% if method.request_body %>, request_body<% end %>
         expect(last_response.body).to eql response_body
       end
 
       it "returns status <%= method.responses.first.status_code %>" do
-        <%= method.method %> route
+        <%= method.method %> route<% if method.request_body %>, request_body<% end %>
         expect(last_response.status).to eql <%= method.responses.first.status_code %>
       end
     end<%- end %>
