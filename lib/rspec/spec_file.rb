@@ -1,5 +1,5 @@
 require 'erb'
-require 'raml-rb'
+require 'raml'
 
 require File.expand_path('../examples.rb', __FILE__)
 require File.expand_path('../../raml_models.rb', __FILE__)

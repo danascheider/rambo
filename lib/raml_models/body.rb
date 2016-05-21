@@ -5,21 +5,23 @@ module Rambo
     class Body
       attr_reader :body
 
-      def initialize(body)
-        @body = body
+      def initialize(raml)
+        @body = raml
       end
 
       def content_type
-        body.content_type
+        body.name
       end
 
       def example
-        @example ||= body.example || generate_from_schema(body.schema) || {}.to_json
+        example = body.example rescue body.last.example
+        @example ||= example || generate_from_schema || {}.to_json
       end
 
       private
 
-      def generate_from_schema(schema)
+      def generate_from_schema
+        schema = body.children.first.value
         JSON.pretty_generate(JsonTestData.generate!(schema, ruby: true))
       end
     end

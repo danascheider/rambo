@@ -7,12 +7,12 @@ module Rambo
         @schema = raml_method
       end
 
-      def to_s
-        schema.method
+      def method
+        schema.name
       end
 
       def request_body
-        Rambo::RamlModels::Body.new(schema.bodies.first) if schema.bodies.first
+        Rambo::RamlModels::Body.new(request_body_from_schema) if request_body_from_schema
       end
 
       def description
@@ -20,10 +20,14 @@ module Rambo
       end
 
       def responses
-        @responses ||= schema.responses.map {|resp| Rambo::RamlModels::Response.new(resp) }
+        @responses ||= schema.children.map {|resp| Rambo::RamlModels::Response.new(resp) }
       end
 
-      alias_method :method, :to_s
+      private
+
+      def request_body_from_schema
+        schema.children.first.children.first
+      end
     end
   end
 end

@@ -8,7 +8,7 @@ module Rambo
       end
 
       def resources
-        @resources ||= schema.resources.map {|resource| Rambo::RamlModels::Resource.new(resource) }
+        @resources ||= schema.resources.map {|uri, resource| Rambo::RamlModels::Resource.new(resource) }
       end
 
       def title
