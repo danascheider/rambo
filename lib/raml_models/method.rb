@@ -1,10 +1,14 @@
 module Rambo
   module RamlModels
     class Method
-      attr_reader :method, :schema
+      attr_reader :schema
 
       def initialize(raml_method)
-        @method, @schema = raml_method
+        @schema = raml_method
+      end
+
+      def method
+        schema.first
       end
 
       def request_body

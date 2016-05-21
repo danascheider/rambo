@@ -7,7 +7,7 @@ RSpec.describe Rambo::RamlModels::Method do
 
   describe "#to_s" do
     it "returns the method name" do
-      expect(subject.to_s).to eql method.first
+      expect(subject.method).to eql method.name
     end
   end
 
