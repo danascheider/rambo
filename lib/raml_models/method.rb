@@ -18,7 +18,6 @@ module Rambo
       end
 
       def responses
-        # puts schema.inspect
         @responses ||= schema.responses.map {|resp| Rambo::RamlModels::Response.new(resp) }
       end
     end

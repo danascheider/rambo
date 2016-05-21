@@ -12,7 +12,6 @@ RSpec.describe Rambo::RSpec::SpecFile do
       end
 
       it "uses the correct schema" do
-        puts spec_file.raml.schema
         expect(spec_file.raml.schema).to eq raw_raml
       end
     end
