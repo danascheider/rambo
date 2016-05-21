@@ -4,7 +4,7 @@ module Rambo
       attr_reader :schema, :method
 
       def initialize(raml_method)
-        @method, @schema = raml_method
+        @schema = raml_method
       end
 
       alias_method :to_s, :method
@@ -18,10 +18,9 @@ module Rambo
       end
 
       def responses
+        # puts schema.inspect
         @responses ||= schema.responses.map {|resp| Rambo::RamlModels::Response.new(resp) }
       end
-
-      alias_method :method, :to_s
     end
   end
 end

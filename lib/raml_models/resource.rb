@@ -4,6 +4,7 @@ module Rambo
       attr_reader :uri_partial, :schema
 
       def initialize(raml_resource)
+        puts raml_resource.inspect
         @uri_partial, @schema = raml_resource
       end
 
