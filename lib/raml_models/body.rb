@@ -10,7 +10,7 @@ module Rambo
       end
 
       def content_type
-        #
+        body.name
       end
 
       def example
