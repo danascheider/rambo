@@ -1,7 +1,7 @@
   describe "<%= @resource.to_s %>" do
     let(:route) { "<%= @resource.to_s %>" }
     <%- @resource.http_methods.each do |method| %>
-    describe "<%= method.to_s.upcase %>" do
+    describe "<%= method.method.upcase %>" do
       <% if method.request_body %>let(:request_body) do<% body = method.request_body.example.split("\n") %>
         <%= body.join("\n        ").gsub(/\:/, " =>") %>.to_json
       end
