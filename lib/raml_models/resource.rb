@@ -1,10 +1,14 @@
 module Rambo
   module RamlModels
     class Resource
-      attr_reader :uri_partial, :schema
+      attr_reader :schema
 
       def initialize(raml_resource)
-        @uri_partial, @schema = raml_resource
+        @schema = raml_resource.is_a?(Array) ? raml_resource.last : raml_resource
+      end
+
+      def uri_partial
+        schema.name
       end
 
       def http_methods
