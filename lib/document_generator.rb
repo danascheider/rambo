@@ -1,5 +1,5 @@
 require "fileutils"
-require "raml_parser"
+require "raml"
 
 require File.expand_path("../rspec/spec_file.rb", __FILE__)
 require File.expand_path("../rspec/spec_helper_file.rb", __FILE__)
@@ -10,7 +10,7 @@ module Rambo
 
     def initialize(file)
       @file = file
-      @raml = RamlParser::Parser.parse_file(file)
+      @raml = Raml.parse_file(file)
     end
 
     def generate_spec_dir!

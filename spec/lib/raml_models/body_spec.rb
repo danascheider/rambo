@@ -1,5 +1,5 @@
 RSpec.describe Rambo::RamlModels::Body do
-  let(:raml) { RamlParser::Parser.parse_file(raml_file) }
+  let(:raml) { Raml.parse_file(raml_file) }
   let(:body) { raml.resources.first.methods.first.last.responses.first.last.bodies.first }
 
   subject { described_class.new(body) }
