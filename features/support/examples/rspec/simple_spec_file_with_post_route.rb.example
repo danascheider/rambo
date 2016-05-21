@@ -27,12 +27,12 @@ RSpec.describe "e-BookMobile API", type: :request do
 
       it "retrieve a list of authors" do
         get route
-        expect(last_response.body).to eql response_body
+        expect(response.body).to eql response_body
       end
 
       it "returns status 200" do
         get route
-        expect(last_response.status).to eql 200
+        expect(response.status).to eql 200
       end
     end
   end
