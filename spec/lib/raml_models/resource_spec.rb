@@ -14,7 +14,7 @@ RSpec.describe Rambo::RamlModels::Resource do
 
   describe "#uri_partial" do
     it "returns the URI partial" do
-      expect(subject.uri_partial).to eql resource.relative_uri
+      expect(subject.uri_partial).to eql resource.first
     end
   end
 
