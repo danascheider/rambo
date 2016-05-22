@@ -8,7 +8,7 @@ module Rambo
       end
 
       def status_code
-        schema.name
+        schema.code
       end
 
       def bodies
