@@ -35,8 +35,8 @@ Gemfile.lock
 # unless supporting rvm < 1.11.0 or doing something fancy, ignore this:
 .rvmrc
 
-foobar.raml
-foo.raml
+/foobar.raml
+/foo.raml
 raml.rb
 
 /spec/contract/
