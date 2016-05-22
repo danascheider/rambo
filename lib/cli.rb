@@ -24,6 +24,7 @@ module Rambo
         stdout.puts("Done!".green)
       rescue NoMethodError => e
         stdout.puts("Error: #{e.message}\n".red)
+        stdout.puts e.backtrace.join("\n\t")
       end
     end
 
