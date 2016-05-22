@@ -31,4 +31,16 @@ RSpec.describe Rambo::DocumentGenerator do
       generator.generate_spec_file!
     end
   end
+
+  describe "#generate_matchers!" do
+    it "creates a spec/support/matchers directory" do
+      expect(FileUtils).to receive(:mkdir_p).with("spec/support/matchers")
+      generator.generate_matchers!
+    end
+
+    it "adds a matcher file" do
+      expect_any_instance_of(Rambo::RSpec::MatcherFile).to receive(:generate)
+      generator.generate_matchers!
+    end
+  end
 end

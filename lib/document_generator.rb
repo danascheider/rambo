@@ -28,5 +28,10 @@ module Rambo
     def generate_rambo_helper!
       Rambo::RSpec::SpecHelperFile.new.generate
     end
+
+    def generate_matchers!
+      FileUtils.mkdir_p("spec/support/matchers")
+      Rambo::RSpec::MatcherFile.new.generate
+    end
   end
 end
