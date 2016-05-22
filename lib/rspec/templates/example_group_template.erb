@@ -4,6 +4,7 @@
     describe "<%= method.method.upcase %>" do
       <% if method.headers %>let(:headers) do <% headers = method.headers.pretty.split("\n") %>
         <%= headers.join("\n        ") %>
+
       end<% end %>
       <% if method.request_body %>let(:request_body) do<% body = method.request_body.example.split("\n") %>
         <%= body.join("\n        ").gsub(/\:/, " =>") %>.to_json
@@ -19,7 +20,7 @@
       end
 
       it "returns status <%= method.responses.first.status_code %>" do
-        <%= method.method %> route<% if method.request_body %>, request_body<% end %>
+        <%= method.method %> route<% if method.request_body %>, request_body<% end %><% if method.headers %>, headers<% end %>
         expect(response.status).to eql <%= method.responses.first.status_code %>
       end
     end<%- end %>
