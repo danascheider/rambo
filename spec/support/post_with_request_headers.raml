@@ -1,4 +1,4 @@
-#%RAML 0.8
+#%RAML 1.0
 ---
 title: e-BookMobile API
 baseUri: http://api.e-bookmobile.com/{version}
@@ -7,6 +7,8 @@ version: v1
 /authors:
   post:
     description: Retrieve a list of authors
+    headers:
+      Content-Type: application/json
     body:
       application/json:
         schema: |
@@ -14,7 +16,7 @@ version: v1
             "$schema": "http://json-schema.org/draft-04/schema#",
             "description": "schema to create an author",
             "type": "object",
-            "required": [ "first_name", "last_name" ],
+            "required": [ "first_name", "last_name" ]
             "properties": {
               "first_name": { "type": "string" },
               "last_name": { "type": "string" },

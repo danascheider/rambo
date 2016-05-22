@@ -6,6 +6,12 @@ RSpec.describe "e-BookMobile API", type: :request do
     let(:route) { "/authors" }
 
     describe "POST" do
+      let(:headers) do
+        {
+          "Content-Type" => "application/json"
+        }
+      end
+
       let(:request_body) do
         {
           "first_name" => "asgaakh",

@@ -12,5 +12,33 @@ RSpec.describe Rambo::RSpec::ExampleGroup do
         expect(subject.render).to include('describe "GET" do')
       end
     end
+
+    it "does not include a request body" do
+      expect(subject.render).not_to include("let(:request_body) do")
+    end
+
+    it "does not include headers" do
+      expect(subject.render).not_to include("let(:headers) do")
+    end
+
+    context "when the route has a request body" do
+      let(:raml_file) { File.expand_path("../../../support/basic_raml_with_post_route.raml", __FILE__) }
+
+      it "adds a request body" do
+        expect(subject.render).to include("let(:request_body) do")
+      end
+
+      it "does not include headers" do
+        expect(subject.render).not_to include("let(:headers) do")
+      end
+    end
+
+    context "when the route has request headers" do
+      let(:raml_file) { File.expand_path("../../../support/post_with_request_headers.raml", __FILE__) }
+
+      it "adds headers" do
+        expect(subject.render).to include("let(:headers) do")
+      end
+    end
   end
 end
