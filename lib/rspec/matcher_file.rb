@@ -1,3 +1,5 @@
+require "fileutils"
+
 module Rambo
   module RSpec
     class MatcherFile
@@ -16,7 +18,7 @@ module Rambo
       end
 
       def write_to_file(template)
-        File.open(MATCHER_FILE_PATH, "w+") {|f| f.puts template }
+        File.write(MATCHER_FILE_PATH, template)
       end
 
       def template

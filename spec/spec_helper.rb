@@ -17,4 +17,8 @@ Dir.foreach("#{lib}")   {|f| require f if f.match(/.*\.rb\z/) }
 RSpec.configure do |c|
   c.disable_monkey_patching!
   c.order = :random
+
+  c.after(:each) do
+    File.delete("spec/rambo_helper.rb") rescue nil
+  end
 end

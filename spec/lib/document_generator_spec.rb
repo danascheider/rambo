@@ -15,7 +15,7 @@ RSpec.describe Rambo::DocumentGenerator do
 
   describe "#generate_rambo_helper!!" do
     it "generates the rambo_helper file" do
-      expect_any_instance_of(Rambo::RSpec::SpecHelperFile).to receive(:generate)
+      expect_any_instance_of(Rambo::RSpec::RamboHelperFile).to receive(:generate)
       generator.generate_rambo_helper!
     end
   end
