@@ -7,10 +7,10 @@ script:
   - bundle exec rspec
 env:
   - COVERAGE=true
+script:
+  - bundle exec rspec
 branches:
   only:
-    - dev
-    - staging
     - master
 sudo: false
 notifications:
