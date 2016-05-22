@@ -8,11 +8,11 @@ module Rambo
       end
 
       def status_code
-        schema.name
+        schema.code
       end
 
       def bodies
-        @bodies ||= schema.bodies.map {|content_type, body| Rambo::RamlModels::Body.new(body) }
+        @bodies ||= schema.bodies.map {|body| Rambo::RamlModels::Body.new(body) }
       end
     end
   end
