@@ -19,6 +19,10 @@ module Rambo
         @description ||= schema.description
       end
 
+      def headers
+        @headers ||= Rambo::RamlModels::Headers.new(schema.headers) if schema.headers
+      end
+
       def responses
         @responses ||= schema.responses.map {|resp| Rambo::RamlModels::Response.new(resp) }
       end
