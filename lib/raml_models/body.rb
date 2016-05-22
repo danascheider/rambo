@@ -10,19 +10,17 @@ module Rambo
       end
 
       def content_type
-        body.name
+        body.content_type
       end
 
       def example
-        example = body.example rescue body.last.example
-        @example ||= example || generate_from_schema || {}.to_json
+        @example ||= body.example || generate_from_schema || {}.to_json
       end
 
       private
 
       def generate_from_schema
-        schema = body.children.first.value
-        JSON.pretty_generate(JsonTestData.generate!(schema, ruby: true))
+        JSON.pretty_generate(JsonTestData.generate!(body.schema, ruby: true))
       end
     end
   end
