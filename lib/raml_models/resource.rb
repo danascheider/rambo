@@ -4,11 +4,11 @@ module Rambo
       attr_reader :schema
 
       def initialize(raml_resource)
-        @schema = raml_resource.is_a?(Array) ? raml_resource.last : raml_resource
+        @schema = raml_resource
       end
 
       def uri_partial
-        schema.name
+        schema.uri_partial
       end
 
       def http_methods
