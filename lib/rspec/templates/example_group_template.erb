@@ -2,6 +2,9 @@
     let(:route) { "<%= @resource.to_s %>" }
     <%- @resource.http_methods.each do |method| %>
     describe "<%= method.method.upcase %>" do
+      <% if method.headers %>let(:headers) do <% headers = method.headers %>
+        <%= headers.join("\n        ").gsub(/\:/, " =>") %>
+      end<% end %>
       <% if method.request_body %>let(:request_body) do<% body = method.request_body.example.split("\n") %>
         <%= body.join("\n        ").gsub(/\:/, " =>") %>.to_json
       end
@@ -11,7 +14,7 @@
       end
 
       it "<%= method.description && method.description.downcase || "#{method.method}s the resource" %>" do
-        <%= method.method %> route<% if method.request_body %>, request_body<% end %>
+        <%= method.method %> route<% if method.request_body %>, request_body<% end %><% if method.headers %>, headers<% end %>
         expect(response.body).to eql response_body
       end
 
