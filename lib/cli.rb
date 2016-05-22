@@ -3,8 +3,9 @@ require File.expand_path("../document_generator.rb", __FILE__)
 
 module Rambo
   class CLI
-    def initialize(raml_file=nil, stdout=STDOUT)
+    def initialize(raml_file=nil, stdout=STDOUT, stderr=STDERR)
       @stdout = stdout
+      @stderr = stderr
       @file   = raml_file
 
       validate!
@@ -23,8 +24,8 @@ module Rambo
         generator.generate_spec_file!
         stdout.puts("Done!".green)
       rescue NoMethodError => e
-        stdout.puts("Error: #{e.message}\n".red)
-        stdout.puts e.backtrace.join("\n\t")
+        stderr.puts("Error: #{e.message}".red)
+        stderr.puts "\t#{e.backtrace.join("\n\t")}"
       end
     end
 
@@ -35,7 +36,7 @@ module Rambo
 
     private
 
-    attr_accessor :file, :stdout, :generator
+    attr_accessor :file, :stdout, :stderr, :generator
 
     def print_logo
       stdout.puts logo.colorize(color: String.colors.sample)

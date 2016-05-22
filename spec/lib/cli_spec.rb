@@ -3,7 +3,7 @@ RSpec.describe Rambo::CLI do
   let(:valid_file) { File.expand_path('../../support/foobar.raml', __FILE__) }
 
   describe "run!" do
-    let(:cli) { Rambo::CLI.new(valid_file, io) }
+    let(:cli) { Rambo::CLI.new(valid_file, io, STDERR) }
 
     it "creates a spec/contract directory" do
       allow_any_instance_of(Rambo::DocumentGenerator).to receive(:generate_rambo_helper!)
@@ -25,6 +25,18 @@ RSpec.describe Rambo::CLI do
       allow_any_instance_of(Rambo::DocumentGenerator).to receive(:generate_spec_dir!)
       expect_any_instance_of(Rambo::DocumentGenerator).to receive(:generate_spec_file!)
       cli.run!
+    end
+
+    context "when there is an error" do
+      it "prints the error messaage" do
+        allow_any_instance_of(Rambo::DocumentGenerator).to receive(:generate_rambo_helper!)
+        allow_any_instance_of(Rambo::DocumentGenerator).to receive(:generate_spec_dir!)
+        allow_any_instance_of(Rambo::DocumentGenerator)
+          .to receive(:generate_spec_file!)
+          .and_raise NoMethodError, "Undefined method generate_spec_file!"
+
+        expect{ cli.run! }.to rescue(NoMethodError)
+      end
     end
   end
 
