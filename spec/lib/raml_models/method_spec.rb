@@ -1,6 +1,6 @@
 RSpec.describe Rambo::RamlModels::Method do
   let(:raml_file) { File.expand_path("../../../support/foobar.raml", __FILE__) }
-  let(:raml) { Raml.parse_file(raml_file) }
+  let(:raml) { Raml::Parser.parse_file(raml_file) }
   let(:method) { raml.resources.first.last.children.first }
 
   subject { described_class.new(method) }
