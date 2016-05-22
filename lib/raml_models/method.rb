@@ -8,7 +8,7 @@ module Rambo
       end
 
       def method
-        schema.name
+        schema.method
       end
 
       def request_body
@@ -20,7 +20,7 @@ module Rambo
       end
 
       def responses
-        @responses ||= schema.children.map {|resp| Rambo::RamlModels::Response.new(resp) }
+        @responses ||= schema.responses.map {|resp| Rambo::RamlModels::Response.new(resp) }
       end
 
       private
