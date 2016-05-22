@@ -20,7 +20,7 @@ module Rambo
       end
 
       def headers
-        @headers ||= schema.headers
+        @headers ||= Rambo::RamlModels::Headers.new(schema.headers) if schema.headers
       end
 
       def responses
