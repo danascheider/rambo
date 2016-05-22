@@ -17,12 +17,6 @@ RSpec.describe Rambo::RamlModels::Method do
     end
   end
 
-  describe "#request_body" do
-    it "returns a request body" do
-      expect(subject.request_body).to be_a Rambo::RamlModels::Body
-    end
-  end
-
   describe "#responses" do
     it "returns an array of Response objects" do
       all_are_responses = subject.responses.all? {|resp| resp.is_a?(Rambo::RamlModels::Response) }
