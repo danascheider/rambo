@@ -2,7 +2,8 @@ require "fileutils"
 require "raml-rb"
 
 require File.expand_path("../rspec/spec_file.rb", __FILE__)
-require File.expand_path("../rspec/spec_helper_file.rb", __FILE__)
+require File.expand_path("../rspec/rambo_helper_file.rb", __FILE__)
+require File.expand_path("../rspec/matcher_file.rb", __FILE__)
 
 module Rambo
   class DocumentGenerator
@@ -26,7 +27,7 @@ module Rambo
     end
 
     def generate_rambo_helper!
-      Rambo::RSpec::SpecHelperFile.new.generate
+      Rambo::RSpec::RamboHelperFile.new.generate
     end
 
     def generate_matchers!

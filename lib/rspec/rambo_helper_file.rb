@@ -1,6 +1,6 @@
 module Rambo
   module RSpec
-    class SpecHelperFile
+    class RamboHelperFile
 
       TEMPLATE_PATH     = File.expand_path("../templates/rambo_helper_file_template.erb", __FILE__)
       RAMBO_HELPER_PATH = "spec/rambo_helper.rb"

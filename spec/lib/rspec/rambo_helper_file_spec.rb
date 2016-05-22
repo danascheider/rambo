@@ -1,4 +1,4 @@
-RSpec.describe Rambo::RSpec::SpecHelperFile do
+RSpec.describe Rambo::RSpec::RamboHelperFile do
 
   describe "#generate" do
     let(:rambo_helper_path){
