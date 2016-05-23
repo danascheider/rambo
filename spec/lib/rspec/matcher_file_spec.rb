@@ -15,7 +15,7 @@ RSpec.describe Rambo::RSpec::MatcherFile do
 
   describe "#generate" do
     it "creates the file" do
-      allow(File).to receive(:exist?).and_return(false)
+      allow(subject).to receive(:file_already_exists?).and_return(false)
       subject.generate
       expect(File.exist? matchers_path).to be true
     end

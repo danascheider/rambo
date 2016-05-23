@@ -20,7 +20,7 @@ RSpec.describe Rambo::RSpec::RamboHelperFile do
     end
 
     context "when there is a rambo helper file" do
-      it "creates the file" do
+      it "does not create the file" do
         subject.generate
         expect(subject).to_not receive(:write_template)
         subject.generate

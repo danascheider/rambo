@@ -31,8 +31,7 @@ module Rambo
     end
 
     def generate_matcher_dir!
-      FileUtils.mkdir_p("spec/support/matchers")
-      FileUtils.touch("spec/support/matchers/rambo_matchers.rb")
+      FileUtils.mkdir_p("spec/support/matchers") && FileUtils.touch("spec/support/matchers/rambo_matchers.rb")
     end
 
     def generate_matchers!
