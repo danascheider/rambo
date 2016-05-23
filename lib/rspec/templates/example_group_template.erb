@@ -4,19 +4,17 @@
     describe "<%= method.method.upcase %>" do
       <% if method.headers %>let(:headers) do <% headers = method.headers.pretty.split("\n") %>
         <%= headers.join("\n        ") %>
-
+      end<% end %><% if method.request_body %>let(:request_body) do<% body = method.request_body.example.split("\n") %>
+        <%= body.join("\n        ").gsub(/\:/, " =>") %>.to_json
+      end<% end %><% if has_schema = method.responses.first.bodies.first.schema %>let(:response_schema) do<% schema = method.responses.first.bodies.first.schema.split("\n") %>
+        <%= schema.join("\n        ").gsub(/"\:/, '" =>') %>.to_json
+      end<% else %>let(:response_body) do<% body = method.responses.first.bodies.first.example.split("\n") %>
+        <%= body.join("\n        ").gsub(/\:/, " =>") %>.to_json
       end<% end %>
-      <% if method.request_body %>let(:request_body) do<% body = method.request_body.example.split("\n") %>
-        <%= body.join("\n        ").gsub(/\:/, " =>") %>.to_json
-      end
-      <% end %>
-      let(:response_body) do<% body = method.responses.first.bodies.first.example.split("\n") %>
-        <%= body.join("\n        ").gsub(/\:/, " =>") %>.to_json
-      end
 
       it "<%= method.description && method.description.downcase || "#{method.method}s the resource" %>" do
         <%= method.method %> route<% if method.request_body %>, request_body<% end %><% if method.headers %>, headers<% end %>
-        expect(response.body).to eql response_body
+        expect(response.body).to <%= has_schema ? "match_schema response_schema" : "eql response_body" %>
       end
 
       it "returns status <%= method.responses.first.status_code %>" do

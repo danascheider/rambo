@@ -21,6 +21,26 @@ RSpec.describe Rambo::RSpec::ExampleGroup do
       expect(subject.render).not_to include("let(:headers) do")
     end
 
+    context "when the route has a response schema" do
+      let(:raml_file) { File.expand_path("../../../support/basic_raml_with_post_route.raml", __FILE__) }
+
+      it "creates a response schema object" do
+        aggregate_failures do
+          expect(subject.render).to include("let(:response_schema) do")
+          expect(subject.render).to include("expect(response.body).to match_schema response_schema")
+        end
+      end
+    end
+
+    context "when there is a response example but not a response schema" do
+      it "creates a response_body object" do
+        aggregate_failures do
+          expect(subject.render).to include("let(:response_body) do")
+          expect(subject.render).to include("expect(response.body).to eql response_body")
+        end
+      end
+    end
+
     context "when the route has a request body" do
       let(:raml_file) { File.expand_path("../../../support/basic_raml_with_post_route.raml", __FILE__) }
 
