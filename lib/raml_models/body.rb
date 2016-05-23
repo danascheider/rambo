@@ -5,9 +5,8 @@ module Rambo
     class Body
       attr_reader :body, :type
 
-      def initialize(raml, type=:response)
+      def initialize(raml)
         @body = raml
-        @type = type
       end
 
       def content_type
@@ -23,14 +22,6 @@ module Rambo
       end
 
       private
-
-      def is_request_body?
-        type == :request
-      end
-
-      def is_response_body?
-        type == :response
-      end
 
       def generate_from_schema
         return nil unless body.schema
