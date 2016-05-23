@@ -21,7 +21,9 @@ RSpec.describe Rambo::RSpec::MatcherFile do
     end
 
     it "writes the contents to the file" do
-      #
+      contents = File.read("lib/rspec/templates/matcher_file_template.erb")
+      subject.generate
+      expect(File.read(matchers_path)).to eql contents
     end
   end
 end
