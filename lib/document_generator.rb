@@ -35,7 +35,6 @@ module Rambo
     end
 
     def generate_matchers!
-      generate_matcher_dir!
       Rambo::RSpec::MatcherFile.new.generate
     end
   end
