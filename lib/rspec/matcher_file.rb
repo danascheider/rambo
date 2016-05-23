@@ -1,11 +1,9 @@
-require "fileutils"
-
 module Rambo
   module RSpec
     class MatcherFile
 
-      MATCHER_FILE_PATH = "spec/support/matchers/rambo_matchers.rb"
       TEMPLATE_PATH     = File.expand_path("../templates/matcher_file_template.erb", __FILE__)
+      MATCHER_FILE_PATH = "spec/support/matchers/rambo_matchers.rb"
 
       def generate
         write_to_file(template) unless file_already_exists?
@@ -18,7 +16,7 @@ module Rambo
       end
 
       def write_to_file(template)
-        File.write(MATCHER_FILE_PATH, template)
+        File.open(MATCHER_FILE_PATH, "w+") { |f| f.puts template }
       end
 
       def template

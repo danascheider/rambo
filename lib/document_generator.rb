@@ -30,8 +30,13 @@ module Rambo
       Rambo::RSpec::RamboHelperFile.new.generate
     end
 
-    def generate_matchers!
+    def generate_matcher_dir!
       FileUtils.mkdir_p("spec/support/matchers")
+      FileUtils.touch("spec/support/matchers/rambo_matchers.rb")
+    end
+
+    def generate_matchers!
+      generate_matcher_dir!
       Rambo::RSpec::MatcherFile.new.generate
     end
   end

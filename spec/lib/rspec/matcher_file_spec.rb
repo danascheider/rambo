@@ -8,13 +8,14 @@ RSpec.describe Rambo::RSpec::MatcherFile do
   end
 
   after(:each) do
-    File.delete(matchers_path) if File.exist? matchers_path
+    File.delete(matchers_path) rescue nil
     FileUtils.rmdir(File.expand_path("spec/support/matchers")) rescue nil # only delete dir if empty
     FileUtils.rmdir(File.expand_path("spec/support")) rescue nil
   end
 
   describe "#generate" do
     it "creates the file" do
+      allow(File).to receive(:exist?).and_return(false)
       subject.generate
       expect(File.exist? matchers_path).to be true
     end
