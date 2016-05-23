@@ -4,9 +4,13 @@
     describe "<%= method.method.upcase %>" do
       <% if method.headers %>let(:headers) do <% headers = method.headers.pretty.split("\n") %>
         <%= headers.join("\n        ") %>
-      end<% end %><% if method.request_body %>let(:request_body) do<% body = method.request_body.example.split("\n") %>
+      end<% end %><% if method.request_body %>
+
+      let(:request_body) do<% body = method.request_body.example.split("\n") %>
         <%= body.join("\n        ").gsub(/\:/, " =>") %>.to_json
-      end<% end %><% if has_schema = method.responses.first.bodies.first.schema %>let(:response_schema) do<% schema = method.responses.first.bodies.first.schema.split("\n") %>
+      end<% end %><% if has_schema = method.responses.first.bodies.first.schema %>
+
+      let(:response_schema) do<% schema = method.responses.first.bodies.first.schema.split("\n") %>
         <%= schema.join("\n        ").gsub(/"\:/, '" =>') %>.to_json
       end<% else %>let(:response_body) do<% body = method.responses.first.bodies.first.example.split("\n") %>
         <%= body.join("\n        ").gsub(/\:/, " =>") %>.to_json

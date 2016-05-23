@@ -19,5 +19,9 @@ RSpec.describe Rambo::RSpec::MatcherFile do
       subject.generate
       expect(File.exist? matchers_path).to be true
     end
+
+    it "writes the contents to the file" do
+      #
+    end
   end
 end
