@@ -17,6 +17,8 @@ module Rambo
       print_logo
       generator.generate_spec_dir!
       generator.generate_rambo_helper!
+      generator.generate_matcher_dir!
+      generator.generate_matchers!
       stdout.puts("Generating contract tests...")
       sleep 0.4
 

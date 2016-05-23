@@ -22,7 +22,7 @@ RSpec.describe Rambo::RamlModels::Body do
     end
 
     context "when a schema is given" do
-      let(:raml_file) { File.expand_path("features/support/examples/raml/basic_raml_with_schema.raml") }
+      let(:raml_file) { File.expand_path("../../../../features/support/examples/raml/basic_raml_with_schema.raml", __FILE__) }
 
       it "returns generated JSON data" do
         expect(JSON.parse(subject.example)).to have_key "data"

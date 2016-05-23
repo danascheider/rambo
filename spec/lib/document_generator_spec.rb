@@ -15,7 +15,7 @@ RSpec.describe Rambo::DocumentGenerator do
 
   describe "#generate_rambo_helper!!" do
     it "generates the rambo_helper file" do
-      expect_any_instance_of(Rambo::RSpec::SpecHelperFile).to receive(:generate)
+      expect_any_instance_of(Rambo::RSpec::RamboHelperFile).to receive(:generate)
       generator.generate_rambo_helper!
     end
   end
@@ -29,6 +29,20 @@ RSpec.describe Rambo::DocumentGenerator do
       allow_any_instance_of(Rambo::RSpec::SpecFile).to receive(:render)
       expect(File).to receive(:open).with("spec/contract/foobar_spec.rb", "w+")
       generator.generate_spec_file!
+    end
+  end
+
+  describe "#generate_matcher_dir!" do
+    it "creates a spec/support/matchers directory" do
+      expect(FileUtils).to receive(:mkdir_p).with("spec/support/matchers")
+      generator.generate_matcher_dir!
+    end
+  end
+
+  describe "#generate_matchers!" do
+    it "adds a matcher file" do
+      expect_any_instance_of(Rambo::RSpec::MatcherFile).to receive(:generate)
+      generator.generate_matchers!
     end
   end
 end

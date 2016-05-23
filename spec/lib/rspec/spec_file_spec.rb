@@ -31,7 +31,7 @@ RSpec.describe Rambo::RSpec::SpecFile do
 
   context "file with schema" do
     let(:raml_file) do
-      File.expand_path("features/support/examples/raml/basic_raml_with_schema.raml")
+      File.expand_path("../../../../features/support/examples/raml/basic_raml_with_schema.raml", __FILE__)
     end
 
     describe "#initialize" do
@@ -47,7 +47,7 @@ RSpec.describe Rambo::RSpec::SpecFile do
     end
 
     describe "#render" do
-      let(:test_data) { '"data" => 1' }
+      let(:test_data) { '"$schema" => "http://json-schema.org/draft-04/schema#' }
 
       it "interpolates the correct values" do
         allow(JsonTestData).to receive(:generate!).and_return({ :data => 1 })

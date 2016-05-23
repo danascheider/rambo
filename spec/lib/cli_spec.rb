@@ -8,13 +8,26 @@ RSpec.describe Rambo::CLI do
     it "creates a spec/contract directory" do
       allow_any_instance_of(Rambo::DocumentGenerator).to receive(:generate_rambo_helper!)
       allow_any_instance_of(Rambo::DocumentGenerator).to receive(:generate_spec_file!)
+      allow_any_instance_of(Rambo::DocumentGenerator).to receive(:generate_matchers!)
+      allow_any_instance_of(Rambo::DocumentGenerator).to receive(:generate_matcher_dir!)
       expect_any_instance_of(Rambo::DocumentGenerator).to receive(:generate_spec_dir!)
       cli.run!
     end
 
-    it "creates a spec_helper file" do
+    it "creates a spec/support/matchers directory" do
+      allow_any_instance_of(Rambo::DocumentGenerator).to receive(:generate_rambo_helper!)
+      allow_any_instance_of(Rambo::DocumentGenerator).to receive(:generate_spec_file!)
+      allow_any_instance_of(Rambo::DocumentGenerator).to receive(:generate_spec_dir!)
+      allow_any_instance_of(Rambo::DocumentGenerator).to receive(:generate_matcher_dir!)
+      expect_any_instance_of(Rambo::DocumentGenerator).to receive(:generate_matchers!)
+      cli.run!
+    end
+
+    it "creates a rambo_helper file" do
       allow_any_instance_of(Rambo::DocumentGenerator).to receive(:generate_spec_dir!)
       allow_any_instance_of(Rambo::DocumentGenerator).to receive(:generate_spec_file!)
+      allow_any_instance_of(Rambo::DocumentGenerator).to receive(:generate_matchers!)
+      allow_any_instance_of(Rambo::DocumentGenerator).to receive(:generate_matcher_dir!)
       allow(File).to receive(:exist?).with('spec/rambo_helper.rb').and_return(true)
       expect_any_instance_of(Rambo::DocumentGenerator).to receive(:generate_rambo_helper!)
       cli.run!
@@ -23,6 +36,8 @@ RSpec.describe Rambo::CLI do
     it "creates foobar_spec.rb" do
       allow_any_instance_of(Rambo::DocumentGenerator).to receive(:generate_rambo_helper!)
       allow_any_instance_of(Rambo::DocumentGenerator).to receive(:generate_spec_dir!)
+      allow_any_instance_of(Rambo::DocumentGenerator).to receive(:generate_matchers!)
+      allow_any_instance_of(Rambo::DocumentGenerator).to receive(:generate_matcher_dir!)
       expect_any_instance_of(Rambo::DocumentGenerator).to receive(:generate_spec_file!)
       cli.run!
     end
@@ -31,6 +46,8 @@ RSpec.describe Rambo::CLI do
       it "prints the error messaage" do
         allow_any_instance_of(Rambo::DocumentGenerator).to receive(:generate_rambo_helper!)
         allow_any_instance_of(Rambo::DocumentGenerator).to receive(:generate_spec_dir!)
+        allow_any_instance_of(Rambo::DocumentGenerator).to receive(:generate_matchers!)
+        allow_any_instance_of(Rambo::DocumentGenerator).to receive(:generate_matcher_dir!)
         allow_any_instance_of(Rambo::DocumentGenerator)
           .to receive(:generate_spec_file!)
           .and_raise NoMethodError, "Undefined method generate_spec_file!"
