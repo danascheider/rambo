@@ -12,6 +12,19 @@ RSpec.describe Rambo::RamlModels::Body do
     end
   end
 
+  describe "type" do
+    let(:raml_file) { File.expand_path("../../../support/foobar.raml", __FILE__) }
+
+    it "is a response body by default" do
+      expect(subject.type).to eql :response
+    end
+
+    it "could be a request body" do
+      request_body = described_class.new(body, :request)
+      expect(request_body.type).to eql :request
+    end
+  end
+
   describe "#example" do
     context "when an example is given" do
       let(:raml_file) { File.expand_path("../../../support/foobar.raml", __FILE__) }
