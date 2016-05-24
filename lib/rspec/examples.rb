@@ -6,7 +6,7 @@ module Rambo
       attr_reader :raml, :resources, :examples
 
       def initialize(raml)
-        @raml      = raml
+        @raml = raml
       end
 
       def compose
