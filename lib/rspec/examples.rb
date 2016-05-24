@@ -1,4 +1,4 @@
-require_relative './example_group'
+require "rspec/example_group"
 
 module Rambo
   module RSpec
