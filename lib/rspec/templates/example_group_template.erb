@@ -6,14 +6,15 @@
         <%= headers.join("\n        ") %>
       end<% end %><% if method.request_body %>
 
-      let(:request_body) do<% body = method.request_body.example.split("\n") %>
-        <%= body.join("\n        ").gsub(/\:/, " =>") %>.to_json
+      let(:request_body) do
+        File.read("<%= "spec/support/examples/#{@resource.to_s.gsub("/", "")}_#{method.method}_request_body.json" %>")
       end<% end %><% if has_schema = method.responses.first.bodies.first.schema %>
 
-      let(:response_schema) do<% schema = method.responses.first.bodies.first.schema.split("\n") %>
-        <%= schema.join("\n        ").gsub(/"\:/, '" =>') %>.to_json
-      end<% else %>let(:response_body) do<% body = method.responses.first.bodies.first.example.split("\n") %>
-        <%= body.join("\n        ").gsub(/\:/, " =>") %>.to_json
+      let(:response_schema) do
+        File.read("<%= "spec/support/examples/#{@resource.to_s.gsub("/", "")}_#{method.method}_response_schema.json" %>")
+      end<% else %>
+      let(:response_body) do<% body = method.responses.first.bodies.first.example.split("\n") %>
+        File.read("<%= "spec/support/examples/#{@resource.to_s.gsub("/", "")}_#{method.method}_response_body.json" %>")
       end<% end %>
 
       it "<%= method.description && method.description.downcase || "#{method.method}s the resource" %>" do

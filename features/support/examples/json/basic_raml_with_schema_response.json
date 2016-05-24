@@ -1,0 +1,10 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "description": "schema for a list of authors",
+  "type": "object",
+  "properties": {
+    "data": {
+      "type": "number"
+    }
+  }
+}

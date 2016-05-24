@@ -45,4 +45,11 @@ RSpec.describe Rambo::DocumentGenerator do
       generator.generate_matchers!
     end
   end
+
+  describe "#generate_examples!" do
+    it "creates the directory" do
+      expect(FileUtils).to receive(:mkdir_p).with("spec/support/examples")
+      generator.generate_examples!
+    end
+  end
 end

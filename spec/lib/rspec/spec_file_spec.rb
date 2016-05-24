@@ -3,12 +3,20 @@ RSpec.describe Rambo::RSpec::SpecFile do
   let(:raml)      { Rambo::RamlModels::Api.new(raw_raml) }
   let(:spec_file) { Rambo::RSpec::SpecFile.new(raw_raml) }
 
+  before(:each) do
+    FileUtils.mkdir_p(File.expand_path("spec/support/examples"))
+  end
+
+  after(:each) do
+    FileUtils.rm_rf(File.expand_path("spec/support/examples"))
+  end
+
   context "file with examples" do
     let(:raml_file) { File.expand_path("../../../support/foobar.raml", __FILE__) }
 
     describe "#initialize" do
       it "assigns @raml" do
-        expect(spec_file.raml).to be_a Rambo::RamlModels::Api
+        expect(spec_file.raml).not_to be_nil
       end
 
       it "uses the correct schema" do
@@ -36,22 +44,13 @@ RSpec.describe Rambo::RSpec::SpecFile do
 
     describe "#initialize" do
       it "assigns @raml" do
-        expect(spec_file.raml).to be_a(Rambo::RamlModels::Api)
+        expect(spec_file.raml).not_to be_nil
       end
     end
 
     describe "#template" do
       it "is a string" do
         expect(spec_file.template.is_a?(String)).to be true
-      end
-    end
-
-    describe "#render" do
-      let(:test_data) { '"$schema" => "http://json-schema.org/draft-04/schema#' }
-
-      it "interpolates the correct values" do
-        allow(JsonTestData).to receive(:generate!).and_return({ :data => 1 })
-        expect(spec_file.render).to include(test_data)
       end
     end
   end

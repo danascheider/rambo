@@ -5,6 +5,14 @@ RSpec.describe Rambo::RSpec::ExampleGroup do
 
   subject         { Rambo::RSpec::ExampleGroup.new(resource) }
 
+  before(:each) do
+    FileUtils.mkdir_p(File.expand_path("spec/support/examples"))
+  end
+
+  after(:each) do
+    FileUtils.rm_rf(File.expand_path("spec/support/examples"))
+  end
+
   describe "#render" do
     it "interpolates the correct values" do
       aggregate_failures do

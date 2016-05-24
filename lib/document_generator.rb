@@ -18,6 +18,10 @@ module Rambo
       FileUtils.mkdir_p("spec/contract")
     end
 
+    def generate_examples!
+      FileUtils.mkdir_p("spec/support/examples")
+    end
+
     def generate_spec_file!
       spec_file_name = file.match(/[^\/]*\.raml$/).to_s.gsub(/\.raml$/, "_spec.rb")
       contents       = Rambo::RSpec::SpecFile.new(raml).render

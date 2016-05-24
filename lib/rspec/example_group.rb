@@ -1,7 +1,8 @@
 module Rambo
   module RSpec
     class ExampleGroup
-      TEMPLATE_PATH = File.expand_path('../templates/example_group_template.erb', __FILE__)
+
+      TEMPLATE_PATH = File.expand_path("../templates/example_group_template.erb", __FILE__)
 
       attr_reader :resource
 
@@ -13,7 +14,35 @@ module Rambo
         @template ||= File.read(TEMPLATE_PATH)
       end
 
+      def create_fixture_files
+        resource.http_methods.each do |method|
+          if method.request_body
+            path = File.expand_path("spec/support/examples/#{@resource.to_s.gsub(/\//, "")}_#{method.method}_request_body.json")
+            File.open(path, "w+") do |file|
+              file.puts method.request_body.example
+            end
+          end
+
+          method.responses.each do |resp|
+            resp.bodies.each do |body|
+              if body.schema
+                path = File.expand_path("spec/support/examples/#{@resource.to_s.gsub(/\//, "")}_#{method.method}_response_schema.json")
+                File.open(path, "w+") do |file|
+                  file.puts body.schema
+                end
+              else
+                path = File.expand_path("spec/support/examples/#{@resource.to_s.gsub(/\//, "")}_#{method.method}_response_body.json")
+                File.open(path, "w+") do |file|
+                  file.puts body.example
+                end
+              end
+            end
+          end
+        end
+      end
+
       def render
+        create_fixture_files
         b = binding
         ERB.new(template, 0, "-", "@result").result(resource.instance_eval { b })
         @result
