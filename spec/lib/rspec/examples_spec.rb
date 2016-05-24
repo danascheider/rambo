@@ -5,6 +5,14 @@ RSpec.describe Rambo::RSpec::Examples do
 
   subject { Rambo::RSpec::Examples.new(raml) }
 
+  before(:each) do
+    FileUtils.mkdir_p(File.expand_path("spec/support/examples"))
+  end
+
+  after(:each) do
+    FileUtils.rm_rf(File.expand_path("spec/support/examples"))
+  end
+
   describe "#generate!" do
     it "calls render on each group" do
       expect_any_instance_of(Rambo::RSpec::ExampleGroup).to receive(:render)
