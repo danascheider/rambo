@@ -11,7 +11,7 @@
       end<% end %><% if has_schema = method.responses.first.bodies.first.schema %>
 
       let(:response_schema) do
-        File.read("<%= "spec/support/examples/#{@resource.to_s.gsub("/", "")}_#{method.method}_response_schema.json" %>")
+        File.expand_path("<%= "spec/support/examples/#{@resource.to_s.gsub("/", "")}_#{method.method}_response_schema.json" %>")
       end<% else %>
       let(:response_body) do<% body = method.responses.first.bodies.first.example.split("\n") %>
         File.read("<%= "spec/support/examples/#{@resource.to_s.gsub("/", "")}_#{method.method}_response_body.json" %>")
