@@ -8,7 +8,7 @@ RSpec.describe Rambo::RSpec::SpecFile do
 
     describe "#initialize" do
       it "assigns @raml" do
-        expect(spec_file.raml).to be_a Rambo::RamlModels::Api
+        expect(spec_file.raml).not_to be_nil
       end
 
       it "uses the correct schema" do
@@ -36,7 +36,7 @@ RSpec.describe Rambo::RSpec::SpecFile do
 
     describe "#initialize" do
       it "assigns @raml" do
-        expect(spec_file.raml).to be_a(Rambo::RamlModels::Api)
+        expect(spec_file.raml).not_to be_nil
       end
     end
 

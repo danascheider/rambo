@@ -6,14 +6,17 @@ module Rambo
       attr_reader :raml, :resources, :examples
 
       def initialize(raml)
-        @raml      = Rambo::RamlModels::Api.new(raml)
-        @resources = raml.resources
+        @raml      = raml
       end
 
       def compose
         return '' unless examples
 
         examples.join("\n\n")
+      end
+
+      def resources
+        @resources ||= raml.resources
       end
 
       def example_groups
