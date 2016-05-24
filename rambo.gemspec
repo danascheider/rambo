@@ -16,7 +16,7 @@ Gem::Specification.new do |s|
   s.add_dependency "raml-rb", "~> 0.0.6"
   s.add_dependency "rack-test", "~> 0.6"
   s.add_dependency "colorize", "~> 0.7"
-  s.add_dependency "json_test_data", "~> 0.8"
+  s.add_dependency "json_test_data", "~> 0.9"
   s.add_dependency "json-schema", "~> 2.6"
 
   s.add_development_dependency "cucumber", "~> 2.1"
