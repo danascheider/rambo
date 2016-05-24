@@ -19,6 +19,7 @@ module Rambo
       generator.generate_rambo_helper!
       generator.generate_matcher_dir!
       generator.generate_matchers!
+      generator.generate_examples!
       stdout.puts("Generating contract tests...")
       sleep 0.4
 
