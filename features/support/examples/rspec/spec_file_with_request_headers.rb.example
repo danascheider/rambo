@@ -13,22 +13,11 @@ RSpec.describe "e-BookMobile API", type: :request do
       end
 
       let(:request_body) do
-        {
-          "first_name" => "asgaakh",
-          "last_name" => "sjdhhgu",
-          "year_of_birth" => 3333
-        }.to_json
+        File.read("spec/support/examples/authors_post_request_body.json")
       end
 
       let(:response_body) do
-        {
-          "author" => {
-            "id" => 1,
-            "first_name" => "asgaakh",
-            "last_name" => "sjdhhgu",
-            "year_of_birth" => 3333
-          }
-        }.to_json
+        File.read("spec/support/examples/authors_post_response_body.json")
       end
 
       it "retrieve a list of authors" do
