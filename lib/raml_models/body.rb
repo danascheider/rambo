@@ -4,8 +4,6 @@ module Rambo
   module RamlModels
     class Body
 
-      FIXTURES_PATH = File.expand_path("spec/support/examples")
-
       attr_reader :body, :type
 
       def initialize(raml)

@@ -2,8 +2,6 @@ module Rambo
   module RamlModels
     class Resource
 
-      FIXTURES_DIRECTORY = File.expand_path("spec/support/examples")
-
       attr_reader :schema
 
       def initialize(raml_resource)
