@@ -23,8 +23,9 @@ module Rambo
 
           method.responses.each do |resp|
             resp.bodies.each do |body|
-              path = body.schema ? response_schema_fixture_path(method) : response_body_fixture_path(method)
-              File.write(path, body.example)
+              path     = body.schema ? response_schema_fixture_path(method) : response_body_fixture_path(method)
+              contents = body.schema ? body.schema : body.example
+              File.write(path, contents)
             end
           end
         end
