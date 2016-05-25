@@ -27,14 +27,10 @@ module Rambo
             resp.bodies.each do |body|
               if body.schema
                 path = File.expand_path("spec/support/examples/#{@resource.to_s.gsub(/\//, "")}_#{method.method}_response_schema.json")
-                File.open(path, "w+") do |file|
-                  file.puts body.schema
-                end
+                File.write(path, body.example)
               else
                 path = File.expand_path("spec/support/examples/#{@resource.to_s.gsub(/\//, "")}_#{method.method}_response_body.json")
-                File.open(path, "w+") do |file|
-                  file.puts body.example
-                end
+                File.write(path, body.example)
               end
             end
           end
