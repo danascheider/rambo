@@ -26,8 +26,8 @@ RSpec.describe Rambo::DocumentGenerator do
     end
 
     it "generates foobar_spec.rb" do
-      allow_any_instance_of(Rambo::RSpec::SpecFile).to receive(:render)
-      expect(File).to receive(:open).with("spec/contract/foobar_spec.rb", "w+")
+      allow_any_instance_of(Rambo::RSpec::SpecFile).to receive(:render).and_return("foo")
+      expect(File).to receive(:write).with("spec/contract/foobar_spec.rb", "foo")
       generator.generate_spec_file!
     end
   end
