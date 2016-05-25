@@ -18,9 +18,7 @@ module Rambo
         resource.http_methods.each do |method|
           if method.request_body
             path = File.expand_path("spec/support/examples/#{@resource.to_s.gsub(/\//, "")}_#{method.method}_request_body.json")
-            File.open(path, "w+") do |file|
-              file.puts method.request_body.example
-            end
+            File.write(path, request_body.example)
           end
 
           method.responses.each do |resp|
