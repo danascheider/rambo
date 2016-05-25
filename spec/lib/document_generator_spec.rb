@@ -13,9 +13,18 @@ RSpec.describe Rambo::DocumentGenerator do
     end
   end
 
-  describe "#generate_rambo_helper!!" do
+  describe "#generate_rambo_helper!" do
     it "generates the rambo_helper file" do
-      expect_any_instance_of(Rambo::RSpec::RamboHelperFile).to receive(:generate)
+      aggregate_failures do
+        expect_any_instance_of(Rambo::RSpec::HelperFile)
+          .to receive(:initialize)
+          .with({
+            :template_path => File.expand_path("lib/rspec/templates/rambo_helper_file_template.erb"),
+            :file_path     => "spec/rambo_helper.rb"
+          })
+        expect_any_instance_of(Rambo::RSpec::HelperFile).to receive(:generate)
+      end
+
       generator.generate_rambo_helper!
     end
   end
@@ -41,7 +50,16 @@ RSpec.describe Rambo::DocumentGenerator do
 
   describe "#generate_matchers!" do
     it "adds a matcher file" do
-      expect_any_instance_of(Rambo::RSpec::MatcherFile).to receive(:generate)
+      aggregate_failures do
+        expect_any_instance_of(Rambo::RSpec::HelperFile)
+          .to receive(:initialize)
+          .with(
+            template_path: File.expand_path("lib/rspec/templates/matcher_file_template.erb"),
+            file_path: "spec/support/matchers/rambo_matchers.rb"
+          )
+        expect_any_instance_of(Rambo::RSpec::HelperFile).to receive(:generate)
+      end
+
       generator.generate_matchers!
     end
   end
