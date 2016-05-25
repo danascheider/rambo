@@ -23,12 +23,7 @@ module Rambo
 
           method.responses.each do |resp|
             resp.bodies.each do |body|
-              path = if body.schema
-                File.expand_path("spec/support/examples/#{@resource.to_s.gsub(/\//, "")}_#{method.method}_response_schema.json")
-              else
-                File.expand_path("spec/support/examples/#{@resource.to_s.gsub(/\//, "")}_#{method.method}_response_body.json")
-              end
-
+              path = body.schema ? response_schema_fixture_path(method) : response_body_fixture_path(method)
               File.write(path, body.example)
             end
           end
@@ -40,6 +35,16 @@ module Rambo
         b = binding
         ERB.new(template, 0, "-", "@result").result(resource.instance_eval { b })
         @result
+      end
+
+      private
+
+      def response_schema_fixture_path(method)
+        File.expand_path("spec/support/examples/#{@resource.to_s.gsub(/\//, "")}_#{method.method}_response_schema.json")
+      end
+
+      def response_body_fixture_path(method)
+        File.expand_path("spec/support/examples/#{@resource.to_s.gsub(/\//, "")}_#{method.method}_response_body.json")
       end
     end
   end
