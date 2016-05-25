@@ -2,8 +2,7 @@ require "fileutils"
 require "raml-rb"
 
 require "rspec/spec_file"
-require "rspec/rambo_helper_file"
-require "rspec/matcher_file"
+require "rspec/helper_file"
 
 module Rambo
   class DocumentGenerator
@@ -29,7 +28,10 @@ module Rambo
     end
 
     def generate_rambo_helper!
-      Rambo::RSpec::RamboHelperFile.new.generate
+      Rambo::RSpec::HelperFile.new(
+        template_path: File.expand_path("../rspec/templates/rambo_helper_file_template.erb", __FILE__),
+        file_path: "spec/rambo_helper.rb"
+      ).generate
     end
 
     def generate_matcher_dir!
@@ -37,7 +39,10 @@ module Rambo
     end
 
     def generate_matchers!
-      Rambo::RSpec::MatcherFile.new.generate
+      Rambo::RSpec::HelperFile.new(
+        template_path: File.expand_path("../rspec/templates/matcher_file_template.erb", __FILE__),
+        file_path: "spec/support/matchers/rambo_matchers.rb"
+      ).generate
     end
   end
 end
