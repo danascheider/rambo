@@ -18,18 +18,18 @@ module Rambo
         resource.http_methods.each do |method|
           if method.request_body
             path = File.expand_path("spec/support/examples/#{@resource.to_s.gsub(/\//, "")}_#{method.method}_request_body.json")
-            File.write(path, request_body.example)
+            File.write(path, method.request_body.example)
           end
 
           method.responses.each do |resp|
             resp.bodies.each do |body|
-              if body.schema
-                path = File.expand_path("spec/support/examples/#{@resource.to_s.gsub(/\//, "")}_#{method.method}_response_schema.json")
-                File.write(path, body.example)
+              path = if body.schema
+                File.expand_path("spec/support/examples/#{@resource.to_s.gsub(/\//, "")}_#{method.method}_response_schema.json")
               else
-                path = File.expand_path("spec/support/examples/#{@resource.to_s.gsub(/\//, "")}_#{method.method}_response_body.json")
-                File.write(path, body.example)
+                File.expand_path("spec/support/examples/#{@resource.to_s.gsub(/\//, "")}_#{method.method}_response_body.json")
               end
+
+              File.write(path, body.example)
             end
           end
         end
