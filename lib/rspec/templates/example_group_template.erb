@@ -23,6 +23,9 @@
 
       it "<%= method.description && method.description.downcase || "#{method.method}s the resource" %>" do
         <%= method.method %> route<% if method.request_body %>, request_body<% end %><% if method.headers %>, headers<% end %>
+
+        File.open(output_file, "w+") {|file| file.puts JSON.pretty_generate(JSON.parse(response.body)) }
+
         expect(response.body).to <%= has_schema ? "match_schema response_schema" : "eql response_body" %>
       end
 
