@@ -1,6 +1,15 @@
 require "rambo_helper"
 
 RSpec.describe "<%= @raml.title %>", type: :request do
+
+  # Delete output files from previous test run prior to running tests again
+  before(:all) do
+    Dir.foreach("spec/contract/output") do |file|
+      next unless file.match(/\.json$/)
+
+      File.delete(File.join("spec/contract/output", file))
+    end
+  end
 <%- if @examples.generate! && @examples.compose.size > 0 %>
 <%= @examples.compose.chomp %><%- end %>
 end

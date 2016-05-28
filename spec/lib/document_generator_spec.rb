@@ -8,7 +8,7 @@ RSpec.describe Rambo::DocumentGenerator do
 
   describe "#generate_spec_dir!" do
     it "generates the spec/contract directory" do
-      expect(FileUtils).to receive(:mkdir_p).with("spec/contract")
+      expect(FileUtils).to receive(:mkdir_p).with("spec/contract/output")
       generator.generate_spec_dir!
     end
   end

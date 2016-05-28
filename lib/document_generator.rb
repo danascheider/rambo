@@ -14,7 +14,7 @@ module Rambo
     end
 
     def generate_spec_dir!
-      FileUtils.mkdir_p("spec/contract")
+      FileUtils.mkdir_p("spec/contract/output")
     end
 
     def generate_examples!
