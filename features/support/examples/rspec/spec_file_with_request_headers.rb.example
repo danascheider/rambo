@@ -31,8 +31,15 @@ RSpec.describe "e-BookMobile API", type: :request do
         }.to_json
       end
 
+      let(:output_file) do
+        "spec/contract/output/authors_get_response.json"
+      end
+
       it "retrieve a list of authors" do
         get route
+
+        File.open(output_file, "w+") {|file| file.puts JSON.pretty_generate(JSON.parse(response.body)) }
+
         expect(response.body).to eql response_body
       end
 
