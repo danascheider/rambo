@@ -3,7 +3,7 @@ require "document_generator"
 
 module Rambo
   class CLI
-    def initialize(raml_file=nil, stdout=STDOUT, stderr=STDERR)
+    def initialize(raml_file=nil, opts={}, stdout=STDOUT, stderr=STDERR)
       @stdout = stdout
       @stderr = stderr
       @file   = raml_file
