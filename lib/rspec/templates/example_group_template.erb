@@ -2,8 +2,10 @@
     let(:route) { "<%= @resource.to_s %>" }
     <%- @resource.http_methods.each do |method| %>
     describe "<%= method.method.upcase %>" do
-      <% if method.headers %>let(:headers) do <% headers = method.headers.pretty.split("\n") %>
-        <%= headers.join("\n        ") %>
+      <% if method.headers %>let(:headers) do <% headers = method.headers.pretty.split("\n")[1..-2] %>
+        {
+        <%= headers.join(",\n        ") %>
+        }
       end<% end %><% if method.request_body %>
 
       let(:request_body) do
