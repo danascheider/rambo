@@ -7,14 +7,14 @@ require "raml_models"
 module Rambo
   module RSpec
     class SpecFile
-      attr_reader :raml, :examples
+      attr_reader :raml, :examples, :options
 
       TEMPLATE_PATH = File.expand_path('../templates/spec_file_template.erb', __FILE__)
 
       def initialize(raml, options={})
         @raml     = Rambo::RamlModels::Api.new(raml)
-        @examples = Examples.new(@raml)
         @options  = options
+        @examples = Examples.new(@raml, @options)
       end
 
       def template
