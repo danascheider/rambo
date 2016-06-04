@@ -69,5 +69,19 @@ RSpec.describe Rambo::RSpec::ExampleGroup do
         expect(subject.render).to include("let(:headers) do")
       end
     end
+
+    context "Rails app" do
+      it "uses response" do
+        expect(subject.render).to include("expect(response.body)")
+      end
+    end
+
+    context "non-Rails app" do
+      let(:options) { { rails: false } }
+
+      it "uses last_response" do
+        expect(subject.render).to include("expect(last_response.body)")
+      end
+    end
   end
 end
