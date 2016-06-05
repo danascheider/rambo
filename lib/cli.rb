@@ -3,14 +3,15 @@ require "document_generator"
 
 module Rambo
   class CLI
-    def initialize(raml_file=nil, stdout=STDOUT, stderr=STDERR)
-      @stdout = stdout
-      @stderr = stderr
-      @file   = raml_file
+    def initialize(raml_file=nil, opts={}, stdout=STDOUT, stderr=STDERR)
+      @stdout  = stdout
+      @stderr  = stderr
+      @file    = raml_file
+      @options = opts
 
       validate!
 
-      @generator = Rambo::DocumentGenerator.new(file)
+      @generator = Rambo::DocumentGenerator.new(file, options)
     end
 
     def run!
@@ -40,7 +41,7 @@ module Rambo
 
     private
 
-    attr_accessor :file, :stdout, :stderr, :generator
+    attr_accessor :file, :stdout, :stderr, :generator, :options
 
     def print_logo
       stdout.puts logo.colorize(color: String.colors.sample)

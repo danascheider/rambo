@@ -1,9 +1,10 @@
 RSpec.describe Rambo::RSpec::Examples do
   let(:raml_file) { File.expand_path("../../../support/foobar.raml", __FILE__) }
   let(:raw_raml)  { Raml::Parser.parse_file(raml_file) }
+  let(:options)   { { rails: true } }
   let(:raml)      { Rambo::RamlModels::Api.new(raw_raml) }
 
-  subject { Rambo::RSpec::Examples.new(raml) }
+  subject { Rambo::RSpec::Examples.new(raml, options) }
 
   before(:each) do
     FileUtils.mkdir_p(File.expand_path("spec/support/examples"))

@@ -3,10 +3,11 @@ require "rspec/example_group"
 module Rambo
   module RSpec
     class Examples
-      attr_reader :raml, :resources, :examples
+      attr_reader :raml, :resources, :examples, :options
 
-      def initialize(raml)
-        @raml = raml
+      def initialize(raml, options={})
+        @raml    = raml
+        @options = options
       end
 
       def compose
@@ -20,7 +21,7 @@ module Rambo
       end
 
       def example_groups
-        @example_groups ||= resources.map {|r| ExampleGroup.new(r) }
+        @example_groups ||= resources.map {|r| ExampleGroup.new(r, options) }
       end
 
       def generate!

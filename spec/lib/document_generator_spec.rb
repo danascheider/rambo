@@ -1,6 +1,7 @@
 RSpec.describe Rambo::DocumentGenerator do
   let(:valid_file) { File.expand_path('../../support/foobar.raml', __FILE__) }
-  let(:generator) { Rambo::DocumentGenerator.new(valid_file) }
+  let(:options) { { rails: true } }
+  let(:generator) { Rambo::DocumentGenerator.new(valid_file, options) }
 
   before(:each) do
     allow_any_instance_of(Rambo::DocumentGenerator).to receive(:extract_raml)

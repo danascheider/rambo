@@ -2,8 +2,8 @@ RSpec.describe Rambo::RSpec::ExampleGroup do
   let(:raml_file) { File.expand_path("../../../support/foobar.raml", __FILE__) }
   let(:raml)      { Raml::Parser.parse_file(raml_file) }
   let(:resource)  { Rambo::RamlModels::Resource.new(raml.resources.first) }
-
-  subject         { Rambo::RSpec::ExampleGroup.new(resource) }
+  let(:options)   { { rails: true } }
+  subject         { Rambo::RSpec::ExampleGroup.new(resource, options) }
 
   before(:each) do
     FileUtils.mkdir_p(File.expand_path("spec/support/examples"))
@@ -67,6 +67,20 @@ RSpec.describe Rambo::RSpec::ExampleGroup do
 
       it "adds headers" do
         expect(subject.render).to include("let(:headers) do")
+      end
+    end
+
+    context "Rails app" do
+      it "uses response" do
+        expect(subject.render).to include("expect(response.body)")
+      end
+    end
+
+    context "non-Rails app" do
+      let(:options) { { rails: false } }
+
+      it "uses last_response" do
+        expect(subject.render).to include("expect(last_response.body)")
       end
     end
   end

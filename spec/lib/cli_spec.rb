@@ -1,9 +1,11 @@
 RSpec.describe Rambo::CLI do
-  let(:io) { StringIO.new }
+  let(:io)         { StringIO.new }
+  let(:stderr)     { StringIO.new }
+  let(:opts)       { { rails: true } }
   let(:valid_file) { File.expand_path('../../support/foobar.raml', __FILE__) }
 
   describe "run!" do
-    let(:cli) { Rambo::CLI.new(valid_file, io, STDERR) }
+    let(:cli) { Rambo::CLI.new(valid_file, opts, io, stderr) }
 
     before(:each) do
       allow_any_instance_of(Rambo::DocumentGenerator).to receive(:generate_rambo_helper!)

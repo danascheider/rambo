@@ -6,8 +6,9 @@ module Rambo
 
       attr_reader :resource
 
-      def initialize(resource)
+      def initialize(resource, options={})
         @resource = resource
+        @options  = options
       end
 
       def template

@@ -5,7 +5,19 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
 require "fileutils"
 require "cli"
+require "optparse"
 
 filename = ARGV[0] ? File.expand_path(ARGV[0], FileUtils.pwd) : nil
 
-Rambo::CLI.new(filename, STDOUT).run!
+options = {}
+
+OptionParser.new do |opts|
+  opts.banner = "Usage: rambo [FILE] [OPTIONS]"
+
+  options[:rails] = true
+  opts.on("--no-rails", "Generate tests for a non-Rails API") do |v|
+    options[:rails] = false
+  end
+end.parse!
+
+Rambo::CLI.new(filename, options, STDOUT).run!

@@ -1,7 +1,8 @@
 RSpec.describe Rambo::RSpec::SpecFile do
   let(:raw_raml)  { Raml::Parser.parse_file(raml_file) }
+  let(:options)   { { rails: true } }
   let(:raml)      { Rambo::RamlModels::Api.new(raw_raml) }
-  let(:spec_file) { Rambo::RSpec::SpecFile.new(raw_raml) }
+  let(:spec_file) { Rambo::RSpec::SpecFile.new(raw_raml, options) }
 
   before(:each) do
     FileUtils.mkdir_p(File.expand_path("spec/support/examples"))
