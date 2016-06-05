@@ -9,11 +9,12 @@ require "optparse"
 
 filename = ARGV[0] ? File.expand_path(ARGV[0], FileUtils.pwd) : nil
 
-options = { rails: true }
+options = {}
 
 OptionParser.new do |opts|
   opts.banner = "Usage: rambo [FILE] [OPTIONS]"
 
+  options[:rails] = true
   opts.on("--no-rails", "Generate tests for a non-Rails API") do |v|
     options[:rails] = false
   end

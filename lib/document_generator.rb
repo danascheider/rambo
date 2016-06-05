@@ -6,7 +6,7 @@ require "rspec/helper_file"
 
 module Rambo
   class DocumentGenerator
-    attr_accessor :file, :raml
+    attr_accessor :file, :raml, :options
 
     def initialize(file, options={})
       @file    = file
@@ -24,7 +24,7 @@ module Rambo
 
     def generate_spec_file!
       spec_file_name = file.match(/[^\/]*\.raml$/).to_s.gsub(/\.raml$/, "_spec.rb")
-      contents       = Rambo::RSpec::SpecFile.new(raml).render
+      contents       = Rambo::RSpec::SpecFile.new(raml, options).render
       File.write("spec/contract/#{spec_file_name}", contents)
     end
 

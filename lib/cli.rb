@@ -7,11 +7,11 @@ module Rambo
       @stdout  = stdout
       @stderr  = stderr
       @file    = raml_file
-      @options = options
+      @options = opts
 
       validate!
 
-      @generator = Rambo::DocumentGenerator.new(file)
+      @generator = Rambo::DocumentGenerator.new(file, options)
     end
 
     def run!
