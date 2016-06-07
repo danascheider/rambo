@@ -4,11 +4,11 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require "version"
 
 Gem::Specification.new do |s|
-  s.name        = "rambo"
+  s.name        = "rambo_ruby"
   s.version     = Rambo.version
   s.authors     = ["Dana Scheider"]
   s.description = "RAML in, RSpec out"
-  s.summary     = "rambo-#{s.version}"
+  s.summary     = "rambo_ruby-#{s.version}"
   s.email       = "dana.scheider@gmail.com"
   s.license     = "MIT"
   s.platform    = Gem::Platform::RUBY

@@ -4,15 +4,17 @@
 
 Rambo is a gem that generates API contract tests from API docs in [RAML](http://raml.org/).
 
+#### The current version of Rambo is 0.1.0. It is highly unstable and has a limited feature set. Use at your own risk and please file issue reports if they come up!
+
 ## Usage
 You can install Rambo using:
 ```ruby
-gem install rambo
+gem install rambo_ruby
 ```
 You can also add it to your project's Gemfile: <
 ```ruby
 group :development, :test do
-  gem 'rambo', '~> 0.0.1'
+  gem 'rambo_ruby', '~> 0.0.1'
 end
 ```
 To run Rambo, from the root directory of your project, run:
@@ -45,4 +47,4 @@ Additional information for contributors is available in the wiki. Beginning or f
   * [RAML homepage](https://raml.org)
   * [Roy Fielding's dissertation](https://www.ics.uci.edu/~fielding/pubs/dissertation/fielding_dissertation.pdf) describing Representational State Transfer (REST) architecture
   * [RESTful Web Services](http://www.crummy.com/writing/RESTful-Web-Services/RESTful_Web_Services.pdf), by Leonard Richardson & Sam Ruby
-  * [Martin Fowler](http://martinfowler.com/articles/microservice-testing/) on testing microservices
+  * [Toby Clemson](http://martinfowler.com/articles/microservice-testing/) on testing microservices
