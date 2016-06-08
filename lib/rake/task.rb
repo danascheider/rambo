@@ -21,6 +21,13 @@ module Rambo
       rescue
         {}
       end
+
+      private
+
+      def raml_file
+        return options.fetch("raml") if options.fetch("raml", nil)
+        Dir.foreach("doc/raml") {|file| return file if file.match(/\.raml$/) }
+      end
     end
   end
 end

@@ -21,7 +21,7 @@ rails: false
 
     context "when there is no .rambo.yml" do
       it "doesn't raise an error" do
-        #
+        expect{ subject.yaml_options }.not_to raise_error
       end
 
       it "uses default options" do
