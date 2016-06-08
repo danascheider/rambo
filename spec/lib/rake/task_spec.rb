@@ -25,7 +25,7 @@ rails: false
       end
 
       it "uses default options" do
-        #
+        expect(subject.yaml_options).to eql({ "rails" => true })
       end
     end
   end

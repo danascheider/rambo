@@ -19,7 +19,7 @@ module Rambo
 
         opts
       rescue
-        {}
+        { "rails" => true }
       end
 
       private
