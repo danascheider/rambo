@@ -13,7 +13,7 @@ RSpec.describe Rambo::RSpec::SpecFile do
   end
 
   context "file with examples" do
-    let(:raml_file) { File.expand_path("../../../support/foobar.raml", __FILE__) }
+    let(:raml_file) { File.join(SPEC_DIR_ROOT, "support/foobar.raml") }
 
     describe "#initialize" do
       it "assigns @raml" do
@@ -40,7 +40,7 @@ RSpec.describe Rambo::RSpec::SpecFile do
 
   context "file with schema" do
     let(:raml_file) do
-      File.expand_path("../../../../features/support/examples/raml/basic_raml_with_schema.raml", __FILE__)
+      File.join(RAMBO_ROOT, "../features/support/examples/raml/basic_raml_with_schema.raml")
     end
 
     describe "#initialize" do

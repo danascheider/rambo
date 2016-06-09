@@ -1,9 +1,9 @@
 module CucumberHelper
   def read_example(example)
     possible_paths = [
-      File.expand_path("../examples/raml/#{example}", __FILE__),
-      File.expand_path("../examples/rspec/#{example}", __FILE__),
-      File.expand_path("../examples/rspec/#{example}", __FILE__)
+      File.join(CUCUMBER_DIR_ROOT, "examples/raml/#{example}"),
+      File.join(CUCUMBER_DIR_ROOT, "examples/rspec/#{example}"),
+      File.join(CUCUMBER_DIR_ROOT, "examples/rspec/#{example}")
     ]
 
     possible_paths.each do |path|

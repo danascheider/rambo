@@ -2,7 +2,7 @@ RSpec.describe Rambo::CLI do
   let(:io)         { StringIO.new }
   let(:stderr)     { StringIO.new }
   let(:opts)       { { rails: true } }
-  let(:valid_file) { File.expand_path('../../support/foobar.raml', __FILE__) }
+  let(:valid_file) { File.join(SPEC_DIR_ROOT, 'support/foobar.raml',) }
 
   describe "run!" do
     let(:cli) { Rambo::CLI.new(valid_file, opts, io, stderr) }

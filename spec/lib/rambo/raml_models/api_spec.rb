@@ -1,5 +1,5 @@
 RSpec.describe Rambo::RamlModels::Api do
-  let(:raml_file) { File.expand_path("../../../support/multiple_resources.raml", __FILE__) }
+  let(:raml_file) { File.join(SPEC_DIR_ROOT, "support/multiple_resources.raml") }
   let(:raml)      { Raml::Parser.parse_file(raml_file) }
 
   subject { described_class.new(raml) }

@@ -1,5 +1,5 @@
 require "colorize"
-require "document_generator"
+require "rambo/document_generator"
 
 module Rambo
   class CLI

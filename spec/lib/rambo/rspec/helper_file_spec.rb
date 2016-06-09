@@ -1,10 +1,10 @@
 RSpec.describe Rambo::RSpec::HelperFile do
   let(:template_path) {
-    File.expand_path("lib/rspec/templates/matcher_file_template.erb")
+    File.join(RAMBO_ROOT, "rambo/rspec/templates/matcher_file_template.erb")
   }
 
   let(:file_path) {
-    File.expand_path("spec/support/matchers/rambo_matchers.rb")
+    File.join(SPEC_DIR_ROOT, "support/matchers/rambo_matchers.rb")
   }
 
   subject { described_class.new(template_path: template_path, file_path: file_path) }

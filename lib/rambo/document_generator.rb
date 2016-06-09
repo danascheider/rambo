@@ -1,8 +1,8 @@
 require "fileutils"
 require "raml-rb"
 
-require "rspec/spec_file"
-require "rspec/helper_file"
+require "rambo/rspec/spec_file"
+require "rambo/rspec/helper_file"
 
 module Rambo
   class DocumentGenerator

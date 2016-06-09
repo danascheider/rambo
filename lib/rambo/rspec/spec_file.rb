@@ -1,8 +1,8 @@
 require 'erb'
 require 'raml'
 
-require "rspec/examples"
-require "raml_models"
+require "rambo/rspec/examples"
+require "rambo/raml_models"
 
 module Rambo
   module RSpec
