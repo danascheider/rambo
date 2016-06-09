@@ -59,7 +59,7 @@ module Rambo
     end
 
     def logo
-      File.read(File.expand_path("../../assets/logo.txt", __FILE__))
+      File.read(File.expand_path("../../../assets/logo.txt", __FILE__))
     end
   end
 end
