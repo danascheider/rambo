@@ -1,6 +1,6 @@
 RSpec.describe Rambo::RamlModels::Headers do
   let(:raml) { Raml::Parser.parse_file(raml_file) }
-  let(:raml_file) { File.join(SPEC_DIR_ROOT, "support/post_with_request_headers.raml" }
+  let(:raml_file) { File.join(SPEC_DIR_ROOT, "support/post_with_request_headers.raml") }
   let(:headers) { raml.resources.first.methods.first.headers }
 
   subject { described_class.new(headers) }
