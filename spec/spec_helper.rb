@@ -10,9 +10,9 @@ require "raml-rb"
 require "json_test_data"
 require "fileutils"
 
-lib = File.expand_path("../../lib/**/*.rb", __FILE__)
 SPEC_DIR_ROOT = File.expand_path("../", __FILE__)
-
+RAMBO_ROOT =  File.expand_path("../../lib", __FILE__)
+lib = File.expand_path(File.join(RAMBO_ROOT, "**/*.rb"))
 Dir[lib].each {|f| require f }
 
 RSpec.configure do |c|

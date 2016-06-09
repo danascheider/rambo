@@ -1,5 +1,5 @@
 RSpec.describe Rambo::RamlModels::Resource do
-  let(:raml_file) { File.expand_path("../../../support/foobar.raml", __FILE__) }
+  let(:raml_file) { File.join(SPEC_DIR_ROOT, "support/foobar.raml") }
   let(:raml) { Raml::Parser.parse_file(raml_file) }
   let(:resource) { raml.resources.first }
 

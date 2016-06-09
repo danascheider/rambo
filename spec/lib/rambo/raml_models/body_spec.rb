@@ -5,7 +5,7 @@ RSpec.describe Rambo::RamlModels::Body do
   subject { described_class.new(body) }
 
   describe "#content_type" do
-    let(:raml_file) { File.expand_path("../../../support/foobar.raml", __FILE__) }
+    let(:raml_file) { File.join(SPEC_DIR_ROOT, "support/foobar.raml") }
 
     it "returns the content type" do
       expect(subject.content_type).to eql body.content_type
@@ -14,7 +14,7 @@ RSpec.describe Rambo::RamlModels::Body do
 
   describe "#example" do
     context "when an example is given" do
-      let(:raml_file) { File.expand_path("../../../support/foobar.raml", __FILE__) }
+      let(:raml_file) { File.join(SPEC_DIR_ROOT, "support/foobar.raml") }
 
       it "returns an example" do
         expect(subject.example).to eql body.example
@@ -22,7 +22,7 @@ RSpec.describe Rambo::RamlModels::Body do
     end
 
     context "when a schema is given" do
-      let(:raml_file) { File.expand_path("../../../../features/support/examples/raml/basic_raml_with_schema.raml", __FILE__) }
+      let(:raml_file) { File.join(SPEC_DIR_ROOT, "../features/support/examples/raml/basic_raml_with_schema.raml") }
 
       it "returns generated JSON data" do
         expect(JSON.parse(subject.example)).to have_key "data"

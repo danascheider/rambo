@@ -1,5 +1,5 @@
 RSpec.describe Rambo::DocumentGenerator do
-  let(:valid_file) { File.expand_path('../../support/foobar.raml', __FILE__) }
+  let(:valid_file) { File.join(SPEC_DIR_ROOT, "support/foobar.raml") }
   let(:options) { { rails: true } }
   let(:generator) { Rambo::DocumentGenerator.new(valid_file, options) }
 
@@ -20,7 +20,7 @@ RSpec.describe Rambo::DocumentGenerator do
         expect_any_instance_of(Rambo::RSpec::HelperFile)
           .to receive(:initialize)
           .with({
-            :template_path => File.expand_path("lib/rspec/templates/rambo_helper_file_template.erb"),
+            :template_path => File.join(RAMBO_ROOT, "rambo/rspec/templates/rambo_helper_file_template.erb"),
             :file_path     => "spec/rambo_helper.rb"
           })
         expect_any_instance_of(Rambo::RSpec::HelperFile).to receive(:generate)
@@ -55,7 +55,7 @@ RSpec.describe Rambo::DocumentGenerator do
         expect_any_instance_of(Rambo::RSpec::HelperFile)
           .to receive(:initialize)
           .with(
-            template_path: File.expand_path("lib/rspec/templates/matcher_file_template.erb"),
+            template_path: File.join(RAMBO_ROOT, "rambo/rspec/templates/matcher_file_template.erb"),
             file_path: "spec/support/matchers/rambo_matchers.rb"
           )
         expect_any_instance_of(Rambo::RSpec::HelperFile).to receive(:generate)
