@@ -1,4 +1,4 @@
-require "rake/dsl_definition"
+require "rake"
 require "yaml"
 require "colorize"
 
