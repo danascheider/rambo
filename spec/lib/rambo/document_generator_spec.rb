@@ -7,6 +7,41 @@ RSpec.describe Rambo::DocumentGenerator do
     allow_any_instance_of(Rambo::DocumentGenerator).to receive(:extract_raml)
   end
 
+  describe ".generate!" do
+    before(:each) do
+      allow_any_instance_of(described_class).to receive(:generate_matchers!)
+      allow_any_instance_of(described_class).to receive(:generate_spec_dir!)
+      allow_any_instance_of(described_class).to receive(:generate_matcher_dir!)
+      allow_any_instance_of(described_class).to receive(:generate_rambo_helper!)
+      allow_any_instance_of(described_class).to receive(:generate_examples!)
+    end
+
+    it "generates a spec directory" do
+      expect_any_instance_of(described_class).to receive(:generate_spec_dir!)
+      described_class.generate!(valid_file, options)
+    end
+
+    it "generates the Rambo helper" do
+      expect_any_instance_of(described_class).to receive(:generate_rambo_helper!)
+      described_class.generate!(valid_file, options)
+    end
+
+    it "generates the matcher directory" do
+      expect_any_instance_of(described_class).to receive(:generate_matcher_dir!)
+      described_class.generate!(valid_file, options)
+    end
+
+    it "generates the matchers" do
+      expect_any_instance_of(described_class).to receive(:generate_matchers!)
+      described_class.generate!(valid_file, options)
+    end
+
+    it "generates the examples" do
+      expect_any_instance_of(described_class).to receive(:generate_examples!)
+      described_class.generate!(valid_file, options)
+    end
+  end
+
   describe "#generate_spec_dir!" do
     it "generates the spec/contract directory" do
       expect(FileUtils).to receive(:mkdir_p).with("spec/contract/output")

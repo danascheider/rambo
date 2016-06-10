@@ -8,6 +8,17 @@ module Rambo
   class DocumentGenerator
     attr_accessor :file, :raml, :options
 
+    class << self
+      def generate!(file, options={})
+        generator = new(file, options)
+        generator.generate_spec_dir!
+        generator.generate_rambo_helper!
+        generator.generate_matcher_dir!
+        generator.generate_matchers!
+        generator.generate_examples!
+      end
+    end
+
     def initialize(file, options={})
       @file    = file
       @raml    = Raml::Parser.parse_file(file)
