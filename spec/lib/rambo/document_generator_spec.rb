@@ -11,6 +11,7 @@ RSpec.describe Rambo::DocumentGenerator do
     before(:each) do
       allow_any_instance_of(described_class).to receive(:generate_matchers!)
       allow_any_instance_of(described_class).to receive(:generate_spec_dir!)
+      allow_any_instance_of(described_class).to receive(:generate_spec_file!)
       allow_any_instance_of(described_class).to receive(:generate_matcher_dir!)
       allow_any_instance_of(described_class).to receive(:generate_rambo_helper!)
       allow_any_instance_of(described_class).to receive(:generate_examples!)
@@ -38,6 +39,11 @@ RSpec.describe Rambo::DocumentGenerator do
 
     it "generates the examples" do
       expect_any_instance_of(described_class).to receive(:generate_examples!)
+      described_class.generate!(valid_file, options)
+    end
+
+    it "generates a spec file" do
+      expect_any_instance_of(described_class).to receive(:generate_spec_file!)
       described_class.generate!(valid_file, options)
     end
   end
