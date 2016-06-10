@@ -10,17 +10,11 @@ module Rambo
       @options = opts
 
       validate!
-
-      @generator = Rambo::DocumentGenerator.new(file, options)
     end
 
     def run!
       print_logo
-      generator.generate_spec_dir!
-      generator.generate_rambo_helper!
-      generator.generate_matcher_dir!
-      generator.generate_examples!
-      generator.generate_matchers!
+      Rambo::DocumentGenerator.generate!(file, options)
 
       stdout.puts("Generating contract tests...")
       sleep 0.4
