@@ -31,12 +31,7 @@ module Rambo
       def define_task
         desc "Generate contract tests"
         task :rambo do
-          generator = Rambo::DocumentGenerator.new(raml_file)
-          generator.generate_spec_dir!
-          generator.generate_rambo_helper!
-          generator.generate_matcher_dir!
-          generator.generate_examples!
-          generator.generate_matchers!
+          Rambo::DocumentGenerator.generate!(raml_file)
 
           puts "Done generating contract tests.".green
         end
