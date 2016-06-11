@@ -6,7 +6,7 @@ module Rambo
       file     ||= raml_file
       @options ||= yaml_options
 
-      DocumentGenerator.generate!(file, options)
+      DocumentGenerator.generate!(file, @options)
     end
 
     private
