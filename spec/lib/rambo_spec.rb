@@ -8,7 +8,7 @@ rails: false
 
   describe ".generate_contract_tests!" do
     let(:valid_file)      { File.join(SPEC_DIR_ROOT, "support/foobar.raml") }
-    let(:default_options) { { "rails" => true } }
+    let(:default_options) { { rails: true } }
 
     before(:each) do
       allow(Dir).to receive(:foreach).and_return(valid_file)

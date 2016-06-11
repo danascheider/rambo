@@ -3,10 +3,10 @@ Dir["#{File.dirname(__FILE__)}/rambo/**/*.rb"].each {|file| require file }
 module Rambo
   class << self
     def generate_contract_tests!(file = nil, opts = nil)
-      file     ||= raml_file
-      @options ||= yaml_options
+      @file = file || raml_file
+      @options = opts || yaml_options
 
-      DocumentGenerator.generate!(file, @options)
+      DocumentGenerator.generate!(@file, @options)
     end
 
     private
@@ -22,7 +22,7 @@ module Rambo
 
       opts
     rescue
-      { "rails" => true }
+      { rails: true }
     end
 
     # TODO: Permit use of multiple RAML files, since right now this only takes
