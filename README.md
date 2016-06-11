@@ -4,7 +4,7 @@
 
 Rambo is a gem that generates API contract tests from API docs in [RAML](http://raml.org/). Rambo is being developed to test APIs complying with standard REST practices. Mileage may vary with other architectures, but I'm happy to consider pull requests.
 
-#### The current version of Rambo is 0.1.0. It is highly unstable and has a limited feature set. Use at your own risk and please file issue reports if they come up!
+#### The current version of Rambo is 0.2.0. It is highly unstable and has a limited feature set. Use at your own risk and please file issue reports if they come up!
 
 ## Usage
 You can install Rambo using:
