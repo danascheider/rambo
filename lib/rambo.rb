@@ -17,7 +17,7 @@ module Rambo
       opts = YAML.load(File.read(File.expand_path(".rambo.yml")))
 
       if opts && opts.fetch("raml", nil)
-        opts[:raml] = File.expand_path(opts.fetch("raml"))
+        opts["raml"] = File.expand_path(opts.fetch("raml"))
       end
 
       opts
