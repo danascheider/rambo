@@ -2,22 +2,22 @@ Dir["#{File.dirname(__FILE__)}/rambo/**/*.rb"].each {|file| require file }
 
 module Rambo
   class << self
+    attr_reader :options, :file
+
     def generate_contract_tests!(file = nil, opts = nil)
-      @file = file || raml_file
       @options = opts || yaml_options
+      @file    = file || @options.fetch(:raml, nil) || raml_file
 
       DocumentGenerator.generate!(@file, @options)
     end
 
     private
 
-    attr_reader :options
-
     def yaml_options
       opts = YAML.load(File.read(File.expand_path(".rambo.yml")))
 
       if opts && opts.fetch("raml", nil)
-        opts["raml"] = File.expand_path(opts.fetch("raml"))
+        opts[:raml] = File.expand_path(opts.fetch("raml"))
       end
 
       opts

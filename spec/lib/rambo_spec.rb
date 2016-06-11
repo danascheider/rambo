@@ -22,6 +22,9 @@ rails: false
     end
 
     context "when there is a .rambo.yml file" do
+      let(:file_path) { File.expand_path("doc/raml/foobar.raml") }
+      let(:options)   { { rails: true, raml: file_path } }
+
       before(:each) do
         allow(Rambo::DocumentGenerator).to receive(:generate!)
 
@@ -33,6 +36,18 @@ rails: false
 
       it "reads from the file" do
         expect(File).to receive(:read).with(File.expand_path(".rambo.yml"))
+        Rambo.generate_contract_tests!
+      end
+
+      it "sets the RAML file to the one from the file" do
+        allow(Rambo)
+          .to receive(:yaml_options)
+          .and_return(options)
+
+        expect(Rambo::DocumentGenerator)
+          .to receive(:generate!)
+          .with(file_path, options)
+
         Rambo.generate_contract_tests!
       end
     end
