@@ -1,6 +1,10 @@
+lib = File.expand_path("../../..", __FILE__)
+$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
+
 require "rake"
 require "yaml"
 require "colorize"
+require "rambo/document_generator"
 
 module Rambo
   module Rake
@@ -37,9 +41,12 @@ module Rambo
         end
       end
 
+      # TODO: Permit use of multiple RAML files, since right now this only takes
+      #       the first one it finds in the "doc" directory.
+
       def raml_file
         return options.fetch("raml") if options.fetch("raml", nil)
-        Dir.foreach("doc/raml") {|file| return file if file.match(/\.raml$/) }
+        Dir.foreach("doc/raml") {|file| return "doc/raml/#{file}" if file.match(/\.raml$/) }
       end
     end
   end
