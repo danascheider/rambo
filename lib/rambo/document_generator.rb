@@ -12,11 +12,11 @@ module Rambo
       def generate!(file, options={})
         generator = new(file, options)
         generator.generate_spec_dir!
+        generator.generate_matcher_dir!
+        generator.generate_examples!
         generator.generate_spec_file!
         generator.generate_rambo_helper!
-        generator.generate_matcher_dir!
         generator.generate_matchers!
-        generator.generate_examples!
       end
     end
 
