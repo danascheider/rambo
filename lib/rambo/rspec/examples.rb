@@ -1,11 +1,11 @@
-require "rspec/example_group"
+require "rambo/rspec/example_group"
 
 module Rambo
   module RSpec
     class Examples
       attr_reader :raml, :resources, :examples, :options
 
-      def initialize(raml, options={})
+      def initialize(raml, options=nil)
         @raml    = raml
         @options = options
       end

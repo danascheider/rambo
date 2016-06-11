@@ -1,7 +1,5 @@
 # -*- encoding: utf-8 -*-
-lib = File.expand_path("../lib", __FILE__)
-$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require "version"
+require File.expand_path "../lib/version.rb", __FILE__
 
 Gem::Specification.new do |s|
   s.name        = "rambo_ruby"
@@ -16,14 +14,13 @@ Gem::Specification.new do |s|
 
   s.add_dependency "rspec", "~> 3.4"
   s.add_dependency "raml-rb", "~> 0.0.6"
-  s.add_dependency "rack-test", "~> 0.6"
   s.add_dependency "colorize", "~> 0.7"
-  s.add_dependency "json_test_data", "~> 1.0"
+  s.add_dependency "json_test_data", "~> 1.1", ">= 1.1.1"
   s.add_dependency "json-schema", "~> 2.6"
+  s.add_dependency "rake", "~> 11.0"
 
   s.add_development_dependency "cucumber", "~> 2.1"
   s.add_development_dependency "json", "~> 1.7"
-  s.add_development_dependency "rake", "~> 11.0"
   s.add_development_dependency "coveralls", "~> 0.7"
   s.add_development_dependency "aruba", "~> 0.13"
 

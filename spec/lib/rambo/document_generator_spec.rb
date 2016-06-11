@@ -1,10 +1,51 @@
 RSpec.describe Rambo::DocumentGenerator do
-  let(:valid_file) { File.expand_path('../../support/foobar.raml', __FILE__) }
+  let(:valid_file) { File.join(SPEC_DIR_ROOT, "support/foobar.raml") }
   let(:options) { { rails: true } }
   let(:generator) { Rambo::DocumentGenerator.new(valid_file, options) }
 
   before(:each) do
     allow_any_instance_of(Rambo::DocumentGenerator).to receive(:extract_raml)
+  end
+
+  describe ".generate!" do
+    before(:each) do
+      allow_any_instance_of(described_class).to receive(:generate_matchers!)
+      allow_any_instance_of(described_class).to receive(:generate_spec_dir!)
+      allow_any_instance_of(described_class).to receive(:generate_spec_file!)
+      allow_any_instance_of(described_class).to receive(:generate_matcher_dir!)
+      allow_any_instance_of(described_class).to receive(:generate_rambo_helper!)
+      allow_any_instance_of(described_class).to receive(:generate_examples!)
+    end
+
+    it "generates a spec directory" do
+      expect_any_instance_of(described_class).to receive(:generate_spec_dir!)
+      described_class.generate!(valid_file, options)
+    end
+
+    it "generates the Rambo helper" do
+      expect_any_instance_of(described_class).to receive(:generate_rambo_helper!)
+      described_class.generate!(valid_file, options)
+    end
+
+    it "generates the matcher directory" do
+      expect_any_instance_of(described_class).to receive(:generate_matcher_dir!)
+      described_class.generate!(valid_file, options)
+    end
+
+    it "generates the matchers" do
+      expect_any_instance_of(described_class).to receive(:generate_matchers!)
+      described_class.generate!(valid_file, options)
+    end
+
+    it "generates the examples" do
+      expect_any_instance_of(described_class).to receive(:generate_examples!)
+      described_class.generate!(valid_file, options)
+    end
+
+    it "generates a spec file" do
+      expect_any_instance_of(described_class).to receive(:generate_spec_file!)
+      described_class.generate!(valid_file, options)
+    end
   end
 
   describe "#generate_spec_dir!" do
@@ -20,7 +61,7 @@ RSpec.describe Rambo::DocumentGenerator do
         expect_any_instance_of(Rambo::RSpec::HelperFile)
           .to receive(:initialize)
           .with({
-            :template_path => File.expand_path("lib/rspec/templates/rambo_helper_file_template.erb"),
+            :template_path => File.join(RAMBO_ROOT, "rambo/rspec/templates/rambo_helper_file_template.erb"),
             :file_path     => "spec/rambo_helper.rb"
           })
         expect_any_instance_of(Rambo::RSpec::HelperFile).to receive(:generate)
@@ -55,7 +96,7 @@ RSpec.describe Rambo::DocumentGenerator do
         expect_any_instance_of(Rambo::RSpec::HelperFile)
           .to receive(:initialize)
           .with(
-            template_path: File.expand_path("lib/rspec/templates/matcher_file_template.erb"),
+            template_path: File.join(RAMBO_ROOT, "rambo/rspec/templates/matcher_file_template.erb"),
             file_path: "spec/support/matchers/rambo_matchers.rb"
           )
         expect_any_instance_of(Rambo::RSpec::HelperFile).to receive(:generate)

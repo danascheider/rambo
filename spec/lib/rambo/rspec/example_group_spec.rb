@@ -1,5 +1,5 @@
 RSpec.describe Rambo::RSpec::ExampleGroup do
-  let(:raml_file) { File.expand_path("../../../support/foobar.raml", __FILE__) }
+  let(:raml_file) { File.join(SPEC_DIR_ROOT, "/support/foobar.raml") }
   let(:raml)      { Raml::Parser.parse_file(raml_file) }
   let(:resource)  { Rambo::RamlModels::Resource.new(raml.resources.first) }
   let(:options)   { { rails: true } }
@@ -31,7 +31,7 @@ RSpec.describe Rambo::RSpec::ExampleGroup do
     end
 
     context "when the route has a response schema" do
-      let(:raml_file) { File.expand_path("../../../support/basic_raml_with_post_route.raml", __FILE__) }
+      let(:raml_file) {File.join(SPEC_DIR_ROOT, "support/basic_raml_with_post_route.raml") }
 
       it "creates a response schema object" do
         aggregate_failures do
@@ -51,7 +51,7 @@ RSpec.describe Rambo::RSpec::ExampleGroup do
     end
 
     context "when the route has a request body" do
-      let(:raml_file) { File.expand_path("../../../support/basic_raml_with_post_route.raml", __FILE__) }
+      let(:raml_file) { File.join(SPEC_DIR_ROOT, "support/basic_raml_with_post_route.raml") }
 
       it "adds a request body" do
         expect(subject.render).to include("let(:request_body) do")
@@ -63,7 +63,7 @@ RSpec.describe Rambo::RSpec::ExampleGroup do
     end
 
     context "when the route has request headers" do
-      let(:raml_file) { File.expand_path("../../../support/post_with_request_headers.raml", __FILE__) }
+      let(:raml_file) { File.join(SPEC_DIR_ROOT, "support/post_with_request_headers.raml") }
 
       it "adds headers" do
         expect(subject.render).to include("let(:headers) do")

@@ -1,12 +1,24 @@
 require "fileutils"
 require "raml-rb"
 
-require "rspec/spec_file"
-require "rspec/helper_file"
+require "rambo/rspec/spec_file"
+require "rambo/rspec/helper_file"
 
 module Rambo
   class DocumentGenerator
     attr_accessor :file, :raml, :options
+
+    class << self
+      def generate!(file, options={})
+        generator = new(file, options)
+        generator.generate_spec_dir!
+        generator.generate_matcher_dir!
+        generator.generate_examples!
+        generator.generate_spec_file!
+        generator.generate_rambo_helper!
+        generator.generate_matchers!
+      end
+    end
 
     def initialize(file, options={})
       @file    = file
