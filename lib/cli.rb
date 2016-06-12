@@ -1,5 +1,5 @@
 require "colorize"
-require "rambo/document_generator"
+require "rambo"
 
 module Rambo
   class CLI
@@ -16,7 +16,7 @@ module Rambo
       print_logo
 
       begin
-        Rambo::DocumentGenerator.generate!(file, options)
+        Rambo.generate_contract_tests!(file, options)
 
         stdout.puts("Generating contract tests...")
         sleep 0.4
@@ -53,7 +53,7 @@ module Rambo
     end
 
     def logo
-      File.read(File.expand_path("../../../assets/logo.txt", __FILE__))
+      File.read(File.expand_path("../../assets/logo.txt", __FILE__))
     end
   end
 end

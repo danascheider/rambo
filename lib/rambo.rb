@@ -1,11 +1,13 @@
+require "active_support/core_ext/hash"
+
 Dir["#{File.dirname(__FILE__)}/rambo/**/*.rb"].each {|file| require file }
 
 module Rambo
   class << self
     attr_reader :options, :file
 
-    def generate_contract_tests!(file = nil, opts = nil)
-      @options = opts || yaml_options
+    def generate_contract_tests!(file = nil, opts = {})
+      @options = yaml_options.merge(opts)
       @file    = file || @options.fetch(:raml, nil) || raml_file
 
       DocumentGenerator.generate!(@file, @options)
@@ -20,7 +22,7 @@ module Rambo
         opts["raml"] = File.expand_path(opts.fetch("raml"))
       end
 
-      opts
+      opts.symbolize_keys
     rescue
       { rails: true }
     end

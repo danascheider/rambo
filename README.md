@@ -73,6 +73,8 @@ The two possible keys are:
     to the root of your project directory, is `doc/raml/foobar.raml`, where `foobar.raml` is the first RAML file found in the `doc/raml` directory.
   - `rails` - specifies whether your app is a Rails app. The default value is `true`.
 
+If a `.rambo.yml` file is present and additional options are passed in, the option values that are passed in will override those in the `.rambo.yml` file.
+
 ## Default Behavior
 In order to provide the best user experience to a majority of users, Rambo comes with some sensible defaults that are easily overridden in an optional `.rambo.yml` file, or by using command line flags or a Ruby option hash (see above).
 

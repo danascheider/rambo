@@ -39,7 +39,7 @@ rails: false
       it "sets the RAML file to the one from the file" do
         expect(Rambo::DocumentGenerator)
           .to receive(:generate!)
-          .with(File.expand_path("doc/raml/foobar.raml"), { "raml" => File.expand_path("doc/raml/foobar.raml"), "rails" => false })
+          .with(File.expand_path("doc/raml/foobar.raml"), { raml: File.expand_path("doc/raml/foobar.raml"), rails: false })
 
         Rambo.generate_contract_tests!
       end
