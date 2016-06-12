@@ -8,7 +8,7 @@ RSpec.describe "e-BookMobile API", type: :request do
     describe "POST" do
       let(:headers) do
         {
-          "Content-Type" => "application/json"
+          "API-Token" => "ABCDEFGHIJKLMNOP"
         }
       end
 
