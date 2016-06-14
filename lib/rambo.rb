@@ -9,7 +9,7 @@ module Rambo
     def generate_contract_tests!(file = nil, opts = {})
       @options         = yaml_options.merge(opts)
       @options[:rails] = true unless @options.fetch(:rails, nil) == false
-      @file            = file || @options.fetch(:raml, nil) || raml_file
+      @file            = file || @options.delete(:raml) || raml_file
 
       DocumentGenerator.generate!(@file, @options)
     end
@@ -20,7 +20,7 @@ module Rambo
       opts = YAML.load(File.read(File.expand_path(".rambo.yml"))).symbolize_keys
 
       if opts && opts.fetch(:raml, nil)
-        opts["raml"] = File.expand_path(opts.fetch(:raml))
+        opts[:raml] = File.expand_path(opts.fetch(:raml))
       end
 
       opts.symbolize_keys
@@ -32,7 +32,7 @@ module Rambo
     #       the first one it finds in the "doc" directory.
 
     def raml_file
-      return options.fetch("raml") if options && options.fetch("raml", nil)
+      return options.fetch(:raml) if options && options.fetch(:raml, nil)
       Dir.foreach("doc/raml") {|file| return "doc/raml/#{file}" if file.match(/\.raml$/) }
     end
   end
