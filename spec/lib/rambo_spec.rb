@@ -7,11 +7,11 @@ rails: false
   end
 
   describe ".generate_contract_tests!" do
-    let(:valid_file)      { File.join(SPEC_DIR_ROOT, "support/foobar.raml") }
+    let(:valid_file)      { "foobar.raml" }
     let(:default_options) { { rails: true } }
 
     before(:each) do
-      allow(Dir).to receive(:foreach).and_return(valid_file)
+      allow(Dir).to receive(:[]).and_return([valid_file])
     end
 
     context "in all cases" do
@@ -77,7 +77,10 @@ rails: false
 
     context "when there is no .rambo.yml file" do
       it "uses default options" do
-        expect(Rambo::DocumentGenerator).to receive(:generate!).with(valid_file, default_options)
+        expect(Rambo::DocumentGenerator)
+          .to receive(:generate!)
+          .with(File.expand_path("doc/raml/#{valid_file}"), default_options)
+
         Rambo.generate_contract_tests!
       end
     end

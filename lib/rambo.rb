@@ -23,7 +23,7 @@ module Rambo
         opts[:raml] = File.expand_path(opts.fetch(:raml))
       end
 
-      opts.symbolize_keys
+      opts
     rescue
       { rails: true }
     end
@@ -33,7 +33,9 @@ module Rambo
 
     def raml_file
       return options.fetch(:raml) if options && options.fetch(:raml, nil)
-      Dir.foreach("doc/raml") {|file| return "doc/raml/#{file}" if file.match(/\.raml$/) }
+
+      raml_path = File.expand_path("doc/raml")
+      Dir[raml_path].each {|file| return File.join(raml_path, file) if file.match(/\.raml$/) }
     end
   end
 end
