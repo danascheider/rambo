@@ -7,8 +7,9 @@ module Rambo
     attr_reader :options, :file
 
     def generate_contract_tests!(file = nil, opts = {})
-      @options = yaml_options.merge(opts)
-      @file    = file || @options.fetch(:raml, nil) || raml_file
+      @options         = yaml_options.merge(opts)
+      @options[:rails] = true unless @options.fetch(:rails, nil) == false
+      @file            = file || @options.delete(:raml) || raml_file
 
       DocumentGenerator.generate!(@file, @options)
     end
@@ -16,13 +17,13 @@ module Rambo
     private
 
     def yaml_options
-      opts = YAML.load(File.read(File.expand_path(".rambo.yml")))
+      opts = YAML.load(File.read(File.expand_path(".rambo.yml"))).symbolize_keys
 
-      if opts && opts.fetch("raml", nil)
-        opts["raml"] = File.expand_path(opts.fetch("raml"))
+      if opts && opts.fetch(:raml, nil)
+        opts[:raml] = File.expand_path(opts.fetch(:raml))
       end
 
-      opts.symbolize_keys
+      opts
     rescue
       { rails: true }
     end
@@ -31,8 +32,10 @@ module Rambo
     #       the first one it finds in the "doc" directory.
 
     def raml_file
-      return options.fetch("raml") if options && options.fetch("raml", nil)
-      Dir.foreach("doc/raml") {|file| return "doc/raml/#{file}" if file.match(/\.raml$/) }
+      return options.fetch(:raml) if options && options.fetch(:raml, nil)
+
+      raml_path = File.expand_path("doc/raml")
+      Dir[raml_path].each {|file| return File.join(raml_path, file) if file.match(/\.raml$/) }
     end
   end
 end
