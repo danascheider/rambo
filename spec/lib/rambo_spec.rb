@@ -43,6 +43,36 @@ rails: false
 
         Rambo.generate_contract_tests!
       end
+
+      context "rails option set to false in file" do
+        it "sets rails option to false" do
+          allow(Rambo).to receive(:yaml_options).and_return({ rails: false })
+          expect(Rambo::DocumentGenerator)
+            .to receive(:generate!)
+            .with(File.expand_path("doc/raml/foobar.raml"), { rails: false })
+          Rambo.generate_contract_tests!
+        end
+      end
+
+      context "rails option set to true in file" do
+        it "sets rails option to true" do
+          allow(Rambo).to receive(:yaml_options).and_return({ rails: true })
+          expect(Rambo::DocumentGenerator)
+            .to receive(:generate!)
+            .with(File.expand_path("doc/raml/foobar.raml"), { rails: true })
+          Rambo.generate_contract_tests!
+        end
+      end
+
+      context "rails option not set in file" do
+        it "sets rails option to true" do
+          allow(Rambo).to receive(:yaml_options).and_return({})
+          expect(Rambo::DocumentGenerator)
+            .to receive(:generate!)
+            .with(File.expand_path("doc/raml/foobar.raml"), { rails: true })
+          Rambo.generate_contract_tests!
+        end
+      end
     end
 
     context "when there is no .rambo.yml file" do
