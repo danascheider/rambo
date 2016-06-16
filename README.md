@@ -4,7 +4,7 @@
 
 Rambo is a gem that generates API contract tests from API docs in [RAML](http://raml.org/). Rambo is being developed to test APIs complying with standard REST practices. Mileage may vary with other architectures, but I'm happy to consider pull requests.
 
-#### The current version of Rambo is 0.2.0. It is highly unstable and has a limited feature set. Use at your own risk and please file issue reports if they come up!
+#### The current version of Rambo is 0.2.3. It is highly unstable and has a limited feature set. Use at your own risk and please file issue reports if they come up!
 
 ## Usage
 You can install Rambo using:
@@ -14,7 +14,7 @@ gem install rambo_ruby
 You can also add it to your project's Gemfile: <
 ```ruby
 group :development, :test do
-  gem 'rambo_ruby', '~> 0.2.0'
+  gem 'rambo_ruby', '~> 0.2.3'
 end
 ```
 There are three options for generating tests from Rambo: The command line tool, the rake task, and the Ruby API. In all cases, Rambo will look for a `.rambo.yml` file in the root directory of your project for configuration options. Options may also be passed in through the command line as arguments or the Ruby API as a hash. There is currently no option to pass arguments to the Rake task, but Rambo comes pre-loaded with sensible defaults, and the `.rambo.yml` file is always an option.
