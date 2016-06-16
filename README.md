@@ -11,7 +11,7 @@ You can install Rambo using:
 ```ruby
 gem install rambo_ruby
 ```
-You can also add it to your project's Gemfile: <
+You can also add it to your project's Gemfile:
 ```ruby
 group :development, :test do
   gem 'rambo_ruby', '~> 0.2.3'
