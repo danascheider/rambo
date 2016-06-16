@@ -15,7 +15,7 @@ Gem::Specification.new do |s|
   s.add_dependency "rspec", "~> 3.4"
   s.add_dependency "raml-rb", "~> 0.0.6"
   s.add_dependency "colorize", "~> 0.7"
-  s.add_dependency "json_test_data", "~> 1.1", ">= 1.1.2"
+  s.add_dependency "json_test_data", "~> 1.1", ">= 1.1.3"
   s.add_dependency "json-schema", "~> 2.6"
   s.add_dependency "rake", "~> 11.0"
   s.add_dependency "activesupport", "~> 4.0"
