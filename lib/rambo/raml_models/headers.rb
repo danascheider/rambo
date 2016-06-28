@@ -14,8 +14,12 @@ module Rambo
       def pretty
         beginning, ending = "{\n", "}"
 
-        contents = headers.map {|key, value|
-          "\t\"#{key}\" => \"#{value}\"\n"
+        contents = headers.to_a.each_with_index.map {|pair|
+          if headers.to_a.index(pair) == headers.length - 1
+            "\t\"#{pair.first}\" => \"#{pair.last}\"\n"
+          else
+            "\t\"#{pair.first}\" => \"#{pair.last}\",\n"
+          end
         }
 
         "#{beginning}#{contents.join}#{ending}"

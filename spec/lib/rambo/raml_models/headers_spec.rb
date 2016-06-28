@@ -18,7 +18,7 @@ RSpec.describe Rambo::RamlModels::Headers do
       let(:raml_file) { File.join(SPEC_DIR_ROOT, "support/multiple_headers.raml") }
 
       let(:pretty) do
-        "{\n\t\"Content-Type\" => \"application/json\"\n\t\"Accept\" => \"application/json\"\n}"
+        "{\n\t\"Content-Type\" => \"application/json\",\n\t\"Accept\" => \"application/json\"\n}"
       end
 
       it "formats the header hash" do
