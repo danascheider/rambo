@@ -17,7 +17,7 @@ module Rambo
       alias_method :to_s, :uri_partial
 
       def http_methods
-        @http_methods ||= schema.methods.map {|method| Rambo::RamlModels::Method.new(method) }
+        @http_methods ||= schema.http_methods.map {|method| Rambo::RamlModels::Method.new(method, headers) }
       end
     end
   end

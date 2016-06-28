@@ -1,7 +1,7 @@
 RSpec.describe Rambo::RamlModels::Method do
   let(:raml_file) { File.join(SPEC_DIR_ROOT, "support/raml_with_media_type.raml") }
   let(:raml)      { Raml::Parser.parse_file(raml_file) }
-  let(:method)    { raml.resources.first.methods.first }
+  let(:method)    { raml.resources.first.http_methods.first }
   let(:headers)   { Rambo::RamlModels::Headers.new({ "Accept" => "application/json" }) }
 
   subject { described_class.new(method, headers) }
