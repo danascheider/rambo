@@ -1,9 +1,10 @@
 RSpec.describe Rambo::RamlModels::Method do
-  let(:raml_file) { File.join(SPEC_DIR_ROOT, "support/foo.raml") }
-  let(:raml) { Raml::Parser.parse_file(raml_file) }
-  let(:method) { raml.resources.first.methods.first }
+  let(:raml_file) { File.join(SPEC_DIR_ROOT, "support/raml_with_media_type.raml") }
+  let(:raml)      { Raml::Parser.parse_file(raml_file) }
+  let(:method)    { raml.resources.first.methods.first }
+  let(:headers)   { Rambo::RamlModels::Headers.new({ "Accept" => "application/json" }) }
 
-  subject { described_class.new(method) }
+  subject { described_class.new(method, headers) }
 
   describe "#to_s" do
     it "returns the method name" do
@@ -18,6 +19,8 @@ RSpec.describe Rambo::RamlModels::Method do
   end
 
   describe "#request_body" do
+    let(:raml_file) { File.join(SPEC_DIR_ROOT, "support/post_with_request_headers.raml") }
+
     it "returns a request body" do
       expect(subject.request_body).to be_a Rambo::RamlModels::Body
     end

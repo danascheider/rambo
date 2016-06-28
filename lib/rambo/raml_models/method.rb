@@ -3,8 +3,9 @@ module Rambo
     class Method
       attr_reader :schema
 
-      def initialize(raml_method)
-        @schema = raml_method
+      def initialize(raml_method, headers=Headers.new({}))
+        @schema  = raml_method
+        @headers = headers
       end
 
       def method
@@ -20,7 +21,7 @@ module Rambo
       end
 
       def headers
-        @headers ||= Rambo::RamlModels::Headers.new(schema.headers) if schema.headers
+        @headers.add(schema.headers) if schema.headers
       end
 
       def responses
