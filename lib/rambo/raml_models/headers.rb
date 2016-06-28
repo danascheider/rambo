@@ -8,7 +8,7 @@ module Rambo
       end
 
       def add(hash)
-        @headers.merge!(hash)
+        headers.merge!(hash)
         self
       end
 
