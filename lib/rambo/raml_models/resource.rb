@@ -4,8 +4,9 @@ module Rambo
 
       attr_reader :schema
 
-      def initialize(raml_resource)
-        @schema = raml_resource
+      def initialize(raml_resource, headers={})
+        @schema  = raml_resource
+        @headers = Rambo::RamlModels::Headers.new(headers)
       end
 
       def uri_partial
