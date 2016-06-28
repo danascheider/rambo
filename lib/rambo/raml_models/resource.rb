@@ -2,7 +2,8 @@ module Rambo
   module RamlModels
     class Resource
 
-      attr_reader :schema
+      attr_reader :schema, :headers
+      private :headers
 
       def initialize(raml_resource, headers={})
         @schema  = raml_resource
