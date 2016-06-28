@@ -22,22 +22,8 @@ RSpec.describe Rambo::RamlModels::Api do
   end
 
   describe "#security_schemes" do
-    let(:expected) do
-      {
-        "auth_header" => {
-          "describedBy" => {
-            "headers" => {
-              "Api-Token" => {
-                "type" => "string"
-              }
-            }
-          }
-        }
-      }
-    end
-
     it "returns the security schemes" do
-      expect(subject.security_schemes).to eql(expected)
+      expect(subject.security_schemes.all? {|scheme| scheme.is_a?(Rambo::RamlModels::SecurityScheme) }).to be true
     end
   end
 end
