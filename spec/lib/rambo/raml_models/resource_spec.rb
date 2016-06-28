@@ -8,7 +8,6 @@ RSpec.describe Rambo::RamlModels::Resource do
 
   describe "#to_s" do
     it "returns the URI partial" do
-      puts raml.resources.first.class.instance_methods.sort - Object.instance_methods
       expect(subject.to_s).to eql resource.uri_partial
     end
   end
