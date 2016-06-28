@@ -37,4 +37,10 @@ RSpec.describe Rambo::RamlModels::Headers do
       expect(subject.add("Accept" => "application/json")).to be subject
     end
   end
+
+  describe "#merge!" do
+    it "combines two sets of headers" do
+      expect(subject.merge!(described_class.new({"Accept" => "application/json"}))).to be_a(described_class)
+    end
+  end
 end

@@ -12,6 +12,10 @@ module Rambo
         self
       end
 
+      def merge!(other)
+        add(other.headers)
+      end
+
       def pretty
         beginning, ending = "{\n", "}"
 
