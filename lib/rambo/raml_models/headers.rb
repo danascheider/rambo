@@ -7,6 +7,10 @@ module Rambo
         @headers = headers
       end
 
+      def add(hash)
+        @headers.merge!(hash)
+      end
+
       def pretty
         beginning, ending = "{\n", "}"
 

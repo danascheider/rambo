@@ -26,4 +26,11 @@ RSpec.describe Rambo::RamlModels::Headers do
       end
     end
   end
+
+  describe "#add" do
+    it "adds an additional header" do
+      subject.add("Accept" => "application/json")
+      expect(subject.headers).to eql({ "Content-Type" => "application/json", "Accept" => "application/json" })
+    end
+  end
 end
