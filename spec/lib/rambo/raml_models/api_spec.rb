@@ -23,11 +23,12 @@ RSpec.describe Rambo::RamlModels::Api do
 
   describe "#security_schemes" do
     let(:expected) do
-      { "auth_header" => {
-        "describedBy" => {
-          "headers" => {
-            "Api-Token" => {
-              "type" => "string"
+      {
+        "auth_header" => {
+          "describedBy" => {
+            "headers" => {
+              "Api-Token" => {
+                "type" => "string"
               }
             }
           }
