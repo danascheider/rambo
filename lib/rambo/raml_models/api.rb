@@ -1,10 +1,10 @@
 module Rambo
   module RamlModels
     class Api
-      attr_reader :schema
+      attr_reader :schema, :options
 
-      def initialize(parsed_raml)
-        @schema = parsed_raml
+      def initialize(parsed_raml, options={})
+        @schema, @options = parsed_raml, options
       end
 
       def resources
@@ -16,7 +16,7 @@ module Rambo
       end
 
       def security_schemes
-        @security_schemes = schema.security_schemes
+        @security_schemes ||= schema.security_schemes.map {|scheme| Rambo::RamlModels::SecurityScheme.new(scheme, options) }
       end
 
       def headers
