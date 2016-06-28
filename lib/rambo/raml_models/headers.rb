@@ -17,7 +17,7 @@ module Rambo
 
         contents = headers.to_a.each_with_index.map {|pair|
           if headers.to_a.index(pair) == headers.length - 1
-            "\t\"#{pair.first}\" => \"#{pair.last}\"\n"
+            "\t\"#{pair.first}\" => \"#{pair.last}\"\n" # No comma after last item
           else
             "\t\"#{pair.first}\" => \"#{pair.last}\",\n"
           end
