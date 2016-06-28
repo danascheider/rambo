@@ -9,6 +9,7 @@ module Rambo
 
       def add(hash)
         @headers.merge!(hash)
+        self
       end
 
       def pretty

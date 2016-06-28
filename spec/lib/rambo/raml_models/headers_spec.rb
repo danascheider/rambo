@@ -32,5 +32,9 @@ RSpec.describe Rambo::RamlModels::Headers do
       subject.add("Accept" => "application/json")
       expect(subject.headers).to eql({ "Content-Type" => "application/json", "Accept" => "application/json" })
     end
+
+    it "returns self" do
+      expect(subject.add("Accept" => "application/json")).to be subject
+    end
   end
 end
