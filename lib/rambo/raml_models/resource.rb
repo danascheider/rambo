@@ -3,7 +3,7 @@ module Rambo
     class Resource
 
       attr_reader :schema, :headers
-      private :headers
+      private :headers, :schema
 
       def initialize(raml_resource, headers={})
         @schema  = raml_resource
