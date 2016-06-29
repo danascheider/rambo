@@ -14,7 +14,7 @@ gem install rambo_ruby
 You can also add it to your project's Gemfile:
 ```ruby
 group :development, :test do
-  gem 'rambo_ruby', '~> 0.2.3'
+  gem 'rambo_ruby', '~> 0.3.0'
 end
 ```
 There are three options for generating tests from Rambo: The command line tool, the rake task, and the Ruby API. In all cases, Rambo will look for a `.rambo.yml` file in the root directory of your project for configuration options. Options may also be passed in through the command line as arguments or the Ruby API as a hash. There is currently no option to pass arguments to the Rake task, but Rambo comes pre-loaded with sensible defaults, and the `.rambo.yml` file is always an option.
@@ -38,6 +38,12 @@ Replace `foobar.raml` with the path of the actual RAML file from which you want 
 
 #### Options
 By default, Rambo assumes you are testing a Rails app and generates tests using the Rails Rack::Test syntax. If you are testing a non-Rails Rack app, you can use the `--no-rails` switch to use the non-Rails syntax. Rambo does not currently support non-Rack-based frameworks.
+
+If your app uses an API token header, you can also pass in the token to be used as an option using the `-T` or `--token` flag:
+```
+$ rambo foobar.raml -T sometoken
+```
+Rambo will automatically use this value for any header whose name matches "token" or "key" (not case-sensitive).
 
 ### The Rake Task
 After adding `rambo_ruby` to your Gemfile or gemspec, you will need to add the following to your Rakefile:
@@ -67,11 +73,14 @@ A sample `.rambo.yml` file could look like this:
 ```yaml
 raml: docs/contracts/foobar.raml
 rails: false
+token: foobarbaz
 ```
-The two possible keys are:
+The three possible keys are:
   - `raml` - specifies the RAML file to use to generate the tests. The default, relative
     to the root of your project directory, is `doc/raml/foobar.raml`, where `foobar.raml` is the first RAML file found in the `doc/raml` directory.
   - `rails` - specifies whether your app is a Rails app. The default value is `true`.
+  - `token` - the API key or token to be included in the security headers. This value will be
+    used for any header whose name matches either "token" or "key" (not case-sensitive).
 
 If a `.rambo.yml` file is present and additional options are passed in, the option values that are passed in will override those in the `.rambo.yml` file.
 
