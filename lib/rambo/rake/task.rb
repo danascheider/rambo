@@ -1,4 +1,6 @@
 lib = File.expand_path("../../..", __FILE__)
+root = File.expand_path("../../..")
+
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
 require "rake"

@@ -17,7 +17,7 @@ rails: false
     context "in all cases" do
       it "generates documents" do
         expect(Rambo::DocumentGenerator).to receive(:generate!).with(valid_file, default_options)
-        Rambo.generate_contract_tests!(valid_file, default_options)
+        Rambo.generate_contract_tests!(file: valid_file, options: default_options)
       end
     end
 

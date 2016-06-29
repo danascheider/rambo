@@ -16,7 +16,7 @@ module Rambo
       print_logo
 
       begin
-        Rambo.generate_contract_tests!(file, options)
+        Rambo.generate_contract_tests!(file: file, options: options)
 
         stdout.puts("Generating contract tests...")
         sleep 0.4
