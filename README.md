@@ -93,9 +93,9 @@ In the present version, Rambo only generates tests from a single RAML file. If y
 As noted above, Rambo currently supports only Rack-based apps. Since Rails is the most popular Ruby framework, it assumes your app is a Rails app unless specified otherwise. Since Rack::Test syntax differs when testing Rails and non-Rails apps, you will need to tell Rambo if your app is not a Rails app using the `--no-rails` switch on the command line, the `{ rails: false }` option hash for the Ruby API, or specifying `rails: false` in your `.rambo.yml` file.
 
 ## About the Project
-I started Rambo in March of 2016 as part of my work at [Renew Financial](http://renewfinancial.com). RF has since put a second full-time engineer on the project. For this reason, our primary focus is on adding the features and functionality that are most important for testing RF's back-end services. One of these services, Repaymnt Estimatr, forms the basis for the Rambo MVP.
+I started Rambo in March of 2016 as part of my work at [Renew Financial](http://renewfinancial.com). For this reason, our primary focus has been on adding the features and functionality that are most important for testing RF's back-end services. Since I am no longer employed by Renew Financial, I now have more latitude to do with the project what I want, but also less time to do it.
 
-Although the Repaymnt Estimatr repo is private, the key technical considerations here are that it is built with Rails 4 and documented using RAML 1.0. Rambo, therefore, considers these the default, and support for other frameworks and for RAML 0.8 is incidental and lower priority. We would be delighted to merge pull requests adding such support, as long as they don't adversely affect the features we need most.
+Rambo, therefore, considers RAML 1.0 and Rails 4 the default, and support for other frameworks and for RAML 0.8 is currently lower priority. We would be delighted to merge pull requests adding such support, as long as they don't adversely affect the features we need most.
 
 Although development of Rambo is largely supported by Renew Financial, we have every intention of keeping the tool open source and to continue expanding and updating its functionality.
 
