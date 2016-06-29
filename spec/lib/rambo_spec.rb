@@ -11,7 +11,7 @@ rails: false
     let(:default_options) { { rails: true } }
 
     before(:each) do
-      allow(Dir).to receive(:[]).and_return([valid_file])
+      allow(Dir).to receive(:foreach).and_return("/Users/dscheider/rambo/doc/raml/#{valid_file}")
     end
 
     context "in all cases" do
@@ -49,7 +49,7 @@ rails: false
           allow(Rambo).to receive(:yaml_options).and_return({ rails: false })
           expect(Rambo::DocumentGenerator)
             .to receive(:generate!)
-            .with(File.expand_path("doc/raml/foobar.raml"), { rails: false })
+            .with("/Users/dscheider/rambo/doc/raml/#{valid_file}", { rails: false })
           Rambo.generate_contract_tests!
         end
       end
@@ -59,7 +59,7 @@ rails: false
           allow(Rambo).to receive(:yaml_options).and_return({ rails: true })
           expect(Rambo::DocumentGenerator)
             .to receive(:generate!)
-            .with(File.expand_path("doc/raml/foobar.raml"), { rails: true })
+            .with("/Users/dscheider/rambo/doc/raml/#{valid_file}", { rails: true })
           Rambo.generate_contract_tests!
         end
       end
@@ -69,7 +69,7 @@ rails: false
           allow(Rambo).to receive(:yaml_options).and_return({})
           expect(Rambo::DocumentGenerator)
             .to receive(:generate!)
-            .with(File.expand_path("doc/raml/foobar.raml"), { rails: true })
+            .with(File.expand_path("/Users/dscheider/rambo/doc/raml/#{valid_file}"), { rails: true })
           Rambo.generate_contract_tests!
         end
       end
@@ -79,7 +79,7 @@ rails: false
       it "uses default options" do
         expect(Rambo::DocumentGenerator)
           .to receive(:generate!)
-          .with(File.expand_path("doc/raml/#{valid_file}"), default_options)
+          .with(File.expand_path("/Users/dscheider/rambo/doc/raml/#{valid_file}"), default_options)
 
         Rambo.generate_contract_tests!
       end
