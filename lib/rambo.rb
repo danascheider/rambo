@@ -1,3 +1,4 @@
+require "fileutils"
 require "active_support/core_ext/hash"
 
 Dir["#{File.dirname(__FILE__)}/rambo/**/*.rb"].each {|file| require file }
@@ -6,8 +7,8 @@ module Rambo
   class << self
     attr_reader :options, :file
 
-    def generate_contract_tests!(file = nil, opts = {})
-      @options         = yaml_options.merge(opts)
+    def generate_contract_tests!(file: nil, options: {})
+      @options         = yaml_options.merge(options)
       @options[:rails] = true unless @options.fetch(:rails, nil) == false
       @file            = file || @options.delete(:raml) || raml_file
 
@@ -17,13 +18,13 @@ module Rambo
     private
 
     def yaml_options
-      opts = YAML.load(File.read(File.expand_path(".rambo.yml"))).symbolize_keys
+      opts = YAML.load(File.read(File.join(FileUtils.pwd, ".rambo.yml"))).symbolize_keys
 
       if opts && opts.fetch(:raml, nil)
-        opts[:raml] = File.expand_path(opts.fetch(:raml))
+        opts[:raml] = File.join(FileUtils.pwd, opts.fetch(:raml))
       end
 
-      opts
+      opts || {}
     rescue
       { rails: true }
     end
@@ -34,8 +35,8 @@ module Rambo
     def raml_file
       return options.fetch(:raml) if options && options.fetch(:raml, nil)
 
-      raml_path = File.expand_path("doc/raml")
-      Dir[raml_path].each {|file| return File.join(raml_path, file) if file.match(/\.raml$/) }
+      raml_path = File.join(FileUtils.pwd, "doc", "raml")
+      Dir.foreach(raml_path) {|file| return File.join(raml_path, file) if file.match(/\.raml$/) }
     end
   end
 end

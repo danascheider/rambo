@@ -3,6 +3,13 @@
 title: e-BookMobile API
 baseUri: http://api.e-bookmobile.com/{version}
 version: v1
+securitySchemes:
+  auth_header:
+    describedBy:
+      headers:
+        Api-Token:
+          type: string
+securedBy: [auth_header]
 
 /authors:
   get:

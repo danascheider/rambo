@@ -1,8 +1,8 @@
 RSpec.describe Rambo::RamlModels::Api do
-  let(:raml_file) { File.join(SPEC_DIR_ROOT, "support/multiple_resources.raml") }
+  let(:raml_file) { File.join(SPEC_DIR_ROOT, "support/secured_api.raml") }
   let(:raml)      { Raml::Parser.parse_file(raml_file) }
 
-  subject { described_class.new(raml) }
+  subject { described_class.new(raml, { :token => "foobarbaz" }) }
 
   describe "#resources" do
     it "has the right number of resources" do
@@ -18,6 +18,18 @@ RSpec.describe Rambo::RamlModels::Api do
   describe "#title" do
     it "returns the API title from the RAML doc" do
       expect(subject.title).to eql raml.title
+    end
+  end
+
+  describe "#security_schemes" do
+    it "returns the security schemes" do
+      expect(subject.security_schemes.all? {|scheme| scheme.is_a?(Rambo::RamlModels::SecurityScheme) }).to be true
+    end
+  end
+
+  describe "headers" do
+    it "incorporates API token headers" do
+      expect(subject.headers.headers).to include({ "Api-Token" => "foobarbaz" })
     end
   end
 end

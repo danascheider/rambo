@@ -12,7 +12,7 @@ module Rambo
       TEMPLATE_PATH = File.expand_path('../templates/spec_file_template.erb', __FILE__)
 
       def initialize(raml, options={})
-        @raml     = Rambo::RamlModels::Api.new(raml)
+        @raml     = Rambo::RamlModels::Api.new(raml, options)
         @options  = options
         @examples = Examples.new(@raml, @options)
       end

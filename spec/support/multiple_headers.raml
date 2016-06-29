@@ -1,0 +1,46 @@
+#%RAML 1.0
+---
+title: e-BookMobile API
+baseUri: http://api.e-bookmobile.com/{version}
+version: v1
+
+/authors:
+  post:
+    description: Retrieve a list of authors
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    body:
+      application/json:
+        schema: |
+          {
+            "$schema": "http://json-schema.org/draft-04/schema#",
+            "description": "schema to create an author",
+            "type": "object",
+            "required": [ "first_name", "last_name" ],
+            "properties": {
+              "first_name": { "type": "string" },
+              "last_name": { "type": "string" },
+              "year_of_birth": { "type": "integer" }
+            }
+          }
+    responses:
+      200:
+        body:
+          application/json:
+            schema: |
+              {
+                "$schema": "http://json-schema.org/draft-04/schema#",
+                "description": "schema for a list of authors",
+                "type": "object",
+                "properties": {
+                  "author": {
+                    "type": "object",
+                    "properties": {
+                      "id": { "type": "integer" },
+                      "first_name": { "type": "string" },
+                      "last_name": { "type": "string" }
+                    }
+                  }
+                }
+              }

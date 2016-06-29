@@ -18,6 +18,9 @@ OptionParser.new do |opts|
   opts.on("--no-rails", "Generate tests for a non-Rails API") do |v|
     options[:rails] = false
   end
+  opts.on("--token=TOKEN", "-T=TOKEN", "Specify an API token") do |v|
+    options[:token] = v
+  end
 end.parse!
 
 Rambo::CLI.new(filename, options, STDOUT).run!

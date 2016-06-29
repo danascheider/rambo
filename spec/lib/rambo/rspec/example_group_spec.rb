@@ -17,7 +17,7 @@ RSpec.describe Rambo::RSpec::ExampleGroup do
     it "interpolates the correct values" do
       aggregate_failures do
         expect(subject.render).to include("let(:output_file) do")
-        expect(subject.render).to include("describe \"#{raml.resources.first.methods.first.method.upcase}\" do")
+        expect(subject.render).to include("describe \"#{raml.resources.first.http_methods.first.method.upcase}\" do")
         expect(subject.render).to include('describe "GET" do')
       end
     end

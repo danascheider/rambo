@@ -1,8 +1,9 @@
-#%RAML 1.0
+#%RAML 0.8
 ---
 title: e-BookMobile API
 baseUri: http://api.e-bookmobile.com/{version}
 version: v1
+mediaType: application/json
 
 /authors:
   get:
@@ -23,32 +24,6 @@ version: v1
                     "id":2,
                     "first_name": "Charles",
                     "last_name": "Dickens"
-                  }
-                ],
-                "success": true,
-                "status": 200
-              }
-/genres:
-  get:
-    description: Retrieve a list of available genres
-    responses:
-      200:
-        body:
-          application/json:
-            example: |
-              {
-                "genres": [
-                  {
-                    "id": 1,
-                    "description": "Science fiction"
-                  },
-                  {
-                    "id": 2,
-                    "description": "Young adult"
-                  },
-                  {
-                    "id": 3,
-                    "description": "Romance"
                   }
                 ],
                 "success": true,

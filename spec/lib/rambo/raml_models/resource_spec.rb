@@ -1,9 +1,10 @@
 RSpec.describe Rambo::RamlModels::Resource do
-  let(:raml_file) { File.join(SPEC_DIR_ROOT, "support/foobar.raml") }
-  let(:raml) { Raml::Parser.parse_file(raml_file) }
-  let(:resource) { raml.resources.first }
+  let(:raml_file) { File.join(SPEC_DIR_ROOT, "support/post_with_request_headers.raml") }
+  let(:raml)      { Raml::Parser.parse_file(raml_file) }
+  let(:resource)  { raml.resources.first }
+  let(:headers)   { Rambo::RamlModels::Headers.new(raml.resources.first.http_methods.first.headers) }
 
-  subject { described_class.new(resource) }
+  subject { described_class.new(resource, headers) }
 
   describe "#to_s" do
     it "returns the URI partial" do

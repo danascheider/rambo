@@ -7,14 +7,24 @@ module Rambo
         @headers = headers
       end
 
-      def pretty
-        beginning, ending = "{\n", "}"
+      def add(hash)
+        headers.merge!(hash)
+        self
+      end
 
-        contents = headers.map {|key, value|
-          "\t\"#{key}\" => \"#{value}\"\n"
+      def merge!(other)
+        add(other.headers)
+      end
+
+      def pretty
+        beginning = "{\n"
+        ending    = "}"
+
+        contents = headers.to_a.map {|pair|
+          "\t\"#{pair.first}\" => \"#{pair.last}\"\n"
         }
 
-        "#{beginning}#{contents.join}#{ending}"
+        "#{beginning}#{contents.join("")}#{ending}"
       end
     end
   end

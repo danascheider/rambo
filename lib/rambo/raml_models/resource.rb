@@ -2,10 +2,12 @@ module Rambo
   module RamlModels
     class Resource
 
-      attr_reader :schema
+      attr_reader :schema, :headers
+      private :headers, :schema
 
-      def initialize(raml_resource)
-        @schema = raml_resource
+      def initialize(raml_resource, headers=Rambo::RamlModels::Headers.new({}))
+        @schema  = raml_resource
+        @headers = headers
       end
 
       def uri_partial
@@ -15,7 +17,7 @@ module Rambo
       alias_method :to_s, :uri_partial
 
       def http_methods
-        @http_methods ||= schema.methods.map {|method| Rambo::RamlModels::Method.new(method) }
+        @http_methods ||= schema.http_methods.map {|method| Rambo::RamlModels::Method.new(method, headers) }
       end
     end
   end

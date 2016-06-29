@@ -1,7 +1,7 @@
 RSpec.describe Rambo::RamlModels::Response do
   let(:raml_file) { File.join(SPEC_DIR_ROOT, "support/foobar.raml") }
   let(:raml) { Raml::Parser.parse_file(raml_file) }
-  let(:response) { raml.resources.first.methods.first.responses.first }
+  let(:response) { raml.resources.first.http_methods.first.responses.first }
 
   subject { described_class.new(response) }
 
