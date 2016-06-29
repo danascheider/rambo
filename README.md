@@ -82,7 +82,7 @@ The three possible keys are:
   - `token` - the API key or token to be included in the security headers. This value will be
     used for any header whose name matches either "token" or "key" (not case-sensitive).
 
-If a `.rambo.yml` file is present and additional options are passed in, the option values that are passed in will override those in the `.rambo.yml` file.
+If a `.rambo.yml` file is present and additional options are passed in through the command line or Ruby API, the option values that are passed in will override those in the `.rambo.yml` file.
 
 ## Default Behavior
 In order to provide the best user experience to a majority of users, Rambo comes with some sensible defaults that are easily overridden in an optional `.rambo.yml` file, or by using command line flags or a Ruby option hash (see above).
