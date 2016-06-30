@@ -17,14 +17,7 @@ module Rambo
       end
 
       def pretty
-        beginning = "{\n"
-        ending    = "}"
-
-        contents = headers.to_a.map {|pair|
-          "\t\"#{pair.first}\" => \"#{pair.last}\"\n"
-        }
-
-        "#{beginning}#{contents.join("")}#{ending}"
+        JSON.pretty_generate(headers).gsub("\":", "\" =>")
       end
     end
   end
