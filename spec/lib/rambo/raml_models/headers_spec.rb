@@ -5,7 +5,7 @@ RSpec.describe Rambo::RamlModels::Headers do
 
   describe "#pretty" do
     let(:pretty) do
-      "{\n\t\"Content-Type\" => \"application/json\"\n}"
+      %Q[{\n  "Content-Type" => "application/json"\n}]
     end
 
     it "makes it pretty" do
@@ -16,11 +16,10 @@ RSpec.describe Rambo::RamlModels::Headers do
       let(:headers) { { "Content-Type" => "application/json", "Accept" => "application/json" } }
 
       let(:pretty) do
-        "{\n\t\"Content-Type\" => \"application/json\",\n\t\"Accept\" => \"application/json\"\n}"
+        %Q[{\n  "Content-Type" => "application/json",\n  "Accept" => "application/json"\n}]
       end
 
       it "formats the header hash" do
-        pending "Test fails when functionality works as expected...confusing"
         expect(subject.pretty).to eql pretty
       end
     end
