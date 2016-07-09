@@ -18,7 +18,12 @@ Gem::Specification.new do |s|
   s.add_dependency "json_test_data", "~> 1.1", ">= 1.1.3"
   s.add_dependency "json-schema", "~> 2.6"
   s.add_dependency "rake", "~> 11.0"
-  s.add_dependency "activesupport", ">= 4.0"
+
+  if RUBY_VERSION < "2.2.2"
+    s.add_dependency "activesupport", "~> 4.0"
+  else
+    s.add_dependency "activesupport", ">= 4.0"
+  end
 
   s.add_development_dependency "cucumber", "~> 2.1"
   s.add_development_dependency "json", "~> 1.7"
