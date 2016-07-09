@@ -1,3 +1,15 @@
-require "spec_helper"
-
+require "<%= @options.fetch(:rails, nil) ? "rails_helper" : "spec_helper" %>"
+require "rack/test"
 require_relative "./support/matchers/rambo_matchers"
+
+<% if options.fetch(:rails, nil) %>module ApiHelper
+  include Rack::Test::Methods
+
+  def app
+    Rails.application
+  end
+end
+
+RSpec.configure do |config|
+  config.include ApiHelper, type: :request
+end<% end %>

@@ -1,7 +1,8 @@
 RSpec.describe Rambo::DocumentGenerator do
   let(:valid_file) { File.join(SPEC_DIR_ROOT, "support/foobar.raml") }
-  let(:options) { { rails: true } }
-  let(:generator) { Rambo::DocumentGenerator.new(valid_file, options) }
+  let(:options)    { { rails: true } }
+  
+  subject          { described_class.new(valid_file, options) }
 
   before(:each) do
     allow_any_instance_of(Rambo::DocumentGenerator).to receive(:extract_raml)
@@ -51,23 +52,25 @@ RSpec.describe Rambo::DocumentGenerator do
   describe "#generate_spec_dir!" do
     it "generates the spec/contract directory" do
       expect(FileUtils).to receive(:mkdir_p).with("spec/contract/output")
-      generator.generate_spec_dir!
+      subject.generate_spec_dir!
     end
   end
 
   describe "#generate_rambo_helper!" do
+
     it "generates the rambo_helper file" do
       aggregate_failures do
         expect_any_instance_of(Rambo::RSpec::HelperFile)
           .to receive(:initialize)
-          .with({
+          .with(hash_including(
             :template_path => File.join(RAMBO_ROOT, "rambo/rspec/templates/rambo_helper_file_template.erb"),
-            :file_path     => "spec/rambo_helper.rb"
-          })
+            :file_path     => "spec/rambo_helper.rb",
+            :options       => { rails: true }
+          ))
         expect_any_instance_of(Rambo::RSpec::HelperFile).to receive(:generate)
       end
 
-      generator.generate_rambo_helper!
+      subject.generate_rambo_helper!
     end
   end
 
@@ -79,14 +82,14 @@ RSpec.describe Rambo::DocumentGenerator do
     it "generates foobar_spec.rb" do
       allow_any_instance_of(Rambo::RSpec::SpecFile).to receive(:render).and_return("foo")
       expect(File).to receive(:write).with("spec/contract/foobar_spec.rb", "foo")
-      generator.generate_spec_file!
+      subject.generate_spec_file!
     end
   end
 
   describe "#generate_matcher_dir!" do
     it "creates a spec/support/matchers directory" do
       expect(FileUtils).to receive(:mkdir_p).with("spec/support/matchers")
-      generator.generate_matcher_dir!
+      subject.generate_matcher_dir!
     end
   end
 
@@ -95,21 +98,21 @@ RSpec.describe Rambo::DocumentGenerator do
       aggregate_failures do
         expect_any_instance_of(Rambo::RSpec::HelperFile)
           .to receive(:initialize)
-          .with(
-            template_path: File.join(RAMBO_ROOT, "rambo/rspec/templates/matcher_file_template.erb"),
-            file_path: "spec/support/matchers/rambo_matchers.rb"
-          )
+          .with(hash_including(
+            :template_path => File.join(RAMBO_ROOT, "rambo/rspec/templates/matcher_file_template.erb"),
+            :file_path     => "spec/support/matchers/rambo_matchers.rb"
+          ))
         expect_any_instance_of(Rambo::RSpec::HelperFile).to receive(:generate)
       end
 
-      generator.generate_matchers!
+      subject.generate_matchers!
     end
   end
 
   describe "#generate_examples!" do
     it "creates the directory" do
       expect(FileUtils).to receive(:mkdir_p).with("spec/support/examples")
-      generator.generate_examples!
+      subject.generate_examples!
     end
   end
 end

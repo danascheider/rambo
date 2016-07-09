@@ -4,7 +4,7 @@
 
 Rambo is a gem that generates API contract tests from API docs in [RAML](http://raml.org/). Rambo is being developed to test APIs complying with standard REST practices. Mileage may vary with other architectures, but I'm happy to consider pull requests.
 
-#### The current version of Rambo is 0.2.3. It is highly unstable and has a limited feature set. Use at your own risk and please file issue reports if they come up!
+#### The current version of Rambo is 0.3.1. It is highly unstable and has a limited feature set. Use at your own risk and please file issue reports if they come up!
 
 ## Usage
 You can install Rambo using:
@@ -14,7 +14,7 @@ gem install rambo_ruby
 You can also add it to your project's Gemfile:
 ```ruby
 group :development, :test do
-  gem 'rambo_ruby', '~> 0.3.0'
+  gem 'rambo_ruby', '~> 0.3.1'
 end
 ```
 There are three options for generating tests from Rambo: The command line tool, the rake task, and the Ruby API. In all cases, Rambo will look for a `.rambo.yml` file in the root directory of your project for configuration options. Options may also be passed in through the command line as arguments or the Ruby API as a hash. There is currently no option to pass arguments to the Rake task, but Rambo comes pre-loaded with sensible defaults, and the `.rambo.yml` file is always an option.
@@ -93,7 +93,7 @@ In the present version, Rambo only generates tests from a single RAML file. If y
 As noted above, Rambo currently supports only Rack-based apps. Since Rails is the most popular Ruby framework, it assumes your app is a Rails app unless specified otherwise. Since Rack::Test syntax differs when testing Rails and non-Rails apps, you will need to tell Rambo if your app is not a Rails app using the `--no-rails` switch on the command line, the `{ rails: false }` option hash for the Ruby API, or specifying `rails: false` in your `.rambo.yml` file.
 
 ## About the Project
-I started Rambo in March of 2016 as part of my work at [Renew Financial](http://renewfinancial.com). For this reason, our primary focus has been on adding the features and functionality that are most important for testing RF's back-end services. Since I am no longer employed by Renew Financial, I now have more latitude to do with the project what I want, but also less time to do it.
+I started Rambo in March of 2016 as part of my work at [Renew Financial](http://renewfinancial.com). For this reason, our primary focus has been on adding the features and functionality that are most important for testing RF's back-end services. Since my contract with Renew Financial has ended, I now have more latitude to do with the project what I want, but also less time to do it.
 
 Rambo, therefore, considers RAML 1.0 and Rails 4 the default, and support for other frameworks and for RAML 0.8 is currently lower priority. We would be delighted to merge pull requests adding such support, as long as they don't adversely affect the features we need most.
 
