@@ -15,7 +15,7 @@ module Rambo
         generator.generate_matcher_dir!
         generator.generate_examples!
         generator.generate_spec_file!
-        generator.generate_rambo_helper!(options)
+        generator.generate_rambo_helper!
         generator.generate_matchers!
       end
     end
