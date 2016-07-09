@@ -1,18 +1,33 @@
+require "erb"
+require "raml"
+require "rambo/raml_models"
+require "rambo/rspec/examples"
+
 module Rambo
   module RSpec
     class HelperFile
-      def initialize(template_path:, file_path:)
+      attr_reader :options
+
+      def initialize(template_path:, file_path:, raml: nil, options: nil)
         @template_path = template_path
         @file_path     = file_path
+        @options       = options || { rails: true }
+        @raml          = raml ? Rambo::RamlModels::Api.new(raml) : nil
       end
 
       def generate
-        write_to_file(template) unless file_already_exists?
+        write_to_file(render) unless file_already_exists?
+      end
+
+      def render
+        b = binding
+        ERB.new(template, 0, "-", "@result").result(raml.instance_eval { b })
+        @result
       end
 
       private
 
-      attr_reader :template_path, :file_path
+      attr_reader :template_path, :file_path, :raml
 
       def file_already_exists?
         File.exist?(file_path)

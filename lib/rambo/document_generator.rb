@@ -15,7 +15,7 @@ module Rambo
         generator.generate_matcher_dir!
         generator.generate_examples!
         generator.generate_spec_file!
-        generator.generate_rambo_helper!
+        generator.generate_rambo_helper!(options)
         generator.generate_matchers!
       end
     end
@@ -43,7 +43,9 @@ module Rambo
     def generate_rambo_helper!
       Rambo::RSpec::HelperFile.new(
         template_path: File.expand_path("../rspec/templates/rambo_helper_file_template.erb", __FILE__),
-        file_path: "spec/rambo_helper.rb"
+        file_path:     "spec/rambo_helper.rb",
+        raml:          raml,
+        options:       options
       ).generate
     end
 
@@ -54,7 +56,7 @@ module Rambo
     def generate_matchers!
       Rambo::RSpec::HelperFile.new(
         template_path: File.expand_path("../rspec/templates/matcher_file_template.erb", __FILE__),
-        file_path: "spec/support/matchers/rambo_matchers.rb"
+        file_path: "spec/support/matchers/rambo_matchers.rb", raml: nil
       ).generate
     end
   end
