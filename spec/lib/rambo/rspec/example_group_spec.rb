@@ -36,7 +36,7 @@ RSpec.describe Rambo::RSpec::ExampleGroup do
       it "creates a response schema object" do
         aggregate_failures do
           expect(subject.render).to include("let(:response_schema) do")
-          expect(subject.render).to include("expect(response.body).to match_schema response_schema")
+          expect(subject.render).to include("expect(last_response.body).to match_schema response_schema")
         end
       end
     end
@@ -45,7 +45,7 @@ RSpec.describe Rambo::RSpec::ExampleGroup do
       it "creates a response_body object" do
         aggregate_failures do
           expect(subject.render).to include("let(:response_body) do")
-          expect(subject.render).to include("expect(response.body).to eql response_body")
+          expect(subject.render).to include("expect(last_response.body).to eql response_body")
         end
       end
     end
@@ -67,20 +67,6 @@ RSpec.describe Rambo::RSpec::ExampleGroup do
 
       it "adds headers" do
         expect(subject.render).to include("let(:headers) do")
-      end
-    end
-
-    context "Rails app" do
-      it "uses response" do
-        expect(subject.render).to include("expect(response.body)")
-      end
-    end
-
-    context "non-Rails app" do
-      let(:options) { { rails: false } }
-
-      it "uses last_response" do
-        expect(subject.render).to include("expect(last_response.body)")
       end
     end
   end
