@@ -7,7 +7,6 @@
         <%= headers.join(",\n        ") %>
         }
       end<% end %><% if method.request_body %>
-
       let(:request_body) do
         File.read("<%= "spec/support/examples/#{@resource.to_s.gsub("/", "")}_#{method.method}_request_body.json" %>")
       end<% end %><% if has_schema = method.responses.first.bodies.first.schema %>
@@ -22,18 +21,18 @@
       let(:output_file) do
         "<%= "spec/contract/output/#{@resource.to_s.gsub("/", "")}_#{method.method}_response.json" %>"
       end
-      <% resp_method = @options[:rails] ? "response" : "last_response" %>
+
       it "<%= method.description && method.description.downcase || "#{method.method}s the resource" %>" do
         <%= method.method %> route<% if method.request_body %>, request_body<% end %><% if method.headers %>, headers<% end %>
 
-        File.open(output_file, "w+") {|file| file.puts JSON.pretty_generate(JSON.parse(<%= resp_method %>.body)) }
+        File.open(output_file, "w+") {|file| file.puts JSON.pretty_generate(JSON.parse(last_response.body)) }
 
-        expect(<%= resp_method %>.body).to <%= has_schema ? "match_schema response_schema" : "eql response_body" %>
+        expect(last_response.body).to <%= has_schema ? "match_schema response_schema" : "eql response_body" %>
       end
 
       it "returns status <%= method.responses.first.status_code %>" do
         <%= method.method %> route<% if method.request_body %>, request_body<% end %><% if method.headers %>, headers<% end %>
-        expect(<%= resp_method %>.status).to eql <%= method.responses.first.status_code %>
+        expect(last_response.status).to eql <%= method.responses.first.status_code %>
       end
     end<%- end %>
   end
