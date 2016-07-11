@@ -8,7 +8,10 @@
         }
       end<% end %><% if method.request_body %>
       let(:request_body) do
-        File.read("<%= "spec/support/examples/#{@resource.to_s.gsub("/", "")}_#{method.method}_request_body.json" %>")
+        JSON.parse(
+          File.read("<%= "spec/support/examples/#{@resource.to_s.gsub("/", "")}_#{method.method}_request_body.json" %>"),
+          symbolize_names: true
+        )
       end<% end %><% if has_schema = method.responses.first.bodies.first.schema %>
 
       let(:response_schema) do
