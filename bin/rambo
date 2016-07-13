@@ -15,7 +15,7 @@ OptionParser.new do |opts|
   opts.banner = "Usage: rambo [FILE] [OPTIONS]"
 
   options[:framework] = :rails
-  opts.on("--framework", "Choose rails (default), sinatra:classic, sinatra:modular, or grape") do |v|
+  opts.on("--framework=FRAMEWORK", "Choose rails (default), sinatra:classic, sinatra:modular, or grape") do |v|
     options[:framework] = v.to_sym
   end
   opts.on("--token=TOKEN", "-T=TOKEN", "Specify an API token") do |v|

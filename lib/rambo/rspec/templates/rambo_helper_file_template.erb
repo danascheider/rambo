@@ -1,4 +1,4 @@
-require "<%= @options.fetch(:framework, :rails) ? "rails_helper" : "spec_helper" %>"
+require "<%= @options.fetch(:framework, nil).nil? || @options.fetch(:framework) == :rails ? "rails_helper" : "spec_helper" %>"
 require "rack/test"
 require_relative "./support/matchers/rambo_matchers"
 
