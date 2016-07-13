@@ -20,7 +20,8 @@ module Rambo
           :rails             => "Rails.application",
           :"sinatra:classic" => "Sinatra::Application",
           :"sinatra:modular" => "Sinatra::Base.descendants.find {|klass| klass != Sinatra::Application } || Sinatra::Application",
-          :grape             => "Grape::API.descendants.first"
+          :grape             => "Grape::API.descendants.first",
+          :rory              => "Rory.application"
         }
       end
 

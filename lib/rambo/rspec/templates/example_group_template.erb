@@ -1,4 +1,4 @@
-<% rails = @options.fetch(:framework, :rails) == :rails %>  describe "<%= @resource.to_s %>" do
+<% rails, rory = @options.fetch(:framework, :rails) == :rails, @options.fetch(:framework, :rails) == :rory %>  describe "<%= @resource.to_s %>" do
     let(:route) { "<%= @resource.to_s %>" }
     <%- @resource.http_methods.each do |method| %>
     describe "<%= method.method.upcase %>" do
@@ -9,7 +9,7 @@
       end<% end %>
       <% if method.request_body %>
       let(:request_body) do
-        <% if rails %>JSON.parse(
+        <% if rails || rory %>JSON.parse(
           File.read("<%= "spec/support/examples/#{@resource.to_s.gsub("/", "")}_#{method.method}_request_body.json" %>"),
           symbolize_names: true
         )<% else %>File.read("<%= "spec/support/examples/#{@resource.to_s.gsub("/", "")}_#{method.method}_request_body.json" %>")<% end %>
