@@ -8,7 +8,7 @@ module Rambo
 
       def initialize(resource, options={})
         @resource = resource
-        @options  = options || { rails: true }
+        @options  = options || { framework: :rails }
       end
 
       def template
