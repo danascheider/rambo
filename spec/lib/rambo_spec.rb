@@ -64,6 +64,16 @@ framework: rails
         end
       end
 
+      context "framework set to Rory" do 
+        it "sets the framework to Rory" do 
+          allow(Rambo).to receive(:yaml_options).and_return({ framework: :rory })
+          expect(Rambo::DocumentGenerator)
+            .to receive(:generate!)
+            .with("/Users/dscheider/rambo/doc/raml/#{valid_file}", { framework: :rory })
+          Rambo.generate_contract_tests!
+        end
+      end
+
       context "framework set to Grape" do 
         it "sets framework to Grape" do 
           allow(Rambo).to receive(:yaml_options).and_return({ framework: :grape })

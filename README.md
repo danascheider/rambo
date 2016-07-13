@@ -37,7 +37,7 @@ $ rambo foobar.raml
 Replace `foobar.raml` with the path of the actual RAML file from which you want to generate tests.
 
 #### Options
-By default, Rambo assumes you are testing a Rails app and generates tests using syntax that will work for Rails apps. If you are testing a non-Rails app, you can use the `--framework` flag to indicate a `sinatra:classic`, `sinatra:modular`, or `grape` app. If you are using a different framework, please open an issue to let us know which, or submit a PR adding support for the framework you are using.
+By default, Rambo assumes you are testing a Rails app and generates tests using syntax that will work for Rails apps. If you are testing a non-Rails app, you can use the `--framework` flag to indicate a `sinatra:classic`, `sinatra:modular`, `grape`, or `rory` app. If you are using a different framework, please open an issue to let us know which, or submit a PR adding support for the framework you are using.
 
 If your app uses an API token header, you can also pass in the token to be used as an option using the `-T` or `--token` flag:
 ```
@@ -64,7 +64,7 @@ require "rambo"
 
 Rambo.generate_contract_tests!(File.expand_path("doc/foobar.raml"), {})
 ```
-You can pass any options in as a hash. Currently, the available options are `:framework` and `:token`. Valid values for the `:framework` option are `:grape`, `:"sinatra:classic"`, `:"sinatra:modular"`, and `:rails`, with `:rails` being the default. The `:token` option takes an API token as a string.
+You can pass any options in as a hash. Currently, the available options are `:framework` and `:token`. Valid values for the `:framework` option are `:grape`, `:"sinatra:classic"`, `:"sinatra:modular"`, `:rory`, and `:rails`, with `:rails` being the default. The `:token` option takes an API token as a string.
 
 ## The .rambo.yml File
 By default, Rambo will always check for a `.rambo.yml` file in the root directory of your projects and load options from there. If there is no `.rambo.yml` file, default values will be used (see below).
@@ -79,7 +79,7 @@ The three possible keys are:
   - `raml` - specifies the RAML file to use to generate the tests. The default, relative
     to the root of your project directory, is `doc/raml/foobar.raml`, where `foobar.raml` is the first RAML file found in the `doc/raml` directory.
   - `framework` - specifies the framework you are using. The default value is `rails`; other available 
-    frameworks are `sinatra:classic`, `sinatra:modular`, and `grape`.
+    frameworks are `sinatra:classic`, `sinatra:modular`, `grape`, and `rory`.
   - `token` - the API key or token to be included in the security headers. This value will be
     used for any header whose name matches either "token" or "key" (not case-sensitive).
 
@@ -91,7 +91,7 @@ In order to provide the best user experience to a majority of users, Rambo comes
 ### RAML File
 In the present version, Rambo only generates tests from a single RAML file. If you're using the command line tool, the name of this file is passed in as an argument. If you're not using the command line tool and don't specify by another means (Ruby hash, `.rambo.yml` file) which RAML file to use, Rambo will look in `your_project/doc/raml` and use the first RAML file it finds.
 
-As noted above, Rambo currently supports only Rails, Sinatra, and Grape apps. Since Rails is the most popular Ruby framework, it assumes your app is a Rails app unless specified otherwise. Since Rack::Test syntax differs when testing Rails and non-Rails apps, you will need to tell Rambo if your app is not a Rails app using the `--framework` flag on the command line, the `:framework` option for the Ruby API, or specifying `framework: <framework>` in your `.rambo.yml` file.
+As noted above, Rambo currently supports only [Rails](https://github.com/rails/rails), [Sinatra](https://github.com/sinatra/sinatra), [Grape](https://github.com/ruby-grape/grape), and [Rory](https://github.com/screamingmuse/rory) apps. Since Rails is the most popular Ruby framework, it assumes your app is a Rails app unless specified otherwise. Since Rack::Test syntax differs when testing Rails and non-Rails apps, you will need to tell Rambo if your app is not a Rails app using the `--framework` flag on the command line, the `:framework` option for the Ruby API, or specifying `framework: <framework>` in your `.rambo.yml` file. Note that for Sinatra apps, you must choose either `sinatra:classic` or `sinatra:modular`.
 
 ## Using Rambo with Grape or Sinatra
 Rambo is able to generate tests for apps written in Rails, Grape, or Sinatra. However, it has one important limitation when working with non-Rails frameworks. Specifically, Rambo does not support multiple subclasses of `Sinatra::Base`, `Sinatra::Application`, or `Grape::API`. In order to identify the class of your app (which is required to configure Rack::Test), the Rambo-generated test configuration will use the first subclass of one of these classes that it finds. There is currently no option to override this behavior. (If you are building a classic Sinatra app instead of the modular type, `Sinatra::Application` will be used.)
