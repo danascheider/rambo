@@ -26,7 +26,7 @@ Gem::Specification.new do |s|
   end
 
   s.add_development_dependency "cucumber", "~> 2.1"
-  s.add_development_dependency "json", "~> 1.7"
+  s.add_development_dependency "json", ">= 1.7"
   s.add_development_dependency "coveralls", "~> 0.7"
   s.add_development_dependency "aruba", "~> 0.13"
 
