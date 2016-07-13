@@ -8,9 +8,9 @@ module Rambo
     attr_reader :options, :file
 
     def generate_contract_tests!(file: nil, options: {})
-      @options         = yaml_options.merge(options)
-      @options[:rails] = true unless @options.fetch(:rails, nil) == false
-      @file            = file || @options.delete(:raml) || raml_file
+      @options             = yaml_options.merge(options)
+      @options[:framework] = :rails if @options.fetch(:framework, nil).nil?
+      @file                = file || @options.delete(:raml) || raml_file
 
       DocumentGenerator.generate!(@file, @options)
     end
@@ -20,13 +20,15 @@ module Rambo
     def yaml_options
       opts = YAML.load(File.read(File.join(FileUtils.pwd, ".rambo.yml"))).symbolize_keys
 
+      opts[:framework] = opts[:framework].to_sym if opts[:framework]
+
       if opts && opts.fetch(:raml, nil)
         opts[:raml] = File.join(FileUtils.pwd, opts.fetch(:raml))
       end
 
       opts || {}
     rescue
-      { rails: true }
+      { framework: :rails }
     end
 
     # TODO: Permit use of multiple RAML files, since right now this only takes

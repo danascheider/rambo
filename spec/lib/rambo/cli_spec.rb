@@ -1,7 +1,7 @@
 RSpec.describe Rambo::CLI do
   let(:io)         { StringIO.new }
   let(:stderr)     { StringIO.new }
-  let(:opts)       { { rails: true } }
+  let(:opts)       { { framework: :rails } }
   let(:valid_file) { File.join(SPEC_DIR_ROOT, 'support/foobar.raml',) }
 
   describe "run!" do
