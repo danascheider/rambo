@@ -1,15 +1,16 @@
-require "<%= @options.fetch(:rails, nil) ? "rails_helper" : "spec_helper" %>"
+require "<%= @options.fetch(:framework, :rails) ? "rails_helper" : "spec_helper" %>"
 require "rack/test"
 require_relative "./support/matchers/rambo_matchers"
 
-<% if options.fetch(:rails, nil) %>module ApiHelper
+module ApiHelper
   include Rack::Test::Methods
 
   def app
-    Rails.application
+    require "active_support/core_ext/class/subclasses"
+    <%= app_classes.fetch(@options.fetch(:framework, :rails)) %>
   end
 end
 
 RSpec.configure do |config|
   config.include ApiHelper, type: :rambo
-end<% end %>
+end

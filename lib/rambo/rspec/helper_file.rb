@@ -11,8 +11,17 @@ module Rambo
       def initialize(template_path:, file_path:, raml: nil, options: nil)
         @template_path = template_path
         @file_path     = file_path
-        @options       = options || { rails: true }
+        @options       = options || { framework: :rails }
         @raml          = raml ? Rambo::RamlModels::Api.new(raml) : nil
+      end
+
+      def app_classes
+        {
+          :rails             => "Rails.application",
+          :"sinatra:classic" => "Sinatra::Application",
+          :"sinatra:modular" => "Sinatra::Base.descendants.find {|klass| klass != Sinatra::Application } || Sinatra::Application",
+          :grape             => "Grape::API.descendants.first"
+        }
       end
 
       def generate
