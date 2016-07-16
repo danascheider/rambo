@@ -69,5 +69,11 @@ RSpec.describe Rambo::RSpec::ExampleGroup do
         expect(subject.render).to include("let(:headers) do")
       end
     end
+
+    context "when the route has a model" do 
+      it "creates models" do 
+        expect(subject.render).to include("let!(:authors) { FactoryGirl.create_list(:author, 3) }")
+      end
+    end
   end
 end

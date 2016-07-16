@@ -1,5 +1,6 @@
 <% rails, rory = @options.fetch(:framework, :rails) == :rails, @options.fetch(:framework, :rails) == :rory %>  describe "<%= @resource.to_s %>" do
     let(:route) { "<%= @resource.to_s %>" }
+    <% unless @options.fetch(:models, true) == false %>let!(<%= @resource.variable_name %>) { FactoryGirl.create_list(<%= @resource.factory_name %>, 3) }<% end %>
     <%- @resource.http_methods.each do |method| %>
     describe "<%= method.method.upcase %>" do
       <% if method.headers %>let(:headers) do <% headers = method.headers.pretty.split("\n")[1..-2] %>
@@ -13,8 +14,8 @@
           File.read("<%= "spec/support/examples/#{@resource.to_s.gsub("/", "")}_#{method.method}_request_body.json" %>"),
           symbolize_names: true
         )<% else %>File.read("<%= "spec/support/examples/#{@resource.to_s.gsub("/", "")}_#{method.method}_request_body.json" %>")<% end %>
-      end<% end %><% if has_schema = method.responses.first.bodies.first.schema %>
-
+      end<% end %>
+      <% if has_schema = method.responses.first.bodies.first.schema %>
       let(:response_schema) do
         File.read("<%= "spec/support/examples/#{@resource.to_s.gsub("/", "")}_#{method.method}_response_schema.json" %>")
       end<% else %>
