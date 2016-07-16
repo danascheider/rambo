@@ -25,6 +25,10 @@ module Rambo
       def factory_name
         uri_partial == "/caches" ? ":cache" : ":#{uri_partial[1..-1].singularize}"
       end
+
+      def variable_name
+        uri_partial.gsub("/", ":")
+      end
     end
   end
 end

@@ -45,4 +45,12 @@ RSpec.describe Rambo::RamlModels::Resource do
       end
     end
   end
+
+  describe "#variable_name" do 
+    let(:variable_name) { ":authors" }
+
+    it "returns the plural with a colon" do 
+      expect(subject.variable_name).to eq variable_name
+    end
+  end
 end
