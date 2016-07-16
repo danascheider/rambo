@@ -15,11 +15,16 @@ OptionParser.new do |opts|
   opts.banner = "Usage: rambo [FILE] [OPTIONS]"
 
   options[:framework] = :rails
+  options[:models]    = true
+
   opts.on("--framework=FRAMEWORK", "Choose rails (default), sinatra:classic, sinatra:modular, or grape") do |v|
     options[:framework] = v.to_sym
   end
   opts.on("--token=TOKEN", "-T=TOKEN", "Specify an API token") do |v|
     options[:token] = v
+  end
+  opts.on("--no-models", "Don't use model fixtures") do
+    options[:models] = false
   end
 end.parse!
 
