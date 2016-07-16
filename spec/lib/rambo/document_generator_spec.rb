@@ -1,6 +1,6 @@
 RSpec.describe Rambo::DocumentGenerator do
   let(:valid_file) { File.join(SPEC_DIR_ROOT, "support/foobar.raml") }
-  let(:options)    { { framework: :rails } }
+  let(:options)    { { framework: :rails, models: true } }
   
   subject          { described_class.new(valid_file, options) }
 
@@ -65,7 +65,7 @@ RSpec.describe Rambo::DocumentGenerator do
           .with(hash_including(
             :template_path => File.join(RAMBO_ROOT, "rambo/rspec/templates/rambo_helper_file_template.erb"),
             :file_path     => "spec/rambo_helper.rb",
-            :options       => { framework: :rails }
+            :options       => { framework: :rails, models: true }
           ))
         expect_any_instance_of(Rambo::RSpec::HelperFile).to receive(:generate)
       end

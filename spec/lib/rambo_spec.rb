@@ -8,7 +8,7 @@ framework: rails
 
   describe ".generate_contract_tests!" do
     let(:valid_file)      { "foobar.raml" }
-    let(:default_options) { { framework: :rails } }
+    let(:default_options) { { framework: :rails, models: true } }
 
     before(:each) do
       allow(Dir).to receive(:foreach).and_return("/Users/dscheider/rambo/doc/raml/#{valid_file}")
@@ -39,9 +39,23 @@ framework: rails
       it "sets the RAML file to the one from the file" do
         expect(Rambo::DocumentGenerator)
           .to receive(:generate!)
-          .with(File.expand_path("doc/raml/foobar.raml"), { framework: :rails })
+          .with(File.expand_path("doc/raml/foobar.raml"), { framework: :rails, models: true })
 
         Rambo.generate_contract_tests!
+      end
+
+      context "models is set to false" do 
+        it "sets models to false" do 
+          allow(Rambo).to receive(:yaml_options).and_return({
+              models: false
+            })
+
+          expect(Rambo::DocumentGenerator)
+            .to receive(:generate!)
+            .with("/Users/dscheider/rambo/doc/raml/#{valid_file}", { framework: :rails, models: false })
+
+          Rambo.generate_contract_tests!
+        end
       end
 
       context "framework set to sinatra:classic" do
@@ -49,7 +63,7 @@ framework: rails
           allow(Rambo).to receive(:yaml_options).and_return({ framework: :"sinatra:classic" })
           expect(Rambo::DocumentGenerator)
             .to receive(:generate!)
-            .with("/Users/dscheider/rambo/doc/raml/#{valid_file}", { framework: :"sinatra:classic" })
+            .with("/Users/dscheider/rambo/doc/raml/#{valid_file}", { framework: :"sinatra:classic", models: true })
           Rambo.generate_contract_tests!
         end
       end
@@ -59,7 +73,7 @@ framework: rails
           allow(Rambo).to receive(:yaml_options).and_return({ framework: :"sinatra:modular" })
           expect(Rambo::DocumentGenerator)
             .to receive(:generate!)
-            .with("/Users/dscheider/rambo/doc/raml/#{valid_file}", { framework: :"sinatra:modular" })
+            .with("/Users/dscheider/rambo/doc/raml/#{valid_file}", { framework: :"sinatra:modular", models: true })
           Rambo.generate_contract_tests!
         end
       end
@@ -69,7 +83,7 @@ framework: rails
           allow(Rambo).to receive(:yaml_options).and_return({ framework: :rory })
           expect(Rambo::DocumentGenerator)
             .to receive(:generate!)
-            .with("/Users/dscheider/rambo/doc/raml/#{valid_file}", { framework: :rory })
+            .with("/Users/dscheider/rambo/doc/raml/#{valid_file}", { framework: :rory, models: true })
           Rambo.generate_contract_tests!
         end
       end
@@ -79,17 +93,17 @@ framework: rails
           allow(Rambo).to receive(:yaml_options).and_return({ framework: :grape })
           expect(Rambo::DocumentGenerator)
             .to receive(:generate!)
-            .with("/Users/dscheider/rambo/doc/raml/#{valid_file}", { framework: :grape })
+            .with("/Users/dscheider/rambo/doc/raml/#{valid_file}", { framework: :grape, models: true })
           Rambo.generate_contract_tests!
         end
       end
 
       context "framework set to Rails" do
         it "sets framework to Rails" do
-          allow(Rambo).to receive(:yaml_options).and_return({ framework: :rails })
+          allow(Rambo).to receive(:yaml_options).and_return({ framework: :rails, models: true })
           expect(Rambo::DocumentGenerator)
             .to receive(:generate!)
-            .with("/Users/dscheider/rambo/doc/raml/#{valid_file}", { framework: :rails })
+            .with("/Users/dscheider/rambo/doc/raml/#{valid_file}", { framework: :rails, models: true })
           Rambo.generate_contract_tests!
         end
       end
@@ -99,7 +113,7 @@ framework: rails
           allow(Rambo).to receive(:yaml_options).and_return({})
           expect(Rambo::DocumentGenerator)
             .to receive(:generate!)
-            .with(File.expand_path("/Users/dscheider/rambo/doc/raml/#{valid_file}"), { framework: :rails })
+            .with(File.expand_path("/Users/dscheider/rambo/doc/raml/#{valid_file}"), { framework: :rails, models: true })
           Rambo.generate_contract_tests!
         end
       end

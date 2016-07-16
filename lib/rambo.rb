@@ -10,6 +10,7 @@ module Rambo
     def generate_contract_tests!(file: nil, options: {})
       @options             = yaml_options.merge(options)
       @options[:framework] = :rails if @options.fetch(:framework, nil).nil?
+      @options[:models]    = true if @options.fetch(:models, nil).nil?
       @file                = file || @options.delete(:raml) || raml_file
 
       DocumentGenerator.generate!(@file, @options)
