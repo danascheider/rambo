@@ -2,7 +2,7 @@ RSpec.describe Rambo::RSpec::ExampleGroup do
   let(:raml_file) { File.join(SPEC_DIR_ROOT, "/support/foobar.raml") }
   let(:raml)      { Raml::Parser.parse_file(raml_file) }
   let(:resource)  { Rambo::RamlModels::Resource.new(raml.resources.first) }
-  let(:options)   { { rails: true } }
+  let(:options)   { { framework: :rails, models: true } }
   subject         { Rambo::RSpec::ExampleGroup.new(resource, options) }
 
   before(:each) do

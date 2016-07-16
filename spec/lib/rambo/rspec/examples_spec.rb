@@ -1,7 +1,7 @@
 RSpec.describe Rambo::RSpec::Examples do
   let(:raml_file) { File.join(SPEC_DIR_ROOT, "support/foobar.raml") }
   let(:raw_raml)  { Raml::Parser.parse_file(raml_file) }
-  let(:options)   { { rails: true } }
+  let(:options)   { { framework: :rails, models: true } }
   let(:raml)      { Rambo::RamlModels::Api.new(raw_raml) }
 
   subject { Rambo::RSpec::Examples.new(raml, options) }

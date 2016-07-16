@@ -1,6 +1,6 @@
 RSpec.describe Rambo::RSpec::SpecFile do
   let(:raw_raml)  { Raml::Parser.parse_file(raml_file) }
-  let(:options)   { { rails: true } }
+  let(:options)   { { framework: :rails, models: true } }
   let(:raml)      { Rambo::RamlModels::Api.new(raw_raml) }
   let(:spec_file) { Rambo::RSpec::SpecFile.new(raw_raml, options) }
 
