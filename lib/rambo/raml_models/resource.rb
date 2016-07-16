@@ -23,7 +23,7 @@ module Rambo
       end
 
       def factory_name
-        ":#{uri_partial[1..-1].singularize}"
+        uri_partial == "/caches" ? ":cache" : ":#{uri_partial[1..-1].singularize}"
       end
     end
   end

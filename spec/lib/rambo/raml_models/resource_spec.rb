@@ -30,10 +30,19 @@ RSpec.describe Rambo::RamlModels::Resource do
   end
 
   describe "#factory_name" do 
-    let(:factory_name) { ":author" }
+    context "plural ActiveSupport knows" do 
+      let(:factory_name) { ":author" }
 
-    it "returns the class name" do
-      expect(subject.factory_name).to eq factory_name
+      it "returns the class name" do
+        expect(subject.factory_name).to eq factory_name
+      end
+    end
+
+    context "'caches'" do 
+      it "returns 'cache'" do 
+        allow(subject).to receive(:uri_partial).and_return("/caches")
+        expect(subject.factory_name).to eq ":cache"
+      end
     end
   end
 end
