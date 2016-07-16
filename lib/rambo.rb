@@ -22,6 +22,7 @@ module Rambo
       opts = YAML.load(File.read(File.join(FileUtils.pwd, ".rambo.yml"))).symbolize_keys
 
       opts[:framework] = opts[:framework].to_sym if opts[:framework]
+      opts[:models]    = opts[:models] if opts[:models]
 
       if opts && opts.fetch(:raml, nil)
         opts[:raml] = File.join(FileUtils.pwd, opts.fetch(:raml))
