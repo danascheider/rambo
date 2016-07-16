@@ -75,5 +75,12 @@ RSpec.describe Rambo::RSpec::ExampleGroup do
         expect(subject.render).to include("let!(:authors) { FactoryGirl.create_list(:author, 3) }")
       end
     end
+
+    context "when the route doesn't have models" do 
+      subject { described_class.new(resource, { rails: true, models: false }) }
+      it "doesn't create models" do 
+        expect(subject.render).not_to include("let!(:authors) { FactoryGirl.create_list(:author, 3) }")
+      end
+    end
   end
 end
