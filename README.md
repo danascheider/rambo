@@ -45,6 +45,8 @@ $ rambo foobar.raml -T sometoken
 ```
 Rambo will automatically use this value for any header whose name matches "token" or "key" (not case-sensitive).
 
+By default, Rambo detects models and creates [FactoryGirl](https://github.com/thoughtbot/factory_girl) fixtures. (You will need to configure the fixtures manually with the appropriate attributes.) If your app is functional and does not use models, you can use the `--no-models` switch to turn this functionality off.
+
 ### The Rake Task
 After adding `rambo_ruby` to your Gemfile or gemspec, you will need to add the following to your Rakefile:
 ```ruby
@@ -64,7 +66,7 @@ require "rambo"
 
 Rambo.generate_contract_tests!(File.expand_path("doc/foobar.raml"), {})
 ```
-You can pass any options in as a hash. Currently, the available options are `:framework` and `:token`. Valid values for the `:framework` option are `:grape`, `:"sinatra:classic"`, `:"sinatra:modular"`, `:rory`, and `:rails`, with `:rails` being the default. The `:token` option takes an API token as a string.
+You can pass any options in as a hash. Currently, the available options are `:framework`, `:token`, and `:models`. Valid values for the `:framework` option are `:grape`, `:"sinatra:classic"`, `:"sinatra:modular"`, `:rory`, and `:rails`, with `:rails` being the default. The `:token` option takes an API token as a string. The default value of `:models` is `true`. Setting this option to `false` prevents Rambo from generating fixtures using FactoryGirl. You should only set `:models` to `false` if your app is functional and does not use models.
 
 ## The .rambo.yml File
 By default, Rambo will always check for a `.rambo.yml` file in the root directory of your projects and load options from there. If there is no `.rambo.yml` file, default values will be used (see below).
@@ -74,14 +76,18 @@ A sample `.rambo.yml` file could look like this:
 raml: docs/contracts/foobar.raml
 framework: sinatra:modular
 token: foobarbaz
+models: false
 ```
-The three possible keys are:
+There are four possible keys, all optional:
   - `raml` - specifies the RAML file to use to generate the tests. The default, relative
     to the root of your project directory, is `doc/raml/foobar.raml`, where `foobar.raml` is the first RAML file found in the `doc/raml` directory.
   - `framework` - specifies the framework you are using. The default value is `rails`; other available 
     frameworks are `sinatra:classic`, `sinatra:modular`, `grape`, and `rory`.
   - `token` - the API key or token to be included in the security headers. This value will be
     used for any header whose name matches either "token" or "key" (not case-sensitive).
+  - `models` - when set to `false`, prevents Rambo from generating FactoryGirl fixtures to 
+    mock your models. This option is set to `true` by default. You should only use this option 
+    if your app is purely functional and does not use models.
 
 If a `.rambo.yml` file is present and additional options are passed in through the command line or Ruby API, the option values that are passed in will override those in the `.rambo.yml` file.
 
@@ -100,6 +106,13 @@ Rambo is able to generate tests for apps written in Rails, Grape, or Sinatra. Ho
 I started Rambo in March of 2016 as part of my work at [Renew Financial](http://renewfinancial.com). For this reason, our primary focus has been on adding the features and functionality that are most important for testing RF's back-end services. Since my contract with Renew Financial has ended, I now have more latitude to do with the project what I want, but also less time to do it.
 
 Rambo, therefore, considers RAML 1.0 and Rails 4 the default, and support for other frameworks and for RAML 0.8 is currently lower priority. We would be delighted to merge pull requests adding such support, as long as they don't adversely affect the features we need most.
+
+## Rambo and Test Data
+As of version 0.8, Rambo tests generate test data using [Factory Girl](https://github.com/thoughtbot/factory_girl). Although this is done by default, you can turn off this functionality for purely functional apps by adding `models: false` to your Ruby hash or `.rambo.yml` file, or by using the `--no-models` command line flag.
+
+You will need to include `gem "factory_girl"` or `gem "factory_girl_rails"` in your Gemfile and define factories for each of your model resources with the required data. 
+
+For the purpose of generating data, Rambo assumes you are using RESTful routes where the URI partial corresponds to the plural of the model class. For example, a `/movies` endpoint is assumed to correspond to a `Movie` model and a `:movie` factory. There is currently no option to override this behavior.
 
 ## Contributing
 Rambo is a new project and any contributions are much appreciated. All pull requests should include comprehensive test coverage and, where appropriate, documentation. If you're not sure where to get started, contact me [through Github](https://github.com/danascheider) and I'll be glad to chat.
