@@ -28,4 +28,12 @@ RSpec.describe Rambo::RamlModels::Resource do
       expect(all_are_methods).to be true
     end
   end
+
+  describe "#factory_name" do 
+    let(:factory_name) { ":author" }
+
+    it "returns the class name" do
+      expect(subject.factory_name).to eq factory_name
+    end
+  end
 end

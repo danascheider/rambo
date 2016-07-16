@@ -1,3 +1,5 @@
+require "active_support/core_ext/string/inflections"
+
 module Rambo
   module RamlModels
     class Resource
@@ -18,6 +20,10 @@ module Rambo
 
       def http_methods
         @http_methods ||= schema.http_methods.map {|method| Rambo::RamlModels::Method.new(method, headers) }
+      end
+
+      def factory_name
+        ":#{uri_partial[1..-1].singularize}"
       end
     end
   end
