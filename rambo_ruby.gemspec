@@ -13,7 +13,7 @@ Gem::Specification.new do |s|
   s.required_ruby_version = ">= 2.1.0"
 
   s.add_dependency "rspec", "~> 3.4"
-  s.add_dependency "raml-rb", "~> 1.0"
+  s.add_dependency "raml-rb", "~> 1.1"
   s.add_dependency "colorize", "~> 0.7"
   s.add_dependency "json_test_data", "~> 1.1", ">= 1.1.3"
   s.add_dependency "json-schema", "~> 2.6"
