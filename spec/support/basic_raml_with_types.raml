@@ -1,0 +1,33 @@
+#%RAML 1.0
+---
+title: e-BookMobile API
+baseUri: http://api.e-bookmobile.com/{version}
+version: v1
+
+types:
+  Author:
+    type: object
+    properties:
+      id: integer
+      first_name:
+        required: true
+        type: string
+      last_name:
+        required: true
+        type: string
+      year_of_birth:
+        required: false
+        type: integer
+        maximum: 2017
+    additionalProperties: false
+  Authors:
+    type: Author[]
+
+/authors:
+  post:
+    description: Add a new author to the system
+    responses:
+      204:
+        body:
+          application/json:
+            type: Authors
