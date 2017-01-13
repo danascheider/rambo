@@ -25,7 +25,7 @@ module Rambo
       private
 
       def generate_from_schema
-        return nil unless body.schema
+        return nil if body.schema.nil?
         JSON.pretty_generate(JsonTestData.generate!(body.schema, ruby: true))
       end
     end
